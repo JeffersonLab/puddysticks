@@ -38,4 +38,4 @@
 
 <button type="button" on:click="{chooseLocalFile}">Open</button>
 
-<svelte:options tag="wedm-local-file-reader"/>
+<svelte:options tag="ps-local-file-reader"/>

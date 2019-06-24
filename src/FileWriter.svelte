@@ -39,5 +39,3 @@
         return JSON.stringify(val);
     };
 </script>
-
-<svelte:options tag="wedm-file-writer"/>

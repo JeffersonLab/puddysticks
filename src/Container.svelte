@@ -1,5 +1,6 @@
 <script>
     import {components} from './components.js';
+
     export let children;
 </script>
 
@@ -11,4 +12,4 @@
     {/each}
 {/if}
 
-<svelte:options tag="wedm-container"/>
+<svelte:options tag="ps-container"/>

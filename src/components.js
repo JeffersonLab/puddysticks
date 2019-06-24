@@ -1,4 +1,5 @@
-import ResponsiveGrid from './ResponsiveGrid.svelte';
+import Grid from './Grid.svelte';
 import Label from './Label.svelte';
+import Gauge from './Gauge.svelte';
 
-export const components = {ResponsiveGrid, Label};
+export const components = {Grid, Label, Gauge};
