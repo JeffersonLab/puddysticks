@@ -1,6 +1,11 @@
 <script>
-    import {components} from './components.js';
+    import {components} from './registry.js';
+
+    console.log(components);
+
     export let children;
+
+    console.log(children);
 </script>
 
 <h1>Hi from Container</h1>
