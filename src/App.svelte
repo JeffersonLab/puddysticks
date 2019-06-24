@@ -1,18 +1,10 @@
 <script>
-	import {components} from './registry.js';
+	import {init} from './components.js';
 
-	import Display from './Display.svelte';
-	import Grid from './Grid.svelte';
-	import Label from './Label.svelte';
-	import Gauge from './Gauge.svelte';
-
-	components['Display'] = Display;
-	components['Grid'] = Grid;
-	components['Label'] = Label;
-	components['Gauge'] = Gauge;
+    init();
 
 	import {openRemoteFile} from './Display.svelte';
-	/*import Display from './Display.svelte';*/
+	import Display from './Display.svelte';
 
 	let params = new URLSearchParams(location.search),
 			file = params.get("file");

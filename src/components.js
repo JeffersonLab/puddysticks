@@ -1,11 +1,13 @@
-import {components} from './Registry.js';
+import {components} from './registry.js';
 
 import Display from './Display.svelte';
 import Grid from './Grid.svelte';
 import Label from './Label.svelte';
 import Gauge from './Gauge.svelte';
 
-components['Display'] = Display;
-components['Grid'] = Grid;
-components['Label'] = Label;
-components['Gauge'] = Gauge;
+export function init() {
+    components['Display'] = Display;
+    components['Grid'] = Grid;
+    components['Label'] = Label;
+    components['Gauge'] = Gauge;
+}
