@@ -1,4 +1,6 @@
 <script>
+	import Container from './Container.svelte';
+	import {components} from './components.js';
 	import Display from './Display.svelte';
 	import {openRemoteFile} from './Display.svelte';
 

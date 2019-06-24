@@ -13,11 +13,12 @@
 
 <script>
     import Container from './Container.svelte';
+    import {components} from './components.js';
     export let config;
 </script>
 
 <h1>Hi from Display</h1>
 
-<Container children="{config.components}"/>
+<Container {components} children="{config.components}"/>
 
 <svelte:options tag="puddy-display"/>

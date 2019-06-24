@@ -1,6 +1,5 @@
 <script>
-    import {components} from './components.js';
-
+    export let components;
     export let children;
 </script>
 
