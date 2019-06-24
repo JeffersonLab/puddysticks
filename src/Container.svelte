@@ -12,4 +12,4 @@
     {/each}
 {/if}
 
-<svelte:options tag="ps-container"/>
+<svelte:options tag="puddy-container"/>

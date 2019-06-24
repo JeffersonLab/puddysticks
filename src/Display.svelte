@@ -20,4 +20,4 @@
 
 <Container children="{config.components}"/>
 
-<svelte:options tag="ps-display"/>
+<svelte:options tag="puddy-display"/>

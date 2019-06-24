@@ -8,4 +8,4 @@
 
 <Container children="{config.components}"/>
 
-<svelte:options tag="ps-grid"/>
+<svelte:options tag="puddy-grid"/>
