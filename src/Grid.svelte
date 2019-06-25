@@ -1,3 +1,9 @@
+<style>
+    div {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(1fr, 2fr));
+    }
+</style>
 <script>
     import Container from './Container.svelte';
 
@@ -5,7 +11,7 @@
 </script>
 
 <h1>Hi from Grid</h1>
-
-<Container children="{config.components}"/>
-
+<div>
+    <Container children="{config.components}"/>
+</div>
 <svelte:options tag="puddy-grid"/>
