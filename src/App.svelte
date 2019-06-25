@@ -15,9 +15,6 @@
 
 	let promise = openRemoteFile(file);
 </script>
-
-<h1>Hi from App</h1>
-
 {#await promise}
 	<p>...waiting</p>
 {:then config}
@@ -25,3 +22,4 @@
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
+<svelte:options tag="puddy-app"/>

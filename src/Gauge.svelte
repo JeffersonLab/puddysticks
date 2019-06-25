@@ -170,9 +170,6 @@
         return "M " + x4 + ", " + y4 + " A" + r1 + "," + r1 + " 0 0 0 " + x2 + "," + y2 + " H" + (offset + delta) + " A" + r2 + "," + r2 + " 0 0 1 " + x5 + "," + y5 + " z";
     }
 </script>
-
-<h1>Hi from Gauge</h1>
-
 <div class="container">
     <svg height="165" width="330" view-box="0 0 330 165">
         <g class="scale">
@@ -187,5 +184,4 @@
     </svg>
     <div class="output">{value}</div>
 </div>
-
 <svelte:options tag="puddy-gauge"/>

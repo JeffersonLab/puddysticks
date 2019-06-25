@@ -1,7 +1,7 @@
 <style>
     div {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(1fr, 2fr));
+        grid-template-columns: repeat(3, 1fr);
     }
 </style>
 <script>
@@ -9,8 +9,6 @@
 
     export let config;
 </script>
-
-<h1>Hi from Grid</h1>
 <div>
     <Container children="{config.components}"/>
 </div>
