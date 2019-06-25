@@ -50,6 +50,8 @@
 <script>
     /*Gauge inspired by https://codepen.io/enxaneta/pen/EVYRJJ*/
     import {onMount} from 'svelte';
+    import { tweened } from 'svelte/motion';
+    import { cubicOut } from 'svelte/easing';
 
     export let config;
 
@@ -71,14 +73,15 @@
             outline = getOutline(cx, cy, r1, offset, delta),
             ticks = getTicks();
 
-    $: value = 0;
-    $: a = getA(value);
+    const value = tweened(0, {duration: 1000, easing: cubicOut});
+
+    $: a = getA($value);
     $: meter = getMeter(cx, cy, r1, offset, delta, a);
     $: needle = getNeedle(cx, cy, r1, a);
 
     onMount(() => {
         const interval = setInterval(() => {
-            value = Math.floor(Math.random() * 101);
+            value.set(Math.floor(Math.random() * 101));
         }, 1000);
 
         return () => {
@@ -182,6 +185,6 @@
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
     </svg>
-    <div class="output">{value}</div>
+    <div class="output">{Number($value).toFixed(0)}</div>
 </div>
 <svelte:options tag="puddy-gauge"/>
