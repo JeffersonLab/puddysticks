@@ -7,6 +7,7 @@ import Tabs from './Tabs.svelte';
 import Label from './Label.svelte';
 import Gauge from './Gauge.svelte';
 import Indicator from './Indicator.svelte';
+import Drawer from './Drawer.svelte';
 
 export function init() {
     components['Display'] = Display;
@@ -16,4 +17,5 @@ export function init() {
     components['Label'] = Label;
     components['Gauge'] = Gauge;
     components['Indicator'] = Indicator;
+    components['Drawer'] = Drawer;
 }
