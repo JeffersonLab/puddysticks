@@ -6,6 +6,7 @@ import Panel from './Panel.svelte';
 import Tabs from './Tabs.svelte';
 import Label from './Label.svelte';
 import Gauge from './Gauge.svelte';
+import Indicator from './Indicator.svelte';
 
 export function init() {
     components['Display'] = Display;
@@ -14,4 +15,5 @@ export function init() {
     components['Tabs'] = Tabs;
     components['Label'] = Label;
     components['Gauge'] = Gauge;
+    components['Indicator'] = Indicator;
 }
