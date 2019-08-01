@@ -1,5 +1,6 @@
 <style>
     /*Inspired by https://medium.com/compass-true-north/css-grid-maintaining-aspect-ratio-and-managing-overflow-ed54c510782a*/
+    /*Also uses the Priority+ pattern to adapt to available screen space (https://justmarkup.com/articles/2012-06-19-responsive-multi-level-navigation/)*/
     *, *:before, *:after {
         box-sizing: border-box;
     }
@@ -49,6 +50,9 @@
     }
     .aspect-ratio {
         padding-top: var(--ratio-percent);
+    }
+    .active {
+        color: red;
     }
 </style>
 <script>

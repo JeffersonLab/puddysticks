@@ -1,11 +1,13 @@
 <script>
     import {components} from './registry.js';
 
-    export let children;
+    export let items;
+
+    console.log(items);
 </script>
-{#if children}
-    {#each children as child}
-        <svelte:component this="{components[child.component]}" config="{child}"/>
+{#if items}
+    {#each items as item}
+        <svelte:component this="{components[item.name]}" config="{item}"/>
     {/each}
 {/if}
 <svelte:options tag="puddy-container"/>

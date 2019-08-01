@@ -23,6 +23,6 @@
     }
 </style>
 <div style="{style}">
-    <Container children="{config.components}"/>
+    <Container items="{config.items}"/>
 </div>
 <svelte:options tag="puddy-grid"/>

@@ -1,5 +1,6 @@
 import {components} from './registry.js';
 
+import Tree from './Tree.svelte';
 import Display from './Display.svelte';
 import Grid from './Grid.svelte';
 import Panel from './Panel.svelte';
@@ -10,6 +11,7 @@ import Indicator from './Indicator.svelte';
 import Drawer from './Drawer.svelte';
 
 export function init() {
+    components['Tree'] = Tree;
     components['Display'] = Display;
     components['Grid'] = Grid;
     components['Panel'] = Panel;

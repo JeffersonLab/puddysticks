@@ -4,6 +4,6 @@
     export let config;
 </script>
 <div>
-    <Container children="{config.components}"/>
+    <Container items="{config.items}"/>
 </div>
 <svelte:options tag="puddy-panel"/>
