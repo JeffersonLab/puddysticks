@@ -1,51 +1,35 @@
 <style>
-    span {
-        padding: 0 0 0 1.5em;
-        background: url(icons/container-closed.svg) 0 0.1em no-repeat;
-        background-size: 1em 1em;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .expanded {
-        background-image: url(icons/container-open.svg);
-    }
-
-    ul {
-        padding: 0.2em 0 0 0.5em;
-        margin: 0 0 0 0.5em;
-        list-style: none;
-        border-left: 1px solid #eee;
-    }
-
-    li {
-        padding: 0.2em 0;
-    }
 </style>
 <script>
+    import TreeNode from './TreeNode.svelte';
+
     export let config;
     export let expanded = false;
     export let name;
     export let items;
+    export let collapsible = false;
+    let active = null;
 
-    function toggle() {
-        expanded = !expanded;
+    function setSelected(active, node) {
+        if(node.name === active) {
+            node.active = true;
+        } else {
+            node.active = false;
+        }
+
+        if(node.items) {
+            for(let i = 0; i < node.items.length; i++) {
+                setSelected(active, node.items[i]);
+            }
+        }
     }
 
-    let type = 'md';
+    function doSelect(event) {
+        active = event.detail.name;
+        setSelected(active, config);
+        config = config;
+    }
+
 </script>
-<span class:expanded on:click={toggle}>{name}</span>
-{#if expanded && items != null}
-    <ul>
-        {#each items as item}
-            <li>
-                {#if item.type === 'Container'}
-                    <svelte:self config="{item}" name="{item.name}" items="{item.items}" expanded/>
-                {:else}
-                    <span style="background-image: url(icons/leaf.svg)">{item.name}</span>
-                {/if}
-            </li>
-        {/each}
-    </ul>
-{/if}
+<TreeNode {config} name="{config.name}" items="{config.items}" active="{config.active}" expanded on:selected="{doSelect}"/>
 <svelte:options tag="puddy-tree"/>

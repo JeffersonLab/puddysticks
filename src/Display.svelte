@@ -14,7 +14,7 @@
     import Container from './Container.svelte';
     export let config;
 
-    console.log(config);
+    /*console.log(config);*/
 
 </script>
 <Container items="{config.items}"/>

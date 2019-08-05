@@ -25,8 +25,14 @@
 {#await promise}
 	<p>...waiting</p>
 {:then config}
-	<Drawer>
+	<Drawer {config}>
+		<div>
+			<button>Open</button>
+			<button>Save</button>
+		</div>
 		<Tree {config} name="{config.name}" items="{config.items}" expanded/>
+		<button>Add</button>
+		<button>Remove</button>
 	</Drawer>
 	<Display {config}/>
 {:catch error}

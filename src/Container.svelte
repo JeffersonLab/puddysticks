@@ -3,7 +3,7 @@
 
     export let items;
 
-    console.log(items);
+    /*console.log(items);*/
 </script>
 {#if items}
     {#each items as item}
