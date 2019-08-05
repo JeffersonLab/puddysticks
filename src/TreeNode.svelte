@@ -21,43 +21,16 @@
     li {
         padding: 0.2em 0;
     }
-    .active {
-        color: red;
-    }
 </style>
 <script>
-    import { createEventDispatcher } from 'svelte';
-
-    const dispatch = createEventDispatcher();
-
-    function selectItem() {
-        dispatch('selected', {name: name});
-    }
-
-    let type = 'Contanier';
-
     export let config;
-    export let expanded = false;
-    export let name;
-    export let items;
-    export let active;
-    export let collapsible = false;
-
-    function toggle() {
-        if (collapsible) {
-            expanded = !expanded;
-        } else {
-            expanded = true;
-        }
-    }
-
 </script>
-<span class:expanded on:click="{selectItem}" on:click={toggle} class:active="{active}">{name}</span>
-{#if expanded && items != null}
+<span id="{config.id}">{config.name}</span>
+{#if config.items != null}
     <ul>
-        {#each items as item}
+        {#each config.items as item}
             <li>
-                <svelte:self config="{item}" name="{item.name}" items="{item.items}" active="{item.active}" expanded on:selected/>
+                <svelte:self config="{item}"/>
             </li>
         {/each}
     </ul>
