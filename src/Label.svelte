@@ -7,22 +7,26 @@
     }
 </style>
 <script>
-    import {onMount} from 'svelte';
+    import RandomNumberGenerator from "./RandomNumberGenerator.svelte";
 
     export let config;
 
-    onMount(() => {
-        if(config.datasource && config.datasource.name == 'Random Number Generator') {
-            const interval = setInterval(() => {
-                config.text = (Math.floor(Math.random() * 101));
-            }, 1000);
+    let value;
+    let formattedValue;
 
-            return () => {
-                clearInterval(interval);
-            };
+    $: {
+        /*Format Decimals*/
+        if(config.datasource && config.datasource.decimals > 0) {
+            formattedValue = (isNaN(value) ? value : value.toFixed(config.datasource.decimals));
         }
-    });
+    }
 
+    if(config.text) {
+        formattedValue = config.text;
+    }
 </script>
-<div>{config.text}</div>
+<div>{formattedValue}</div>
+{#if config.datasource && config.datasource.name === 'Random Number Generator'}
+    <RandomNumberGenerator config="{config.datasource}" bind:value/>
+{/if}
 <svelte:options tag="puddy-label"/>
