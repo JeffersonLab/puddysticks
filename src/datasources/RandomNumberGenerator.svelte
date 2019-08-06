@@ -1,8 +1,30 @@
 <script>
     import { onMount } from 'svelte';
+    import { tweened } from 'svelte/motion';
+    import { cubicOut } from 'svelte/easing';
 
     export let value;
     export let config;
+
+    let duration = 1000;
+
+    if(config.datasource) {
+        duration = config.datasource.hz ? config.datasource.hz : duration;
+    }
+
+    const tween = tweened(0, {duration: 1000, easing: cubicOut});
+
+    let next;
+
+    $: {
+        if(config.tween && !isNaN(next)) {
+            tween.set(next);
+            value = $tween;
+        } else {
+            value = next;
+        }
+    }
+
 
     let intMaxIncVal = config.intMaxInc ? 1 : 0;
     let min = config.min;
@@ -24,9 +46,9 @@
     onMount(() => {
         const interval = setInterval(() => {
             if(config.int) {
-                value = randomInt();
+                next = randomInt();
             } else {
-                value = randomFloat();
+                next = randomFloat();
             }
         }, 1000 * config.hz);
 

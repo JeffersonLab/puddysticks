@@ -6,12 +6,12 @@ import Display from './Display.svelte';
 import Grid from './Grid.svelte';
 import Panel from './Panel.svelte';
 import Tabs from './Tabs.svelte';
-import Label from './Label.svelte';
-import Gauge from './Gauge.svelte';
-import Indicator from './Indicator.svelte';
+import Label from './components/Label.svelte';
+import Gauge from './components/Gauge.svelte';
+import Indicator from './components/Indicator.svelte';
 import Drawer from './Drawer.svelte';
 
-export function init() {
+export function initComponents() {
     components['Tree'] = Tree;
     components['TreeNode'] = TreeNode;
     components['Display'] = Display;

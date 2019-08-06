@@ -7,17 +7,16 @@
     }
 </style>
 <script>
-    import RandomNumberGenerator from "./RandomNumberGenerator.svelte";
-
     export let config;
+    export let data;
 
-    let value;
-    let formattedValue;
+    $: value = data ? data : 'Loading...';
+    let formattedValue = '';
 
     $: {
         /*Format Decimals*/
         if(config.datasource && config.datasource.decimals > 0) {
-            formattedValue = (isNaN(value) ? value : value.toFixed(config.datasource.decimals));
+            formattedValue = (value.toFixed ? value.toFixed(config.datasource.decimals) : value);
         }
     }
 
@@ -26,7 +25,4 @@
     }
 </script>
 <div>{formattedValue}</div>
-{#if config.datasource && config.datasource.name === 'Random Number Generator'}
-    <RandomNumberGenerator config="{config.datasource}" bind:value/>
-{/if}
 <svelte:options tag="puddy-label"/>

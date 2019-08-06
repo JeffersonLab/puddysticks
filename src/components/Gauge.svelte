@@ -49,14 +49,11 @@
 </style>
 <script>
     /*Gauge inspired by https://codepen.io/enxaneta/pen/EVYRJJ*/
-    import {onMount} from 'svelte';
-    import { tweened } from 'svelte/motion';
-    import { cubicOut } from 'svelte/easing';
 
     export let config;
+    export let data;
 
     let rad = Math.PI / 180,
-            NS = "http:\/\/www.w3.org/2000/svg",
             W = 330,
             offset = 40,
             cx = ~~(W / 2),
@@ -71,31 +68,35 @@
             x3 = x1 - delta,
             y3 = cy,
             outline = getOutline(cx, cy, r1, offset, delta),
-            ticks = getTicks();
+            min = 0,
+            max = 100,
+            decimals = 0;
 
-    const value = tweened(0, {duration: 1000, easing: cubicOut});
+    if(config.datasource) {
+        min = config.datasource.min ? config.datasource.min : 0;
+        max = config.datasource.max ? config.datasource.max : 100;
+        decimals = config.datasource.decimals ? config.datasource.decimals : 0;
+    }
 
-    $: a = getA($value);
+    let ticks = getTicks(min, max);
+
+    $: value = isNaN(data) ? 0 : data;
+    /*$: value = 9;*/
+
+    $: a = getA(value, min, max);
     $: meter = getMeter(cx, cy, r1, offset, delta, a);
     $: needle = getNeedle(cx, cy, r1, a);
 
-    onMount(() => {
-        const interval = setInterval(() => {
-            value.set(Math.floor(Math.random() * 101));
-        }, 1000);
+    /*$: console.log(value);*/
 
-        return () => {
-            clearInterval(interval);
-        };
-    });
-
-    function getTicks() {
+    function getTicks(min, max) {
         let sr1 = r1 + 5,
                 sr2 = r2 - 5,
                 srT = r1 + 20,
                 ticks = [];
 
-        let n = 0;
+        let n = 0,
+                amount = (Math.abs(max - min) / 10);
         for (let sa = -180; sa <= 0; sa += 18) {
             let sx1 = cx + sr1 * Math.cos(sa * rad),
                     sy1 = cy + sr1 * Math.sin(sa * rad),
@@ -112,7 +113,7 @@
                     label = {
                         x: sxT,
                         y: syT,
-                        text: n * 10
+                        text: min + (n * amount)
                     };
 
             ticks.push({line: line, label: label});
@@ -134,9 +135,11 @@
         return nx1 + "," + ny1 + " " + nx2 + "," + ny2 + " " + nx3 + "," + ny3;
     }
 
-    function getA(val) {
-        let newVal = (!isNaN(val) && val >= 0 && val <= 100) ? val : 0,
-                pa = (newVal * 1.8) - 180,
+    function getA(val, min, max) {
+        let newVal = (!isNaN(val) && val >= min && val <= max) ? val : min,
+                scale = 180 / Math.abs(max - min),
+                zeroAdj = Math.abs(0 - min),
+                pa = ((newVal + zeroAdj) * scale) - 180,
                 p = {};
 
         p.x = cx + r1 * Math.cos(pa * rad);
@@ -185,6 +188,6 @@
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
     </svg>
-    <div class="output">{Number($value).toFixed(0)}</div>
+    <div class="output">{Number(value).toFixed(decimals)}</div>
 </div>
 <svelte:options tag="puddy-gauge"/>

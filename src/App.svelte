@@ -9,9 +9,11 @@
 	}
 </style>
 <script>
-	import {init} from './components.js';
+	import {initComponents} from './components.js';
+	import {initMediators} from './mediators.js';
 
-	init();
+	initComponents();
+	initMediators();
 
 	import {openRemoteFile} from './Display.svelte';
 	import Display from './Display.svelte';

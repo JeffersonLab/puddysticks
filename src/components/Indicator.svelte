@@ -12,6 +12,9 @@
         height: 24px;
         background-color: rgb(var(--off-rgb));
         border-radius: 4px;
+    }
+
+    .flash {
         animation: blink var(--blink-rate) infinite;
     }
 
@@ -23,6 +26,7 @@
 </style>
 <script>
     export let config;
+    export let data;
 </script>
-<div></div>
+<div class="flash"></div>
 <svelte:options tag="puddy-indicator"/>
