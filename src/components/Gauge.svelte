@@ -50,8 +50,12 @@
 <script>
     /*Gauge inspired by https://codepen.io/enxaneta/pen/EVYRJJ*/
 
-    export let config;
-    export let data;
+    let defaultConfig = {min: 0, max: 100, decimals: 2};
+
+    export let config = defaultConfig;
+    export let data = {value: 0};
+
+    config = {...defaultConfig, ...config};
 
     let rad = Math.PI / 180,
             W = 330,
@@ -67,23 +71,11 @@
             y2 = cy,
             x3 = x1 - delta,
             y3 = cy,
-            outline = getOutline(cx, cy, r1, offset, delta),
-            min = 0,
-            max = 100,
-            decimals = 0;
+            outline = getOutline(cx, cy, r1, offset, delta);
 
-    if(config.datasource) {
-        min = config.datasource.min ? config.datasource.min : 0;
-        max = config.datasource.max ? config.datasource.max : 100;
-        decimals = config.datasource.decimals ? config.datasource.decimals : 0;
-    }
+    let ticks = getTicks(config.min, config.max);
 
-    let ticks = getTicks(min, max);
-
-    $: value = isNaN(data) ? 0 : data;
-    /*$: value = 9;*/
-
-    $: a = getA(value, min, max);
+    $: a = getAngle(data.value, config.min, config.max);
     $: meter = getMeter(cx, cy, r1, offset, delta, a);
     $: needle = getNeedle(cx, cy, r1, a);
 
@@ -135,7 +127,7 @@
         return nx1 + "," + ny1 + " " + nx2 + "," + ny2 + " " + nx3 + "," + ny3;
     }
 
-    function getA(val, min, max) {
+    function getAngle(val, min, max) {
         let newVal = (!isNaN(val) && val >= min && val <= max) ? val : min,
                 scale = 180 / Math.abs(max - min),
                 zeroAdj = Math.abs(0 - min),
@@ -188,6 +180,6 @@
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
     </svg>
-    <div class="output">{Number(value).toFixed(decimals)}</div>
+    <div class="output">{Number(data.value).toFixed(config.decimals)}</div>
 </div>
 <svelte:options tag="puddy-gauge"/>

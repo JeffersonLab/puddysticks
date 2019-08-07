@@ -4,7 +4,14 @@
 
     export let config;
 
-    let value;
+    let data;
+
+    function update(e) {
+        data = {value: e.detail.value};
+    }
+
+    config.min = config.datasource.min;
+    config.max = config.datasource.max;
 </script>
-<RandomNumberGenerator config="{config.datasource}" bind:value/>
-<Gauge {config} data="{value}"/>
+<RandomNumberGenerator config="{config.datasource}" on:value="{update}"/>
+<Gauge {config} {data}/>

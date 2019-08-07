@@ -1,28 +1,27 @@
 <style>
     div {
-        background-color: orange;
-        color: white;
         border: 1px solid black;
         text-align: center;
     }
 </style>
 <script>
-    export let config;
-    export let data;
+    let defaultConfig = {decimals: 0, style: ''};
 
-    $: value = data ? data : 'Loading...';
+    export let config = defaultConfig;
+    export let data = {value: 'Loading...'};
+
+    config = {...defaultConfig, ...config};
+
+    if(config.text) {
+        data.value = config.text;
+    }
+
     let formattedValue = '';
 
     $: {
         /*Format Decimals*/
-        if(config.datasource && config.datasource.decimals > 0) {
-            formattedValue = (value.toFixed ? value.toFixed(config.datasource.decimals) : value);
-        }
-    }
-
-    if(config.text) {
-        formattedValue = config.text;
+        formattedValue = (data.value.toFixed ? data.value.toFixed(config.decimals) : data.value);
     }
 </script>
-<div>{formattedValue}</div>
+<div style="{config.style}">{formattedValue}</div>
 <svelte:options tag="puddy-label"/>

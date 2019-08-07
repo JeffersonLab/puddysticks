@@ -4,7 +4,11 @@
 
     export let config;
 
-    let value;
+    let data;
+
+    function update(e) {
+        data = {value: e.detail.value};
+    }
 </script>
-<RandomNumberGenerator config="{config.datasource}" bind:value/>
-<Label {config} data="{value}"/>
+<RandomNumberGenerator config="{config.datasource}" on:value="{update}"/>
+<Label {config} {data}/>
