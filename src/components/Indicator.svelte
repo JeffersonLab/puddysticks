@@ -1,32 +1,43 @@
 <style>
     :root {
         --blink-rate: 0.8s;
-        --on-rgb: 242, 38, 19;
-        --on-rgba: rgba(var(--on-rgb), 0.5);
-        --off-rgb: 150, 40, 27;
-        --off-rgba: rgba(var(--off-rgb), 0.5);
+        --on-rgb: rgb(242, 38, 19);
+        --on-rgba: rgba(242, 38, 19, 0.5);
+        --off-rgb: rgb(150, 40, 27);
+        --off-rgba: rgba(150, 40, 27, 0.25);
     }
     div {
         margin: 0 auto;
         width: 24px;
         height: 24px;
-        background-color: rgb(var(--off-rgb));
+        background-color: var(--off-rgb);
         border-radius: 4px;
     }
 
-    .flash {
+    .on {
+        background-color: var(--on-rgb);
+        box-shadow: 0 0 2px 4px var(--on-rgba), 0 0 2px 4px var(--off-rgba) inset;
+    }
+
+    .on.flash {
         animation: blink var(--blink-rate) infinite;
     }
 
     @keyframes blink {
-        from { background-color: rgb(var(--off-rgb)); }
-        50% { background-color: rgb(var(--on-rgb)); box-shadow: 0 0 2px 2px var(--on-rgba), 0 0 2px 2px var(--off-rgba) inset;}
-        to { background-color: rgb(var(--off-rgb)); }
+        from { background-color: var(--off-rgb); }
+        50% { background-color: var(--on-rgb); box-shadow: 0 0 2px 2px var(--on-rgba), 0 0 2px 2px var(--off-rgba) inset;}
+        to { background-color: var(--off-rgb); }
     }
 </style>
 <script>
-    export let config;
-    export let data;
+    let defaultConfig = {onIf: function(data){return data.value > 0}, flash: false, style: ''};
+
+    export let config = defaultConfig;
+    export let data = {value: 0};
+
+    config = {...defaultConfig, ...config};
+
+    /*$: console.log(data.value);*/
 </script>
-<div class="flash"></div>
+<div style="{config.style}" class:flash="{config.flash}" class:on="{config.onIf(data)}"></div>
 <svelte:options tag="puddy-indicator"/>
