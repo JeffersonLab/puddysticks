@@ -71,11 +71,9 @@
 			{#if selected}
 				<ul>
 					{#each Object.keys(config.lookup[selected.id]) as key}
-						{#if key == 'id' || key == 'items'}
-
-						{:else if key == 'datasource'}
+						{#if key == 'datasource'}
 							<li>datasource: {config.lookup[selected.id][key].name}</li>
-						{:else}
+						{:else if key != 'id' && key != 'items'}
 							<li>{key}: {config.lookup[selected.id][key]}</li>
 						{/if}
 					{/each}
