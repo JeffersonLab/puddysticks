@@ -66,3 +66,4 @@
         };
     });
 </script>
+<svelte:options tag="puddy-rng"/>

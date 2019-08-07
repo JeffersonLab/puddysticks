@@ -11,3 +11,4 @@
 <span bind:this={div} on:click={e => selected = descendents.find(d => d === e.target)}>
     <slot></slot>
 </span>
+<svelte:options tag="puddy-selectable"/>

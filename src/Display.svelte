@@ -32,7 +32,7 @@
 </script>
 <script>
     import Container from './Container.svelte';
-    export let config;
+    export let config = {};
 
     /*console.log(config);*/
 

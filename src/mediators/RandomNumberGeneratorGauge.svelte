@@ -15,3 +15,4 @@
 </script>
 <RandomNumberGenerator config="{config.datasource}" on:value="{update}"/>
 <Gauge {config} {data}/>
+<svelte:options tag="puddy-rng-guage"/>
