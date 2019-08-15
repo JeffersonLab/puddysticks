@@ -56,7 +56,9 @@
 	<p>...waiting</p>
 {:then config}
 	<Drawer config="{config.obj}">
+		<div slot="aside">
 		<div>
+			<button>New</button>
 			<button>Open</button>
 			<button on:click="{()=>save(config.obj)}">Save</button>
 		</div>
@@ -80,8 +82,11 @@
 				</ul>
 			{/if}
 		</div>
+		</div>
+		<div slot="main">
+			<Display config="{config.obj}"/>
+		</div>
 	</Drawer>
-	<Display config="{config.obj}"/>
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
