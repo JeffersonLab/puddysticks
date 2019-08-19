@@ -8,7 +8,10 @@
 
             assignUniqueId(obj);
 
-            return {lookup: lookup, obj: obj};
+            let result = {lookup: lookup, obj: obj};
+
+            return result;
+
         } else {
             throw new Error(text);
         }
@@ -17,15 +20,16 @@
     let id = 0;
     let lookup = {};
 
-    function assignUniqueId(obj) {
+    function assignUniqueId(obj, par) {
         obj.id = 'puddy-' + id++;
+        obj.par = par;
         lookup[obj.id] = obj;
 
         /*console.log(obj);*/
 
         if(obj.items) {
             for (const item of obj.items) {
-                assignUniqueId(item);
+                assignUniqueId(item, obj);
             }
         }
     }

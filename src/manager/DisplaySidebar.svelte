@@ -1,4 +1,16 @@
+<style>
+    :global(#component-tree .selected) {
+        border-top: 1px solid red;
+        border-bottom: 1px solid red;
+        color: red;
+    }
+
+    :global(#component-tree span) {
+        border: 1px solid transparent;
+    }
+</style>
 <script>
+    import { onMount } from 'svelte';
     import Selectable from "../Selectable.svelte";
     import Tree from '../Tree.svelte';
 
@@ -29,8 +41,47 @@
         window.location.href = '/';
     }
 
-    let config = {};
-    let selected = {};
+    function add(config) {
+        if(selected) {
+            if (config && config.lookup[selected.id] ) {
+                let obj = config.lookup[selected.id];
+
+                if(obj.name === 'Display' || obj.name === 'Panel') {
+                    console.log('add');
+                    obj.items.push({name: 'Label', text: 'Hello World'});
+                    promise = promise;
+                }
+            }
+        }
+    }
+
+    function remove(config) {
+        if(selected) {
+            if (config && config.lookup[selected.id] ) {
+                let obj = config.lookup[selected.id];
+                if(obj.par) {
+                    let index = obj.par.items.findIndex(function (element) {
+                        element.id == obj.id
+                    });
+                    obj.par.items.splice(index);
+                    promise = promise;
+                }
+            }
+        }
+    }
+
+    /*When DOM elements mounted and data is available*/
+    onMount(() => {
+        promise.then(function() {
+            if(selectable) {
+                selectable.select('span:first-child');
+            }
+        });
+    });
+
+    let selectable;
+    let config;
+    let selected;
 </script>
 {#await promise}
     <p>...waiting</p>
@@ -41,19 +92,19 @@
             <button on:click="{()=>save(config.obj)}">Save</button>
         </div>
         <div id="component-tree">
-            <Selectable filter='span' bind:selected="{selected}">
+            <Selectable bind:this="{selectable}" filter='span' bind:selected="{selected}">
                 <Tree config="{config.obj}"/>
             </Selectable>
         </div>
-        <button>Add</button>
-        <button>Remove</button>
+        <button on:click="{()=>add(config)}">Add</button>
+        <button on:click="{()=>remove(config)}">Remove</button>
         <div>
             {#if selected && config.lookup[selected.id]}
                 <ul>
                     {#each Object.keys(config.lookup[selected.id]) as key}
                         {#if key == 'datasource'}
                             <li>datasource: {config.lookup[selected.id][key].name}</li>
-                        {:else if key != 'id' && key != 'items'}
+                        {:else if key != 'id' && key != 'items' && key != 'par'}
                             <li>{key}: {config.lookup[selected.id][key]}</li>
                         {/if}
                     {/each}

@@ -1,13 +1,4 @@
 <style>
-    :global(#component-tree .selected) {
-        border-top: 1px solid red;
-        border-bottom: 1px solid red;
-        color: red;
-    }
-
-    :global(#component-tree span) {
-        border: 1px solid transparent;
-    }
 </style>
 <script>
     import {initComponents} from './components.js';
