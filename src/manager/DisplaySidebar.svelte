@@ -21,7 +21,7 @@
 
         /*Filter out id*/
         let replacer = function (key, value) {
-            if (key === 'id') {
+            if (key === 'id' || key === 'par') {
                 return undefined;
             } else {
                 return value;
