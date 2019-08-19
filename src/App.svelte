@@ -3,10 +3,8 @@
 <script>
     import {initComponents} from './components.js';
     import {initMediators} from './mediators.js';
-    import Display, {openRemoteFile} from './Display.svelte';
-    import Tree from './Tree.svelte';
+    import {openRemoteFile} from './Display.svelte';
     import Drawer from './Drawer.svelte';
-    import Selectable from "./Selectable.svelte";
     import DisplaySidebar from "./manager/DisplaySidebar.svelte";
     import NoDisplaySidebar from "./manager/NoDisplaySidebar.svelte";
     import DisplayMain from "./manager/DisplayMain.svelte";
