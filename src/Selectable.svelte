@@ -5,6 +5,10 @@
 
     let div;
 
+    export function select(f) {
+        selected = div.querySelector(f);
+    };
+
     $: descendents = div ? Array.from(div.querySelectorAll(filter)) : [];
     $: descendents.forEach(d => d.classList.toggle(selected_class, d === selected));
 </script>

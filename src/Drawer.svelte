@@ -29,7 +29,7 @@
     }
 </style>
 <script>
-    export let config;
+    export let config = {};
 
     let drawerOpen = true;
     let toggleButton;

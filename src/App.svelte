@@ -1,93 +1,54 @@
 <style>
-	:global(#component-tree .selected) {
-		border-top: 1px solid red;
-		border-bottom: 1px solid red;
-		color: red;
-	}
-	:global(#component-tree span) {
-		border: 1px solid transparent;
-	}
+    :global(#component-tree .selected) {
+        border-top: 1px solid red;
+        border-bottom: 1px solid red;
+        color: red;
+    }
+
+    :global(#component-tree span) {
+        border: 1px solid transparent;
+    }
 </style>
 <script>
-	import {initComponents} from './components.js';
-	import {initMediators} from './mediators.js';
+    import {initComponents} from './components.js';
+    import {initMediators} from './mediators.js';
+    import Display, {openRemoteFile} from './Display.svelte';
+    import Tree from './Tree.svelte';
+    import Drawer from './Drawer.svelte';
+    import Selectable from "./Selectable.svelte";
+    import DisplaySidebar from "./manager/DisplaySidebar.svelte";
+    import NoDisplaySidebar from "./manager/NoDisplaySidebar.svelte";
+    import DisplayMain from "./manager/DisplayMain.svelte";
+    import NoDisplayMain from "./manager/NoDisplayMain.svelte";
 
-	initComponents();
-	initMediators();
+    initComponents();
+    initMediators();
 
-	import {openRemoteFile} from './Display.svelte';
-	import Display from './Display.svelte';
-	import Tree from './Tree.svelte';
-	import Drawer from './Drawer.svelte';
-	import Selectable from "./Selectable.svelte";
+    let params = new URLSearchParams(location.search),
+            display = params.get("display");
 
-	let params = new URLSearchParams(location.search),
-			file = params.get("file");
+    let promise;
 
-	if (!file) {
-		file = "example.wedm";
-	}
+    if(display) {
+        promise = openRemoteFile(display);
+    }
 
-	let promise = openRemoteFile(file);
-	let selected;
-
-	function save(obj) {
-
-		/*Filter out id*/
-		let replacer = function(key, value) {
-			if(key === 'id') {
-				return undefined;
-			} else {
-				return value;
-			}
-		};
-
-		let json = JSON.stringify(obj, replacer, 2);
-
-		let link = document.createElement("a");
-
-		link.href = "data:application/json," + encodeURIComponent(json);
-		link.download = "display.wedm";
-
-		link.click();
-	}
+    let noDisplaySelected;
 </script>
-{#await promise}
-	<p>...waiting</p>
-{:then config}
-	<Drawer config="{config.obj}">
-		<aside slot="aside">
-		<div>
-			<button>New</button>
-			<button>Open</button>
-			<button on:click="{()=>save(config.obj)}">Save</button>
-		</div>
-		<div id="component-tree">
-			<Selectable filter='span' bind:selected="{selected}">
-				<Tree config="{config.obj}"/>
-			</Selectable>
-		</div>
-		<button>Add</button>
-		<button>Remove</button>
-		<div>
-			{#if selected}
-				<ul>
-					{#each Object.keys(config.lookup[selected.id]) as key}
-						{#if key == 'datasource'}
-							<li>datasource: {config.lookup[selected.id][key].name}</li>
-						{:else if key != 'id' && key != 'items'}
-							<li>{key}: {config.lookup[selected.id][key]}</li>
-						{/if}
-					{/each}
-				</ul>
-			{/if}
-		</div>
-		</aside>
-		<main slot="main">
-			<Display config="{config.obj}"/>
-		</main>
-	</Drawer>
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+<Drawer>
+    <aside slot="aside">
+        {#if display}
+            <DisplaySidebar {promise}/>
+        {:else}
+            <NoDisplaySidebar bind:selected="{noDisplaySelected}"/>
+        {/if}
+    </aside>
+    <main slot="main">
+        {#if display}
+            <DisplayMain {promise}/>
+        {:else}
+            <NoDisplayMain bind:selected="{noDisplaySelected}"/>
+        {/if}
+    </main>
+</Drawer>
 <svelte:options tag="puddy-app"/>

@@ -23,7 +23,7 @@
     }
 </style>
 <script>
-    export let config;
+    export let config = {};
 </script>
 <span id="{config.id}">{config.name}</span>
 {#if config.items != null}
