@@ -10,6 +10,7 @@
     }
 </style>
 <script>
+    import { display } from '../stores.js';
     import { onMount } from 'svelte';
     import Selectable from "../Selectable.svelte";
     import Tree from '../Tree.svelte';
@@ -41,30 +42,37 @@
         window.location.href = '/';
     }
 
-    function add(config) {
+    let nextId = 1000;
+
+    function add() {
         if(selected) {
-            if (config && config.lookup[selected.id] ) {
-                let obj = config.lookup[selected.id];
+            if ($display && $display.lookup[selected.id] ) {
+                let obj = $display.lookup[selected.id];
 
                 if(obj.name === 'Display' || obj.name === 'Panel') {
-                    console.log('add');
-                    obj.items.push({name: 'Label', text: 'Hello World'});
-                    promise = promise;
+
+                    let id = $display.nextId++;
+                    let par = obj;
+
+                    let newObj = {name: 'Label', text: 'Hello World', id: id, par: par};
+                    $display.lookup[id] = newObj;
+                    obj.items.push(newObj);
                 }
             }
         }
     }
 
-    function remove(config) {
+    function remove() {
         if(selected) {
-            if (config && config.lookup[selected.id] ) {
-                let obj = config.lookup[selected.id];
+            if ($display && $display.lookup[selected.id] ) {
+                let obj = $display.lookup[selected.id];
                 if(obj.par) {
                     let index = obj.par.items.findIndex(function (element) {
-                        element.id == obj.id
+                        return element.id == obj.id;
                     });
-                    obj.par.items.splice(index);
-                    promise = promise;
+
+                    obj.par.items.splice(index, 1);
+                    $display = $display;
                 }
             }
         }
@@ -78,6 +86,8 @@
             }
         });
     });
+
+    $: if($display && selectable) {selectable.refresh()};
 
     let selectable;
     let config;
@@ -93,19 +103,19 @@
         </div>
         <div id="component-tree">
             <Selectable bind:this="{selectable}" filter='span' bind:selected="{selected}">
-                <Tree config="{config.obj}"/>
+                <Tree config="{$display.obj}"/>
             </Selectable>
         </div>
         <button on:click="{()=>add(config)}">Add</button>
         <button on:click="{()=>remove(config)}">Remove</button>
         <div>
-            {#if selected && config.lookup[selected.id]}
+            {#if selected && $display.lookup[selected.id]}
                 <ul>
-                    {#each Object.keys(config.lookup[selected.id]) as key}
+                    {#each Object.keys($display.lookup[selected.id]) as key}
                         {#if key == 'datasource'}
-                            <li>datasource: {config.lookup[selected.id][key].name}</li>
+                            <li>datasource: {$display.lookup[selected.id][key].name}</li>
                         {:else if key != 'id' && key != 'items' && key != 'par'}
-                            <li>{key}: {config.lookup[selected.id][key]}</li>
+                            <li>{key}: {$display.lookup[selected.id][key]}</li>
                         {/if}
                     {/each}
                 </ul>

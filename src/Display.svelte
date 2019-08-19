@@ -1,4 +1,6 @@
 <script context="module">
+    import { display } from './stores.js';
+
     export async function openRemoteFile(url) {
         const res = await fetch(url);
         const text = await res.text();
@@ -8,7 +10,9 @@
 
             assignUniqueId(obj);
 
-            let result = {lookup: lookup, obj: obj};
+            let result = {lookup: lookup, nextId: id, obj: obj};
+
+            display.set(result);
 
             return result;
 
@@ -38,7 +42,7 @@
     import Container from './Container.svelte';
     export let config = {};
 
-    /*console.log(config);*/
+    /*$: console.log(config);*/
 
 </script>
 <Container items="{config.items}"/>

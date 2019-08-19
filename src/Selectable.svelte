@@ -5,6 +5,10 @@
 
     let div;
 
+    export function refresh() {
+       descendents = Array.from(div.querySelectorAll(filter));
+    }
+
     export function select(f) {
         selected = div.querySelector(f);
     };

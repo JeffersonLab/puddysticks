@@ -23,5 +23,5 @@
         formattedValue = (data.value.toFixed ? data.value.toFixed(config.decimals) : data.value);
     }
 </script>
-<div style="{config.style}">{formattedValue}</div>
+<div class="label" style="{config.style}">{formattedValue}</div>
 <svelte:options tag="puddy-label"/>
