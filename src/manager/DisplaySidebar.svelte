@@ -10,9 +10,9 @@
     }
 </style>
 <script>
+    import {components} from '../registry.js';
     import { display } from '../stores.js';
     import { onMount } from 'svelte';
-    import Selectable from "../Selectable.svelte";
     import Tree from '../Tree.svelte';
 
     export let promise;
@@ -100,8 +100,6 @@
         <div id="component-tree">
             <Tree config="{$display.obj}" bind:selected/>
         </div>
-        <button on:click="{add}">Add</button>
-        <button on:click="{remove}">Remove</button>
         <div>
             {#if selected && $display.lookup[selected]}
                 <ul>
@@ -115,6 +113,16 @@
                 </ul>
             {/if}
         </div>
+        <hr/>
+        <div>
+            <select>
+                {#each Object.keys(components) as component}
+                    <option>{component}</option>
+                {/each}
+            </select>
+            <button on:click="{add}" disabled="{!selected || $display.lookup[selected].name != 'Panel'}">Add</button>
+        </div>
+        <button on:click="{remove}"  disabled="{!selected || $display.lookup[selected].name == 'Display'}">Remove</button>
     {/if}
 {:catch error}
     <p style="color: red">{error.message}</p>
