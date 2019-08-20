@@ -5,7 +5,7 @@
 </script>
 <table>
     <tbody>
-    {#each Object.keys(properties) as key}
+    {#each Object.keys(properties).sort() as key}
         {#if key === 'datasource'}
             <tr>
                 <th>datasource</th>
