@@ -1,4 +1,5 @@
 <script>
+    import {components} from '../registry.js';
     export let properties;
 
     let nonEditable = ['name', 'id', 'items', 'par'];
@@ -6,16 +7,16 @@
 <table>
     <tbody>
     {#each Object.keys(properties).sort() as key}
-        {#if key === 'datasource'}
+        {#if key === 'dataprovider'}
             <tr>
-                <th>datasource</th>
+                <th>dataprovider</th>
             </tr>
             <tr>
                 <td>
                     <select>
-                        <option>Static</option>
-                        <option>RandomNumberGenerator</option>
-                        <option>epics2web</option>
+                        {#each Object.keys(components[properties.name].dataproviders) as provider}
+                        <option>{provider}</option>
+                        {/each}
                     </select>
                     {properties[key].name}
                 </td>

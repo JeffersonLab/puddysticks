@@ -10,9 +10,9 @@
         data = {value: e.detail.value};
     }
 
-    config.min = config.datasource.min;
-    config.max = config.datasource.max;
+    config.min = config.dataprovider.min;
+    config.max = config.dataprovider.max;
 </script>
-<RandomNumberGenerator config="{config.datasource}" on:value="{update}"/>
+<RandomNumberGenerator config="{config.dataprovider}" on:value="{update}"/>
 <Gauge {config} {data}/>
 <svelte:options tag="puddy-rng-guage"/>

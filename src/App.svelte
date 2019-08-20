@@ -2,7 +2,6 @@
 </style>
 <script>
     import {initComponents} from './components.js';
-    import {initMediators} from './mediators.js';
     import {openRemoteFile} from './Display.svelte';
     import Drawer from './Drawer.svelte';
     import DisplaySidebar from "./manager/DisplaySidebar.svelte";
@@ -11,7 +10,6 @@
     import NoDisplayMain from "./manager/NoDisplayMain.svelte";
 
     initComponents();
-    initMediators();
 
     let params = new URLSearchParams(location.search),
             display = params.get("display");

@@ -30,7 +30,7 @@
     }
 </style>
 <script>
-    let defaultConfig = {datasource: {name: 'Static'}, onIf: function(data){return data.value > 0}, flash: false, style: ''};
+    let defaultConfig = {dataprovider: {name: 'Static'}, onIf: function(data){return data.value > 0}, flash: false, style: ''};
 
     export let config = defaultConfig;
     export let data = {value: 0};

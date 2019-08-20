@@ -76,7 +76,7 @@
                     let id = $display.nextId++;
                     let par = obj;
 
-                    let newObj = new components[addComponentSelect.value]({target: document.createElement('div')}).config;
+                    let newObj = new components[addComponentSelect.value].constructor({target: document.createElement('div')}).config;
 
                     newObj.name = addComponentSelect.value;
                     newObj.id = id;

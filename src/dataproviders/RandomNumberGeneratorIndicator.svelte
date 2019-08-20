@@ -10,6 +10,6 @@
         data = {value: e.detail.value};
     }
 </script>
-<RandomNumberGenerator config="{config.datasource}" on:value="{update}"/>
+<RandomNumberGenerator config="{config.dataprovider}" on:value="{update}"/>
 <Indicator {config} {data}/>
 <svelte:options tag="puddy-rng-indicator"/>
