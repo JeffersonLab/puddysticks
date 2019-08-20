@@ -50,10 +50,9 @@
 <script>
     /*Gauge inspired by https://codepen.io/enxaneta/pen/EVYRJJ*/
 
-    let defaultConfig = {dataprovider: {name: 'Static'}, min: 0, max: 100, decimals: 2, style: ''};
+    let defaultConfig = {dataprovider: {name: 'Static'}, value: 50, min: 0, max: 100, decimals: 2, style: ''};
 
     export let config = defaultConfig;
-    export let data = {value: 0};
 
     config = {...defaultConfig, ...config};
 
@@ -73,9 +72,8 @@
             y3 = cy,
             outline = getOutline(cx, cy, r1, offset, delta);
 
-    let ticks = getTicks(config.min, config.max);
-
-    $: a = getAngle(data.value, config.min, config.max);
+    $: ticks = getTicks(config.min, config.max);
+    $: a = getAngle(config.value, config.min, config.max);
     $: meter = getMeter(cx, cy, r1, offset, delta, a);
     $: needle = getNeedle(cx, cy, r1, a);
 
@@ -180,6 +178,6 @@
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
     </svg>
-    <div class="output">{Number(data.value).toFixed(config.decimals)}</div>
+    <div class="output">{Number(config.value).toFixed(config.decimals)}</div>
 </div>
 <svelte:options tag="puddy-gauge"/>

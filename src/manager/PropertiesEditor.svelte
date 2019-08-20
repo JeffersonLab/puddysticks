@@ -13,12 +13,11 @@
             </tr>
             <tr>
                 <td>
-                    <select>
+                    <select bind:value="{properties[key].name}">
                         {#each Object.keys(components[properties.name].dataproviders) as provider}
-                        <option>{provider}</option>
+                            <option>{provider}</option>
                         {/each}
                     </select>
-                    {properties[key].name}
                 </td>
             </tr>
         {:else if !nonEditable.includes(key)}
