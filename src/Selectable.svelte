@@ -3,20 +3,20 @@
     export let selected = null;
     export let filter = '*';
 
-    let div;
+    let span;
 
     export function refresh() {
-       descendents = Array.from(div.querySelectorAll(filter));
+       descendents = Array.from(span.querySelectorAll(filter));
     }
 
     export function select(f) {
-        selected = div.querySelector(f);
+        selected = span.querySelector(f);
     };
 
-    $: descendents = div ? Array.from(div.querySelectorAll(filter)) : [];
+    $: descendents = span ? Array.from(span.querySelectorAll(filter)) : [];
     $: descendents.forEach(d => d.classList.toggle(selected_class, d === selected));
 </script>
-<span bind:this={div} on:click={e => selected = descendents.find(d => d === e.target)}>
+<span bind:this={span} on:click={e => selected = descendents.find(d => d === e.target)}>
     <slot></slot>
 </span>
 <svelte:options tag="puddy-selectable"/>
