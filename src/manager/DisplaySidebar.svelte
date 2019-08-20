@@ -71,8 +71,10 @@
                         return element.id == obj.id;
                     });
 
+                    selected = undefined;
+
                     obj.par.items.splice(index, 1);
-                    $display = $display;
+                    $display = $display; /*Trigger update*/
                 }
             }
         }
