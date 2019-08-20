@@ -1,12 +1,33 @@
 <style>
-    :global(#component-tree .selected) {
+     .tree-pane {
+         padding: 8px;
+         height: 300px;
+         overflow: auto;
+     }
+     .properties-pane {
+         height: 300px;
+         overflow: auto;
+         padding: 8px;
+     }
+     .action-pane {
+         padding: 8px;
+     }
+     .add-options {
+         margin-bottom: 8px;
+     }
+     :global(.tree-pane .selected) {
         border-top: 1px solid red;
         border-bottom: 1px solid red;
         color: red;
     }
-
-    :global(#component-tree span) {
+    :global(.tree-pane span) {
         border: 1px solid transparent;
+    }
+    .button-bar {
+        padding: 8px;
+    }
+    .save-button {
+        float: right;
     }
 </style>
 <script>
@@ -14,6 +35,7 @@
     import { display } from '../stores.js';
     import { onMount } from 'svelte';
     import Tree from '../Tree.svelte';
+    import PropertiesEditor from './PropertiesEditor.svelte';
 
     export let promise;
 
@@ -93,36 +115,38 @@
     <p>...waiting</p>
 {:then config}
     {#if config}
-        <div>
+        <div class="button-bar">
             <button on:click="{close}">Menu</button>
-            <button on:click="{()=>save(config.obj)}">Save</button>
+            <button class="save-button" on:click="{()=>save(config.obj)}">Save</button>
         </div>
-        <div id="component-tree">
+        <hr/>
+        <div class="tree-pane">
             <Tree config="{$display.obj}" bind:selected/>
         </div>
-        <div>
+        <hr/>
+        <div class="properties-pane">
+            <div>Properties</div>
             {#if selected && $display.lookup[selected]}
-                <ul>
-                    {#each Object.keys($display.lookup[selected]) as key}
-                        {#if key == 'datasource'}
-                            <li>datasource: {$display.lookup[selected][key].name}</li>
-                        {:else if key != 'id' && key != 'items' && key != 'par'}
-                            <li>{key}: {$display.lookup[selected][key]}</li>
-                        {/if}
-                    {/each}
-                </ul>
+                <PropertiesEditor properties="{$display.lookup[selected]}"/>
             {/if}
         </div>
         <hr/>
-        <div>
-            <select>
+        <div class="action-pane">
+            <div>Actions</div>
+            {#if selected && ($display.lookup[selected].name === 'Panel' || $display.lookup[selected].name === 'Display')}
+            <div class="add-options">
+                <select>
                 {#each Object.keys(components) as component}
                     <option>{component}</option>
                 {/each}
-            </select>
-            <button on:click="{add}" disabled="{!selected || $display.lookup[selected].name != 'Panel'}">Add</button>
+                </select>
+                <button on:click="{add}">Add</button>
+            </div>
+            {/if}
+            {#if selected && $display.lookup[selected].name != 'Display'}
+                <button on:click="{remove}">Remove</button>
+            {/if}
         </div>
-        <button on:click="{remove}"  disabled="{!selected || $display.lookup[selected].name == 'Display'}">Remove</button>
     {/if}
 {:catch error}
     <p style="color: red">{error.message}</p>
