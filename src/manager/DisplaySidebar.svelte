@@ -127,7 +127,7 @@
         <div class="properties-pane">
             <div>Properties</div>
             {#if selected && $display.lookup[selected]}
-                <PropertiesEditor properties="{$display.lookup[selected]}"/>
+                <PropertiesEditor bind:properties="{$display.lookup[selected]}"/>
             {/if}
         </div>
         <hr/>
