@@ -57,6 +57,7 @@
                     let newObj = {name: 'Label', text: 'Hello World', id: id, par: par};
                     $display.lookup[id] = newObj;
                     obj.items.push(newObj);
+                    $display = $display; /*Trigger update*/
                 }
             }
         }
