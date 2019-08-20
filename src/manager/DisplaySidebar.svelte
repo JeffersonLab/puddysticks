@@ -69,13 +69,25 @@
             if ($display && $display.lookup[selected] ) {
                 let obj = $display.lookup[selected];
 
+                /*console.log(addComponentSelect.value);*/
+
                 if(obj.name === 'Display' || obj.name === 'Panel') {
 
                     let id = $display.nextId++;
                     let par = obj;
 
-                    let newObj = {name: 'Label', text: 'Hello World', id: id, par: par};
+                    let newObj = new components[addComponentSelect.value]({target: document.createElement('div')}).config;
+
+                    newObj.name = addComponentSelect.value;
+                    newObj.id = id;
+                    newObj.par = par;
+
+                    /*console.log(newObj);*/
+
                     $display.lookup[id] = newObj;
+
+                    obj.items = obj.items || [];
+
                     obj.items.push(newObj);
                     $display = $display; /*Trigger update*/
                 }
@@ -110,6 +122,7 @@
 
     let config;
     let selected;
+    let addComponentSelect;
 </script>
 {#await promise}
     <p>...waiting</p>
@@ -135,7 +148,7 @@
             <div>Actions</div>
             {#if selected && ($display.lookup[selected].name === 'Panel' || $display.lookup[selected].name === 'Display')}
             <div class="add-options">
-                <select>
+                <select bind:this="{addComponentSelect}">
                 {#each Object.keys(components) as component}
                     <option>{component}</option>
                 {/each}

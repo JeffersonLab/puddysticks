@@ -1,9 +1,13 @@
 <script>
     import Container from '../Container.svelte';
 
-    export let config = {};
+    const defaultConfig = {style: ''};
+
+    export let config = defaultConfig;
+
+    config = {...defaultConfig, ...config};
 </script>
-<div class="panel">
+<div class="panel" style="{config.style}">
     <slot>
         <Container items="{config.items}"/>
     </slot>

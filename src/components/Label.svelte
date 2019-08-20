@@ -5,7 +5,7 @@
     }
 </style>
 <script>
-    const defaultConfig = {decimals: 0, style: ''};
+    const defaultConfig = {text: 'Label', decimals: 0, style: ''};
 
     export let config = defaultConfig;
     export let data = {value: 'Loading...'};

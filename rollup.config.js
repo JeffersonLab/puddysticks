@@ -23,7 +23,8 @@ export default {
 			css: css => {
 				css.write('public/bundle.css');
 			},
-			customElement: false
+			customElement: false,
+			accessors: true
 		}),
 
 		// If you have external dependencies installed from
