@@ -10,8 +10,8 @@
         config.value = e.detail.value;
     }
 
-    config.min = config.dataprovider.min;
-    config.max = config.dataprovider.max;
+    config.min = config.dataprovider.min || 0;
+    config.max = config.dataprovider.max || 100;
 </script>
 <RandomNumberGenerator config="{dataproviderConfig}" on:value="{update}"/>
 <Gauge {config}/>
