@@ -1,5 +1,5 @@
 <style>
-    .container {
+    .gauge {
         position: relative;
         margin: 100px auto 50px auto;
         height: 165px;
@@ -50,7 +50,7 @@
 <script>
     /*Gauge inspired by https://codepen.io/enxaneta/pen/EVYRJJ*/
 
-    let defaultConfig = {min: 0, max: 100, decimals: 2};
+    let defaultConfig = {min: 0, max: 100, decimals: 2, style: ''};
 
     export let config = defaultConfig;
     export let data = {value: 0};
@@ -168,7 +168,7 @@
         return "M " + x4 + ", " + y4 + " A" + r1 + "," + r1 + " 0 0 0 " + x2 + "," + y2 + " H" + (offset + delta) + " A" + r2 + "," + r2 + " 0 0 1 " + x5 + "," + y5 + " z";
     }
 </script>
-<div class="container">
+<div class="gauge" style="{config.style}">
     <svg height="165" width="330" view-box="0 0 330 165">
         <g class="scale">
             {#each ticks as tick}
