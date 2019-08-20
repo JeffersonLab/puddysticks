@@ -11,7 +11,14 @@
                 <th>datasource</th>
             </tr>
             <tr>
-                <td>{properties[key].name}</td>
+                <td>
+                    <select>
+                        <option>Static</option>
+                        <option>RandomNumberGenerator</option>
+                        <option>epics2web</option>
+                    </select>
+                    {properties[key].name}
+                </td>
             </tr>
         {:else if !nonEditable.includes(key)}
             <tr>

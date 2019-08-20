@@ -5,7 +5,7 @@
     }
 </style>
 <script>
-    const defaultConfig = {text: 'Label', decimals: 0, style: ''};
+    const defaultConfig = {datasource: {name: 'Static'}, text: 'Label', decimals: 0, style: ''};
 
     export let config = defaultConfig;
     export let data = {value: 'Loading...'};

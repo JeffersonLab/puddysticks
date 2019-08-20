@@ -50,7 +50,7 @@
 <script>
     /*Gauge inspired by https://codepen.io/enxaneta/pen/EVYRJJ*/
 
-    let defaultConfig = {min: 0, max: 100, decimals: 2, style: ''};
+    let defaultConfig = {datasource: {name: 'Static'}, min: 0, max: 100, decimals: 2, style: ''};
 
     export let config = defaultConfig;
     export let data = {value: 0};
