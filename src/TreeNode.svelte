@@ -23,14 +23,15 @@
     }
 </style>
 <script>
-    export let config = {};
+    export let config;
+    export let selected;
 </script>
-<span id="{config.id}">{config.name}</span>
+<span id="{config.id}" on:click="{(e) => selected = config.id}" class:selected="{selected === config.id}">{config.name}</span>
 {#if config.items != null}
     <ul>
-        {#each config.items as item}
+        {#each config.items as item (item.id)}
             <li>
-                <svelte:self config="{item}"/>
+                <svelte:self bind:selected config="{item}"/>
             </li>
         {/each}
     </ul>

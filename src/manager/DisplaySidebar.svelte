@@ -42,12 +42,10 @@
         window.location.href = '/';
     }
 
-    let nextId = 1000;
-
     function add() {
         if(selected) {
-            if ($display && $display.lookup[selected.id] ) {
-                let obj = $display.lookup[selected.id];
+            if ($display && $display.lookup[selected] ) {
+                let obj = $display.lookup[selected];
 
                 if(obj.name === 'Display' || obj.name === 'Panel') {
 
@@ -65,8 +63,8 @@
 
     function remove() {
         if(selected) {
-            if ($display && $display.lookup[selected.id] ) {
-                let obj = $display.lookup[selected.id];
+            if ($display && $display.lookup[selected] ) {
+                let obj = $display.lookup[selected];
                 if(obj.par) {
                     let index = obj.par.items.findIndex(function (element) {
                         return element.id == obj.id;
@@ -84,15 +82,10 @@
     /*When DOM elements mounted and data is available*/
     onMount(() => {
         promise.then(function() {
-            if(selectable) {
-                selectable.select('span:first-child');
-            }
+            selected = $display.obj.id;
         });
     });
 
-    $: if($display && selectable) {selectable.refresh()};
-
-    let selectable;
     let config;
     let selected;
 </script>
@@ -105,20 +98,18 @@
             <button on:click="{()=>save(config.obj)}">Save</button>
         </div>
         <div id="component-tree">
-            <Selectable bind:this="{selectable}" filter='span' bind:selected="{selected}">
-                <Tree config="{$display.obj}"/>
-            </Selectable>
+            <Tree config="{$display.obj}" bind:selected/>
         </div>
-        <button on:click="{()=>add(config)}">Add</button>
-        <button on:click="{()=>remove(config)}">Remove</button>
+        <button on:click="{add}">Add</button>
+        <button on:click="{remove}">Remove</button>
         <div>
-            {#if selected && $display.lookup[selected.id]}
+            {#if selected && $display.lookup[selected]}
                 <ul>
-                    {#each Object.keys($display.lookup[selected.id]) as key}
+                    {#each Object.keys($display.lookup[selected]) as key}
                         {#if key == 'datasource'}
-                            <li>datasource: {$display.lookup[selected.id][key].name}</li>
+                            <li>datasource: {$display.lookup[selected][key].name}</li>
                         {:else if key != 'id' && key != 'items' && key != 'par'}
-                            <li>{key}: {$display.lookup[selected.id][key]}</li>
+                            <li>{key}: {$display.lookup[selected][key]}</li>
                         {/if}
                     {/each}
                 </ul>
