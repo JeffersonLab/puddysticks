@@ -39,3 +39,6 @@
     </main>
 </Drawer>
 <svelte:options tag="puddy-app"/>
+<svelte:head>
+    <title>Puddysticks</title>
+</svelte:head>
