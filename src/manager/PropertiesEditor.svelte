@@ -15,8 +15,8 @@
             </tr>
             <tr>
                 <td>
-                    <select bind:value="{properties[key].name}">
-                        {#each Object.keys(components[properties.name].dataproviders) as provider}
+                    <select bind:value="{$properties[key].name}">
+                        {#each Object.keys(components[$properties.name].dataproviders) as provider}
                             <option>{provider}</option>
                         {/each}
                     </select>
