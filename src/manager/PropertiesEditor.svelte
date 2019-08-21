@@ -20,6 +20,14 @@
                     </select>
                 </td>
             </tr>
+            <!-- {#each Object.keys(components[properties.name].dataproviders[properties[key].name].config) as k}
+                <tr>
+                    <th>{k}</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            {/each} -->
         {:else if !nonEditable.includes(key)}
             <tr>
                 <th>{key}</th>
