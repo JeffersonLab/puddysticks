@@ -31,8 +31,7 @@
     }
 </style>
 <script>
-    import {components} from '../registry.js';
-    import { display } from '../stores.js';
+    import {components, instances, getUniqueId} from '../registry.js';
     import { onMount } from 'svelte';
     import Tree from '../Tree.svelte';
     import PropertiesEditor from './PropertiesEditor.svelte';
@@ -66,14 +65,13 @@
 
     function add() {
         if(selected) {
-            if ($display && $display.lookup[selected] ) {
-                let obj = $display.lookup[selected];
-
+            let obj = instances[selected];
+            if (obj) {
                 /*console.log(addComponentSelect.value);*/
 
                 if(obj.name === 'Display' || obj.name === 'Panel') {
 
-                    let id = $display.nextId++;
+                    let id = getUniqueId();
                     let par = obj;
 
                     let newObj = new components[addComponentSelect.value].constructor({target: document.createElement('div')}).config;
@@ -84,12 +82,11 @@
 
                     /*console.log(newObj);*/
 
-                    $display.lookup[id] = newObj;
+                    instances[id] = newObj;
 
                     obj.items = obj.items || [];
 
                     obj.items.push(newObj);
-                    $display = $display; /*Trigger update*/
                 }
             }
         }
@@ -97,8 +94,8 @@
 
     function remove() {
         if(selected) {
-            if ($display && $display.lookup[selected] ) {
-                let obj = $display.lookup[selected];
+            let obj = instances[selected];
+            if (obj) {
                 if(obj.par) {
                     let index = obj.par.items.findIndex(function (element) {
                         return element.id == obj.id;
@@ -107,7 +104,6 @@
                     selected = undefined;
 
                     obj.par.items.splice(index, 1);
-                    $display = $display; /*Trigger update*/
                 }
             }
         }
@@ -116,7 +112,7 @@
     /*When DOM elements mounted and data is available*/
     onMount(() => {
         promise.then(function() {
-            selected = $display.obj.id;
+            selected = 'puddy-0';
         });
     });
 
@@ -134,19 +130,19 @@
         </div>
         <hr/>
         <div class="tree-pane">
-            <Tree config="{$display.obj}" bind:selected/>
+            <Tree config="{instances['puddy-0']}" bind:selected/>
         </div>
         <hr/>
         <div class="properties-pane">
             <div>Properties</div>
-            {#if selected && $display.lookup[selected]}
-                <PropertiesEditor bind:properties="{$display.lookup[selected]}"/>
+            {#if selected && instances[selected]}
+                <PropertiesEditor bind:properties="{instances[selected]}"/>
             {/if}
         </div>
         <hr/>
         <div class="action-pane">
             <div>Actions</div>
-            {#if selected && ($display.lookup[selected].name === 'Panel' || $display.lookup[selected].name === 'Display')}
+            {#if selected && (instances[selected].name === 'Panel' || instances[selected].name === 'Display')}
             <div class="add-options">
                 <select bind:this="{addComponentSelect}">
                 {#each Object.keys(components) as component}
@@ -156,7 +152,7 @@
                 <button on:click="{add}">Add</button>
             </div>
             {/if}
-            {#if selected && $display.lookup[selected].name != 'Display'}
+            {#if selected && instances[selected].name != 'Display'}
                 <button on:click="{remove}">Remove</button>
             {/if}
         </div>

@@ -16,6 +16,8 @@
     $: {
         /*Format Decimals*/
         formattedValue = (config.text && config.text.toFixed ? config.text.toFixed(config.decimals) : config.text);
+
+        console.log(config);
     }
 </script>
 <div class="label" style="{config.style}">{formattedValue}</div>

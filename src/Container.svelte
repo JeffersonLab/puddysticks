@@ -1,6 +1,5 @@
 <script>
-    import {components} from './registry.js';
-    import {mediators} from './registry.js';
+    import {components, instances} from './registry.js';
 
     export let items;
 
@@ -9,9 +8,9 @@
 {#if items}
     {#each items as item}
         {#if item.dataprovider}
-            <svelte:component this="{components[item.name].dataproviders[item.dataprovider.name].constructor}" config="{item}"/>
+            <svelte:component this="{components[item.name].dataproviders[item.dataprovider.name].constructor}" config="{instances[item.id]}"/>
         {:else}
-            <svelte:component this="{components[item.name].constructor}" config="{item}"/>
+            <svelte:component this="{components[item.name].constructor}" config="{instances[item.id]}"/>
         {/if}
     {/each}
 {/if}

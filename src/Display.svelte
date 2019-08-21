@@ -1,5 +1,6 @@
 <script context="module">
-    import { display } from './stores.js';
+    import { writable } from 'svelte/store';
+    import { instances, getUniqueId } from './registry.js';
 
     export async function openRemoteFile(url) {
         const res = await fetch(url);
@@ -8,32 +9,26 @@
         if (res.ok) {
             let obj = JSON.parse(text);
 
-            assignUniqueId(obj);
+            assignUniqueIdAndParentThenStore(obj);
 
-            let result = {lookup: lookup, nextId: id, obj: obj};
-
-            display.set(result);
-
-            return result;
+            return obj;
 
         } else {
             throw new Error(text);
         }
     };
 
-    let id = 0;
-    let lookup = {};
-
-    function assignUniqueId(obj, par) {
-        obj.id = 'puddy-' + id++;
+    function assignUniqueIdAndParentThenStore(obj, par) {
+        obj.id = getUniqueId();
         obj.par = par;
-        lookup[obj.id] = obj;
+        /*instances[obj.id] = writable(obj);*/
+        instances[obj.id] = obj;
 
         /*console.log(obj);*/
 
         if(obj.items) {
             for (const item of obj.items) {
-                assignUniqueId(item, obj);
+                assignUniqueIdAndParentThenStore(item, obj);
             }
         }
     }
