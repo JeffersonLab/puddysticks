@@ -9,7 +9,7 @@
 {#if items}
     {#each items as item}
         {#if item.dataprovider}
-            <svelte:component this="{components[item.name].dataproviders[item.dataprovider.name]}" config="{item}"/>
+            <svelte:component this="{components[item.name].dataproviders[item.dataprovider.name].constructor}" config="{item}"/>
         {:else}
             <svelte:component this="{components[item.name].constructor}" config="{item}"/>
         {/if}

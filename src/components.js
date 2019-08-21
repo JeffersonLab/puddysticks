@@ -21,23 +21,23 @@ export function initComponents() {
     components['Panel'] = {constructor: Panel};
     components['Label'] = {
         constructor: Label, dataproviders: {
-            'Static': StaticLabel,
-            'RNG': RandomNumberGeneratorLabel,
-            'epics2web': epics2webLabel
+            'Static': {constructor: StaticLabel, config: {}},
+            'RNG': {constructor: RandomNumberGeneratorLabel, config: {min: 75, max: 150}},
+            'epics2web': {constructor: epics2webLabel, config: {}}
         }
     };
     components['Gauge'] = {
         constructor: Gauge, dataproviders: {
-            'Static': StaticGauge,
-            'RNG': RandomNumberGeneratorGauge,
-            'epics2web': epics2webGauge
+            'Static': {constructor: StaticGauge},
+            'RNG': {constructor: RandomNumberGeneratorGauge, config: {tween: false}},
+            'epics2web': {constructor: epics2webGauge}
         }
     };
     components['Indicator'] = {
         constructor: Indicator, dataproviders: {
-            'Static': StaticIndicator,
-            'RNG': RandomNumberGeneratorIndicator,
-            'epics2web': epics2webIndicator
+            'Static': {constructor: StaticIndicator},
+            'RNG': {constructor: RandomNumberGeneratorIndicator},
+            'epics2web': {constructor: epics2webIndicator}
         }
     };
 }
