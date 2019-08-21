@@ -3,5 +3,5 @@
 
     export let config = {};
 </script>
-<Indicator {config}/>
+<Indicator bind:config/>
 <svelte:options tag="puddy-static-indicator"/>

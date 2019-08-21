@@ -3,5 +3,5 @@
 
     export let config = {};
 </script>
-<Label {config}/>
+<Label bind:config/>
 <svelte:options tag="puddy-static-label"/>

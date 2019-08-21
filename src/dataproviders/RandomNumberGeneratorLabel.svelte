@@ -14,5 +14,5 @@
     }
 </script>
 <RandomNumberGenerator config="{datasourceConfig}" on:value="{update}"/>
-<Label {config}/>
+<Label bind:config/>
 <svelte:options tag="puddy-rng-label"/>

@@ -11,5 +11,5 @@
     }
 </script>
 <RandomNumberGenerator config="{config.dataprovider}" on:value="{update}"/>
-<Indicator {config} {data}/>
+<Indicator bind:config {data}/>
 <svelte:options tag="puddy-rng-indicator"/>
