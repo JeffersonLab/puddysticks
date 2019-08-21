@@ -72,10 +72,14 @@
             y3 = cy,
             outline = getOutline(cx, cy, r1, offset, delta);
 
-    $: ticks = getTicks(config.min, config.max);
-    $: a = getAngle(config.value, config.min, config.max);
-    $: meter = getMeter(cx, cy, r1, offset, delta, a);
-    $: needle = getNeedle(cx, cy, r1, a);
+    let ticks, a, meter, needle;
+
+    $: {
+        ticks = getTicks(config.min, config.max);
+        a = getAngle(config.value, config.min, config.max);
+        meter = getMeter(cx, cy, r1, offset, delta, a);
+        needle = getNeedle(cx, cy, r1, a);
+    }
 
     /*$: console.log(value);*/
 

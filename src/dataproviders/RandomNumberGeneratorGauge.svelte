@@ -2,7 +2,7 @@
     import RandomNumberGenerator from "../datasources/RandomNumberGenerator.svelte";
     import Gauge from "../components/Gauge.svelte";
 
-    export let config;
+    export let config = {};
 
     let dataproviderConfig = config.dataprovider;
 
