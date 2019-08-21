@@ -21,8 +21,8 @@
     function assignUniqueIdAndParentThenStore(obj, par) {
         obj.id = getUniqueId();
         obj.par = par;
-        /*instances[obj.id] = writable(obj);*/
-        instances[obj.id] = obj;
+        instances[obj.id] = writable(obj);
+        /*instances[obj.id] = obj;*/
 
         /*console.log(obj);*/
 

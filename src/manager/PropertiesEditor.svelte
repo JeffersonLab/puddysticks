@@ -1,12 +1,14 @@
 <script>
-    import {components} from '../registry.js';
-    export let properties;
+    import {components, instances} from '../registry.js';
+
+    export let selected;
+    $: properties = instances[selected];
 
     let nonEditable = ['name', 'id', 'items', 'par'];
 </script>
 <table>
     <tbody>
-    {#each Object.keys(properties).sort() as key}
+    {#each Object.keys($properties).sort() as key}
         {#if key === 'dataprovider'}
             <tr>
                 <th>dataprovider</th>
@@ -33,7 +35,7 @@
                 <th>{key}</th>
             </tr>
             <tr>
-                <td><input type="text" bind:value="{properties[key]}"/></td>
+                <td><input type="text" bind:value="{$properties[key]}"/></td>
             </tr>
         {/if}
     {/each}

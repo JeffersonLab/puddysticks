@@ -1,5 +1,5 @@
 <script>
-    import {components, instances} from './registry.js';
+    import Instance from './Instance.svelte';
 
     export let items;
 
@@ -7,11 +7,7 @@
 </script>
 {#if items}
     {#each items as item}
-        {#if item.dataprovider}
-            <svelte:component this="{components[item.name].dataproviders[item.dataprovider.name].constructor}" config="{instances[item.id]}"/>
-        {:else}
-            <svelte:component this="{components[item.name].constructor}" config="{instances[item.id]}"/>
-        {/if}
+        <Instance {item}/>
     {/each}
 {/if}
 <svelte:options tag="puddy-container"/>

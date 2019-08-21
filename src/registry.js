@@ -9,3 +9,6 @@ let nextId = 0;
 export function getUniqueId() {
     return 'puddy-' + nextId++;
 };
+
+/* Store of component hierarchy - reactive */
+export const componentHierarchy = {};

@@ -12,6 +12,7 @@
                 <li><a href="?display=exampleA.wedm">Example A</a></li>
                 <li><a href="?display=exampleB.wedm">Example B</a></li>
                 <li><a href="?display=exampleC.wedm">Example C</a></li>
+                <li><a href="?display=exampleC.wedm">Example D</a></li>
         </ul>
         <h2>Local</h2>
         <h2>Remote</h2>

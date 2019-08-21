@@ -116,7 +116,6 @@
         });
     });
 
-    let config;
     let selected;
     let addComponentSelect;
 </script>
@@ -126,17 +125,17 @@
     {#if config}
         <div class="button-bar">
             <button on:click="{close}">Menu</button>
-            <button class="save-button" on:click="{()=>save(config.obj)}">Save</button>
+            <button class="save-button" on:click="{()=>save(config)}">Save</button>
         </div>
         <hr/>
         <div class="tree-pane">
-            <Tree config="{instances['puddy-0']}" bind:selected/>
+            <Tree config="{config}" bind:selected/>
         </div>
         <hr/>
         <div class="properties-pane">
             <div>Properties</div>
-            {#if selected && instances[selected]}
-                <PropertiesEditor bind:properties="{instances[selected]}"/>
+            {#if selected}
+                <PropertiesEditor selected="{selected}"/>
             {/if}
         </div>
         <hr/>
