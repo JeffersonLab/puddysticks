@@ -22,22 +22,22 @@ export function initComponents() {
     components['Label'] = {
         constructor: Label, dataproviders: {
             'Static': {constructor: StaticLabel, config: {}},
-            'RNG': {constructor: RandomNumberGeneratorLabel, config: {min: 75, max: 150}},
+            'RNG': {constructor: RandomNumberGeneratorLabel, config: {min: 0, max: 10, hz: 1}},
             'epics2web': {constructor: epics2webLabel, config: {}}
         }
     };
     components['Gauge'] = {
         constructor: Gauge, dataproviders: {
-            'Static': {constructor: StaticGauge},
+            'Static': {constructor: StaticGauge, config: {}},
             'RNG': {constructor: RandomNumberGeneratorGauge, config: {tween: false}},
-            'epics2web': {constructor: epics2webGauge}
+            'epics2web': {constructor: epics2webGauge, config: {}}
         }
     };
     components['Indicator'] = {
         constructor: Indicator, dataproviders: {
-            'Static': {constructor: StaticIndicator},
-            'RNG': {constructor: RandomNumberGeneratorIndicator},
-            'epics2web': {constructor: epics2webIndicator}
+            'Static': {constructor: StaticIndicator, config: {}},
+            'RNG': {constructor: RandomNumberGeneratorIndicator, config: {}},
+            'epics2web': {constructor: epics2webIndicator, config: {}}
         }
     };
 }

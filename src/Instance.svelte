@@ -5,6 +5,8 @@
 
     $: properties = instances[item.id];
 
+    $: console.log($properties);
+
 </script>
         {#if item.dataprovider}
             <svelte:component this="{components[item.name].dataproviders[item.dataprovider.name].constructor}" bind:config="{$properties}"/>

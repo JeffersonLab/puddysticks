@@ -1,5 +1,6 @@
 <script>
     import {components, instances} from '../registry.js';
+    import DataProviderPropertiesEditor from './DataProviderPropertiesEditor.svelte';
 
     export let selected;
     $: properties = instances[selected];
@@ -22,14 +23,7 @@
                     </select>
                 </td>
             </tr>
-            <!-- {#each Object.keys(components[properties.name].dataproviders[properties[key].name].config) as k}
-                <tr>
-                    <th>{k}</th>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-            {/each} -->
+            <!--<DataProviderPropertiesEditor component="{$properties.name}" provider="{$properties[key].name}" bind:properties="{$properties.dataprovider}"/>-->
         {:else if !nonEditable.includes(key)}
             <tr>
                 <th>{key}</th>
