@@ -25,11 +25,10 @@ function createModel() {
         instances[child.id] = child;
         instanceStores[child.id] = writable(child);
 
-        parent = instances[parent.id];
         parent.items = parent.items || [];
         parent.items.push(child);
         update(_model => {
-            return Object.assign({}, _model);
+            return _model;
         });
     };
 
@@ -44,7 +43,7 @@ function createModel() {
 
             node.par.items.splice(index, 1);
             update(_model => {
-                return Object.assign({}, _model);
+                return _model;
             });
         }
     };
