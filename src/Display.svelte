@@ -1,6 +1,6 @@
 <script context="module">
     import { writable } from 'svelte/store';
-    import { instances, getUniqueId, componentHierarchy } from './registry.js';
+    import { instances, instanceStores, getUniqueId, model } from './registry.js';
 
     export async function openRemoteFile(url) {
         const res = await fetch(url);
@@ -11,7 +11,7 @@
 
             assignUniqueIdAndParentThenStore(obj);
 
-            componentHierarchy.set(obj);
+            model.set(obj);
 
             return obj;
 
@@ -23,7 +23,8 @@
     function assignUniqueIdAndParentThenStore(obj, par) {
         obj.id = getUniqueId();
         obj.par = par;
-        instances[obj.id] = writable(obj);
+        instances[obj.id] = obj;
+        instanceStores[obj.id] = writable(obj);
         /*instances[obj.id] = obj;*/
 
         /*console.log(obj);*/

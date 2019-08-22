@@ -1,9 +1,9 @@
 <script>
-    import {components, instances} from './registry.js';
+    import {components, instances, instanceStores} from './registry.js';
 
     export let item;
 
-    $: properties = instances[item.id];
+    $: properties = instanceStores[item.id];
 
     /*$: console.log($properties);*/
 

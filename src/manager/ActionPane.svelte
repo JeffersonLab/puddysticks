@@ -1,51 +1,28 @@
 <script>
-    import { writable } from 'svelte/store';
-    import {components, instances, getUniqueId, componentHierarchy} from '../registry.js';
+    import {components, instances, instanceStores, getUniqueId, model} from '../registry.js';
 
     export let selected;
-    $: properties = instances[selected];
+    $: properties = instanceStores[selected];
 
     let addComponentSelect;
 
     function add() {
-            if ($properties) {
-                /*console.log(addComponentSelect.value);*/
+            if($properties) {
+                let obj = new components[addComponentSelect.value].constructor({target: document.createElement('div')}).config;
 
-                if($properties.name === 'Display' || $properties.name === 'Panel') {
+                obj.name = addComponentSelect.value;
 
-                    let id = getUniqueId();
-                    let par = $properties;
-
-                    /*TODO: If we define default config for each component somewhere besides inside the component we can avoid instantiating a throw-away component just to obtain it's default model*/
-                    let newObj = new components[addComponentSelect.value].constructor({target: document.createElement('div')}).config;
-
-                    newObj.name = addComponentSelect.value;
-                    newObj.id = id;
-                    newObj.par = par;
-
-                    console.log(newObj);
-
-                    instances[newObj.id] = writable(newObj);
-
-                    $properties.items = $properties.items || [];
-
-                    $properties.items.push(newObj);
-                    $componentHierarchy = $componentHierarchy;
+                if(obj.name === 'Panel') {
+                    obj.items = [];
                 }
+
+                model.addChild($properties, obj);
             }
     }
 
     function remove() {
             if ($properties) {
-                if($properties.par) {
-                    let index = $properties.par.items.findIndex(function (element) {
-                        return element.id == $properties.id;
-                    });
-
-                    selected = undefined;
-
-                    $properties.par.items.splice(index, 1);
-                }
+                model.remove($properties);
             }
     }
 </script>

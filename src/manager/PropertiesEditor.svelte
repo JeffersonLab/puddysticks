@@ -1,9 +1,9 @@
 <script>
-    import {components, instances} from '../registry.js';
+    import {components, instances, instanceStores} from '../registry.js';
     import DataProviderPropertiesEditor from './DataProviderPropertiesEditor.svelte';
 
     export let selected;
-    $: properties = instances[selected];
+    $: properties = instanceStores[selected];
 
     const noneditable = ['name', 'id', 'items', 'par'];
 </script>

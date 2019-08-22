@@ -31,7 +31,7 @@
     }
 </style>
 <script>
-    import {components, instances, getUniqueId, componentHierarchy} from '../registry.js';
+    import {components, instances, getUniqueId, model} from '../registry.js';
     import { onMount } from 'svelte';
     import Tree from '../Tree.svelte';
     import PropertiesEditor from './PropertiesEditor.svelte';
@@ -83,7 +83,7 @@
         </div>
         <hr/>
         <div class="tree-pane">
-            <Tree config="{$componentHierarchy}" bind:selected/>
+            <Tree config="{$model}" bind:selected/>
         </div>
         <hr/>
         <div class="properties-pane">

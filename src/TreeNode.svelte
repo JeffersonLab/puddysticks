@@ -29,7 +29,7 @@
 <span id="{config.id}" on:click="{(e) => selected = config.id}" class:selected="{selected === config.id}">{config.name}</span>
 {#if config.items != null}
     <ul>
-        {#each config.items as item (item.id)}
+        {#each config.items as item}
             <li>
                 <svelte:self bind:selected config="{item}"/>
             </li>
