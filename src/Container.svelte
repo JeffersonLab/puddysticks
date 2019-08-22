@@ -6,7 +6,7 @@
     /*console.log(items);*/
 </script>
 {#if items}
-    {#each items as item}
+    {#each items as item (item.id)}
         <Instance {item}/>
     {/each}
 {/if}
