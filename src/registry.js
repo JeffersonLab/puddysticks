@@ -1,3 +1,5 @@
+import { writable } from 'svelte/store';
+
 /* Map of component 'palette' - constructors and their dataproviders */
 export const components = {};
 
@@ -11,4 +13,4 @@ export function getUniqueId() {
 };
 
 /* Store of component hierarchy - reactive */
-export const componentHierarchy = {};
+export const componentHierarchy = writable({});

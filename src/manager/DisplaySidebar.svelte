@@ -31,10 +31,11 @@
     }
 </style>
 <script>
-    import {components, instances, getUniqueId} from '../registry.js';
+    import {components, instances, getUniqueId, componentHierarchy} from '../registry.js';
     import { onMount } from 'svelte';
     import Tree from '../Tree.svelte';
     import PropertiesEditor from './PropertiesEditor.svelte';
+    import ActionPane from './ActionPane.svelte';
 
     export let promise;
 
@@ -63,52 +64,6 @@
         window.location.href = '/';
     }
 
-    function add() {
-        if(selected) {
-            let obj = instances[selected];
-            if (obj) {
-                /*console.log(addComponentSelect.value);*/
-
-                if(obj.name === 'Display' || obj.name === 'Panel') {
-
-                    let id = getUniqueId();
-                    let par = obj;
-
-                    let newObj = new components[addComponentSelect.value].constructor({target: document.createElement('div')}).config;
-
-                    newObj.name = addComponentSelect.value;
-                    newObj.id = id;
-                    newObj.par = par;
-
-                    /*console.log(newObj);*/
-
-                    instances[id] = newObj;
-
-                    obj.items = obj.items || [];
-
-                    obj.items.push(newObj);
-                }
-            }
-        }
-    }
-
-    function remove() {
-        if(selected) {
-            let obj = instances[selected];
-            if (obj) {
-                if(obj.par) {
-                    let index = obj.par.items.findIndex(function (element) {
-                        return element.id == obj.id;
-                    });
-
-                    selected = undefined;
-
-                    obj.par.items.splice(index, 1);
-                }
-            }
-        }
-    }
-
     /*When DOM elements mounted and data is available*/
     onMount(() => {
         promise.then(function() {
@@ -117,7 +72,6 @@
     });
 
     let selected;
-    let addComponentSelect;
 </script>
 {#await promise}
     <p>...waiting</p>
@@ -129,7 +83,7 @@
         </div>
         <hr/>
         <div class="tree-pane">
-            <Tree config="{config}" bind:selected/>
+            <Tree config="{$componentHierarchy}" bind:selected/>
         </div>
         <hr/>
         <div class="properties-pane">
@@ -141,18 +95,8 @@
         <hr/>
         <div class="action-pane">
             <div>Actions</div>
-            {#if selected && (instances[selected].name === 'Panel' || instances[selected].name === 'Display')}
-            <div class="add-options">
-                <select bind:this="{addComponentSelect}">
-                {#each Object.keys(components) as component}
-                    <option>{component}</option>
-                {/each}
-                </select>
-                <button on:click="{add}">Add</button>
-            </div>
-            {/if}
-            {#if selected && instances[selected].name != 'Display'}
-                <button on:click="{remove}">Remove</button>
+            {#if selected}
+                <ActionPane {selected}/>
             {/if}
         </div>
     {/if}

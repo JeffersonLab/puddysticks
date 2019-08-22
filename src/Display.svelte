@@ -1,6 +1,6 @@
 <script context="module">
     import { writable } from 'svelte/store';
-    import { instances, getUniqueId } from './registry.js';
+    import { instances, getUniqueId, componentHierarchy } from './registry.js';
 
     export async function openRemoteFile(url) {
         const res = await fetch(url);
@@ -10,6 +10,8 @@
             let obj = JSON.parse(text);
 
             assignUniqueIdAndParentThenStore(obj);
+
+            componentHierarchy.set(obj);
 
             return obj;
 
