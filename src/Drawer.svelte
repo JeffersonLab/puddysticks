@@ -9,7 +9,7 @@
         overflow-x: hidden;
         transition: 0.5s;
     }
-    .toggle {
+    .button {
         position: fixed;
         left: 255px;
         bottom: 5px;
@@ -25,33 +25,34 @@
         background: url(icons/arrow-circle-left.svg) 0 0 no-repeat;
     }
     .main {
+        margin-left: 250px;
         transition: margin-left .5s;
     }
 </style>
 <script>
     export let config = {};
 
-    let drawerOpen = true;
-    let toggleButton;
+    let open = true;
+    let button;
     let aside;
     let main;
 
     function toggle() {
-        if(drawerOpen) { /* Do Close */
+        if(open) { /* Do Close */
             aside.style.width = "0";
             main.style.marginLeft = "0";
-            toggleButton.style.left = "5px";
+            button.style.left = "5px";
         } else { /* Do Open */
             aside.style.width = "250px";
             main.style.marginLeft = "250px";
-            toggleButton.style.left = "255px";
+            button.style.left = "255px";
         }
 
-        drawerOpen = !drawerOpen;
+        open = !open;
     }
 </script>
 <div>
-    <button bind:this="{toggleButton}" class="toggle" class:open="{drawerOpen}" on:click="{toggle}"></button>
+    <button bind:this="{button}" class="button" class:open="{open}" on:click="{toggle}"></button>
     <div bind:this="{aside}" class="aside">
         <slot name="aside"></slot>
     </div>
