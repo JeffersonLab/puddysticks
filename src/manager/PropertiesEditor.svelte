@@ -5,7 +5,7 @@
     export let selected;
     $: properties = instances[selected];
 
-    let nonEditable = ['name', 'id', 'items', 'par'];
+    const noneditable = ['name', 'id', 'items', 'par'];
 </script>
 <table>
     <tbody>
@@ -24,7 +24,7 @@
                 </td>
             </tr>
             <!--<DataProviderPropertiesEditor component="{$properties.name}" provider="{$properties[key].name}" bind:properties="{$properties.dataprovider}"/>-->
-        {:else if !nonEditable.includes(key)}
+        {:else if !noneditable.includes(key)}
             <tr>
                 <th>{key}</th>
             </tr>
