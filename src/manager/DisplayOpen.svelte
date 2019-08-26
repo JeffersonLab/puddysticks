@@ -4,10 +4,12 @@
         }
 </style>
 <script>
+        import LocalFileReader from '../LocalFileReader.svelte';
 </script>
 <div style="text-align: center;">
         <h1>Open Display</h1>
         <h2>Recent</h2>
+        <LocalFileReader on:localfile/>
         <h2>Local</h2>
         <h2>Remote</h2>
         <h2>Examples</h2>

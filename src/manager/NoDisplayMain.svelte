@@ -7,6 +7,6 @@
 {#if selected && selected.textContent === 'New'}
     <DisplayNew/>
 {:else}
-    <DisplayOpen/>
+    <DisplayOpen on:localfile/>
 {/if}
 <svelte:options tag="puddy-no-display-main"/>

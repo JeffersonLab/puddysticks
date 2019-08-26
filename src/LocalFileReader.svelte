@@ -1,41 +1,46 @@
 <script>
-    import FileParser from './FileParser.svelte';
+    import { createEventDispatcher } from 'svelte';
+    import { openFile } from './manager/file.js';
+
+    const dispatch = createEventDispatcher();
 
     function chooseLocalFile() {
 
-        let input = document.createElement("input"),
-                json;
+        let input = document.createElement("input");
 
         input.type = "file";
         input.accept = ".wedm";
         input.onchange = function () {
-            json = readLocalFile(input);
+            let promise = readLocalFile(input);
+
+            promise.then(function(result){
+                dispatch('localfile', openFile(result));
+            });
         };
 
         input.click();
-
-        let obj = FileParser.fromJSON(json);
     };
 
     function readLocalFile(input) {
         let file = input.files[0],
                 reader = new FileReader();
 
-        console.log('read file');
+        let promise = new Promise((resolve, reject) => {
+            reader.onerror = () => {
+                reader.abort();
+                reject(new DOMException('Could not read local file'));
+            };
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+        });
 
-        let textFile = /json.*/;
+        reader.readAsText(file);
 
-        if (file.type.match(textFile)) {
-            reader.onload = function (event) {
-                preview.innerHTML = event.target.result;
-            }
-        } else {
-            preview.innerHTML = "<span class='error'>It doesn't seem to be a text file!</span>";
-        }
-        return reader.readAsText(file);
+        return promise;
     };
 </script>
 
 <button type="button" on:click="{chooseLocalFile}">Open</button>
 
-<svelte:options tag="ps-local-file-reader"/>
+<svelte:options tag="puddy-local-file-reader"/>

@@ -2,7 +2,8 @@
 </style>
 <script>
     import {initComponents} from './components.js';
-    import {openRemoteFile} from './Display.svelte';
+    import {openRemoteFile} from './manager/file.js';
+    /*import {openRemoteFile} from './Display.svelte';*/
     import Drawer from './Drawer.svelte';
     import DisplaySidebar from "./manager/DisplaySidebar.svelte";
     import NoDisplaySidebar from "./manager/NoDisplaySidebar.svelte";
@@ -20,6 +21,15 @@
         promise = openRemoteFile(display);
     }
 
+    function openLocalFile(event) {
+        console.log('openLocalFile');
+        console.log(event);
+        display = 'localfile';
+        promise = new Promise(function(resolve, reject){
+            resolve(event.detail);
+        });
+    }
+
     let noDisplaySelected;
 </script>
 <Drawer>
@@ -34,7 +44,7 @@
         {#if display}
             <DisplayMain {promise}/>
         {:else}
-            <NoDisplayMain bind:selected="{noDisplaySelected}"/>
+            <NoDisplayMain bind:selected="{noDisplaySelected}" on:localfile="{openLocalFile}"/>
         {/if}
     </main>
 </Drawer>
