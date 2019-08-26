@@ -28,6 +28,12 @@ function assignUniqueIdAndParentThenStore(obj, par) {
     obj.par = par;
     instances[obj.id] = obj;
     instanceStores[obj.id] = writable(obj);
+
+    /* TreeWidget is confused when adding components to Panel with undefined items property */
+    if(obj.name === 'Panel') {
+        obj.items = obj.items || [];
+    }
+
     /*instances[obj.id] = obj;*/
 
     /*console.log(obj);*/
