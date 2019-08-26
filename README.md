@@ -6,8 +6,8 @@ Create displays and export them as simple JSON files.  Wire up displays to datas
 Built-in datasources include a random number generator and epics2web.  This project is the sequel to 
 [WEDM](https://github.com/JeffersonLab/wedm).  
 
-# Installation
+## Install
 npm i puddysticks
 
-# Run
+## Run
 npm run
