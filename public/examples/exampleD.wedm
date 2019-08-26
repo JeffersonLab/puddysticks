@@ -1,0 +1,17 @@
+{
+  "wedm-version": "0.1",
+  "title": "Example D",
+  "name": "Display",
+  "items": [
+    {
+      "name": "Label",
+      "text": "Hello",
+      "dataprovider": {"name": "Static"}
+    },
+    {
+      "name": "Label",
+      "text": "World",
+      "dataprovider": {"name": "Static"}
+    }
+  ]
+}

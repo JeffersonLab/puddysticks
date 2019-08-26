@@ -1,0 +1,77 @@
+{
+  "wedm-version":"0.1",
+  "title":"Example A",
+  "datasources": [
+    {
+      "name":"epics2web"
+    },
+    {
+      "name": "Random Number Generator"
+    }
+  ],
+  "name":"Display",
+  "items": [
+        {"name":"Panel",
+          "style": "grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); grid-template-rows: none;",
+          "items":[
+            {
+              "name":"Label",
+              "text":"Hello",
+              "style":"color: red; background-color: yellow;"
+            },
+            {
+              "name": "Label",
+              "decimals": 2,
+              "dataprovider": {
+                "name": "RNG",
+                "min": 0,
+                "max": 10,
+                "hz": 1
+              }
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "name": "epics2web",
+                "pv": "iocin1:heartbeat"
+              }
+            },
+            {
+              "name":"Indicator",
+              "style": "--on-rgb: rgb(255, 255, 0); --on-rgba: rgba(255, 255, 0, 0.75); --off-rgb: rgb(255, 217, 0); --off-rgba: rgba(255, 217, 0, 0.25); border-radius: 16px; width: 16px; height: 16px;",
+              "dataprovider": {
+                "name": "RNG",
+                "min": 0,
+                "max": 1,
+                "intVal": true,
+                "intMaxInc": true,
+                "hz": 0.5
+              }
+            },
+            {
+              "name":"Indicator",
+              "flash": true,
+              "dataprovider": {
+                "name": "RNG",
+                "min": 0,
+                "max": 1,
+                "intVal": true,
+                "intMaxInc": true,
+                "hz": 5
+              }
+            },
+            {
+              "name":"Gauge",
+              "decimals": 2,
+              "dataprovider": {
+                "name": "RNG",
+                "min": 0,
+                "max": 10,
+                "hz": 0.5,
+                "tween": true
+              }
+            }
+          ]
+        }
+      ]
+}

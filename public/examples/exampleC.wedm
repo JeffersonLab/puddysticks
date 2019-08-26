@@ -1,0 +1,53 @@
+{
+  "wedm-version": "0.1",
+  "title": "Example C",
+  "name": "Display",
+  "items": [
+    {
+      "name": "Panel",
+      "style": "display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); grid-template-rows: none;",
+      "items": [
+        {
+          "name": "Label",
+          "text": "Label 1"
+        },
+        {
+          "name": "Label",
+          "text": "Label 2"
+        },
+        {
+          "name": "Label",
+          "text": "Label 3"
+        },
+        {
+          "name": "Label",
+          "text": "Label 4"
+        },
+        {
+          "name": "Label",
+          "text": "Label 5"
+        },
+        {
+          "name": "Label",
+          "text": "Label 6"
+        },
+        {
+          "name": "Label",
+          "text": "Label 7"
+        },
+        {
+          "name": "Label",
+          "text": "Label 8"
+        },
+        {
+          "name": "Label",
+          "text": "Label 9"
+        },
+        {
+          "name": "Label",
+          "text": "Label 10"
+        }
+      ]
+    }
+  ]
+}
