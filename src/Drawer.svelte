@@ -27,6 +27,7 @@
     .main {
         margin-left: 250px;
         transition: margin-left .5s;
+        overflow: hidden;
     }
 </style>
 <script>

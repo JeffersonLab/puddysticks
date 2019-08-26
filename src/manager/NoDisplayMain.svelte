@@ -5,7 +5,7 @@
     export let selected = {};
 </script>
 {#if selected && selected.textContent === 'New'}
-    <DisplayNew/>
+    <DisplayNew on:newfile/>
 {:else}
     <DisplayOpen on:localfile/>
 {/if}
