@@ -7,7 +7,11 @@ Built-in datasources include a random number generator and epics2web.  This proj
 [WEDM](https://github.com/JeffersonLab/wedm).  
 
 ## Install
+```bash
 npm i puddysticks
-
+```
+**Note**: This application runs on the Node.js JavaScript runtime, which can be downloaded [here](https://nodejs.org/en/download/).
 ## Run
+```bash
 npm run
+```
