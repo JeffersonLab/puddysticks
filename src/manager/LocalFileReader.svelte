@@ -9,7 +9,7 @@
         let input = document.createElement("input");
 
         input.type = "file";
-        input.accept = ".wedm";
+        input.accept = ".puddy";
         input.onchange = function () {
             let promise = readLocalFile(input);
 

@@ -15,6 +15,7 @@
             display = params.get("display");
 
     let promise;
+    let title;
 
     if(display) {
         promise = openRemoteFile(display);
@@ -32,6 +33,16 @@
         promise = new Promise(function(resolve, reject){
             resolve(event.detail);
         });
+    }
+
+    $: {
+        if(promise){
+            promise.then(function(result){
+                title = result.title || '';
+            });
+        } else {
+            title = '';
+        }
     }
 
     let noDisplaySelected;
@@ -54,5 +65,5 @@
 </Drawer>
 <svelte:options tag="puddy-app"/>
 <svelte:head>
-    <title>Puddysticks</title>
+    <title>Puddysticks {title}</title>
 </svelte:head>

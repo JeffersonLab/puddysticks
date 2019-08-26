@@ -54,8 +54,10 @@
 
         let link = document.createElement("a");
 
+        let title = obj.title || 'display';
+
         link.href = "data:application/json," + encodeURIComponent(json);
-        link.download = "display.wedm";
+        link.download = title + ".puddy";
 
         link.click();
     }
