@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-    import { openFile } from './manager/file.js';
+    import { openFile } from './file.js';
 
     const dispatch = createEventDispatcher();
 
