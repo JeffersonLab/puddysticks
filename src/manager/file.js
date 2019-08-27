@@ -38,8 +38,6 @@ export function prepareInstance(par, obj) {
         let dataproviderDefaults = components[obj.name].dataproviders[obj.dataprovider.name].defaults;
 
         obj.dataprovider = {...dataproviderDefaults, ...obj.dataprovider};
-
-        console.log(obj);
     }
 
     instances[obj.id] = obj;
