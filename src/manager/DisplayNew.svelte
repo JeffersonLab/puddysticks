@@ -13,7 +13,6 @@
         const dispatch = createEventDispatcher();
 
         function newBlank() {
-                console.log('newBlank');
                 dispatch('newfile', openFile('{"name": "Display", "title": "Untitled"}'));
         }
 </script>

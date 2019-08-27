@@ -1,5 +1,3 @@
-<style>
-</style>
 <script>
     import {initComponents} from './components.js';
     import {openRemoteFile} from './manager/file.js';
@@ -8,6 +6,7 @@
     import NoDisplaySidebar from "./manager/NoDisplaySidebar.svelte";
     import DisplayMain from "./manager/DisplayMain.svelte";
     import NoDisplayMain from "./manager/NoDisplayMain.svelte";
+    import DynamicPageTitle from './manager/DynamicPageTitle.svelte';
 
     initComponents();
 
@@ -15,7 +14,6 @@
             display = params.get("display");
 
     let promise;
-    let title;
 
     if(display) {
         promise = openRemoteFile(display);
@@ -33,16 +31,6 @@
         promise = new Promise(function(resolve, reject){
             resolve(event.detail);
         });
-    }
-
-    $: {
-        if(promise){
-            promise.then(function(result){
-                title = result.title || '';
-            });
-        } else {
-            title = '';
-        }
     }
 
     let noDisplaySelected;
@@ -64,6 +52,12 @@
     </main>
 </Drawer>
 <svelte:options tag="puddy-app"/>
+{#await promise}
+{:then config}
+    {#if display}
+        <DynamicPageTitle/>
+    {/if}
+{/await}
 <svelte:head>
-    <title>Puddysticks {title}</title>
+    <title>Puddysticks</title>
 </svelte:head>
