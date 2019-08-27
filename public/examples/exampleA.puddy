@@ -1,14 +1,5 @@
 {
-  "wedm-version":"0.1",
   "title":"Example A",
-  "datasources": [
-    {
-      "name":"epics2web"
-    },
-    {
-      "name": "Random Number Generator"
-    }
-  ],
   "name":"Display",
   "items": [
         {"name":"Panel",
