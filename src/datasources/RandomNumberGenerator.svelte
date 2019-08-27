@@ -10,6 +10,13 @@
 
     $: {
         config = {...defaultConfig, ...config};
+
+        /* Convert string to number (could use parseFloat instead) */
+        /* Note: We could actually use type="number" on inputs and Svelte will do conversion for us, but that would mean we would need to track which inputs are numbers*/
+        config.min = config.min * 1.0;
+        config.max = config.max * 1.0;
+
+        /*console.log(config);*/
     }
 
     /*let min = config.min ? config.min : 0;
