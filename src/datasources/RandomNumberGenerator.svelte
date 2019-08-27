@@ -16,7 +16,12 @@
         config.min = config.min * 1.0;
         config.max = config.max * 1.0;
 
-        /*console.log(config);*/
+        config.hz = config.hz * 1.0;
+
+        /*Again, if we used Svelte checkbox then conversion is automatic... */
+        config.tween = (config.tween === true || config.tween === 'true') ? true : false;
+
+        console.log(config);
     }
 
     /*let min = config.min ? config.min : 0;
@@ -27,7 +32,7 @@
     let tween = config.tween ? config.tween : false;*/
 
     const dispatch = createEventDispatcher();
-    const tweener = tweened(0, {duration: config.hz * 1000, easing: cubicOut});
+    $: tweener = tweened(0, {duration: config.hz * 1000, easing: cubicOut});
 
     let value;
     let next;
@@ -44,7 +49,6 @@
             value: value
         });
     }
-
 
     let intMaxIncVal = config.intMaxInc ? 1 : 0;
 
