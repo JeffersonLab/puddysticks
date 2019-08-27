@@ -5,7 +5,7 @@
 
     $: properties = instanceStores[item.id];
 
-    $: console.log($properties);
+    /*$: console.log($properties);*/
 
 </script>
         {#if $properties.dataprovider}

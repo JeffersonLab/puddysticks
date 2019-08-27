@@ -31,11 +31,11 @@ export function initComponents() {
     components['Gauge'] = {
         constructor: Gauge,
         dataproviders: {
-            'Static': {constructor: StaticGauge, defaults: {min: 0, max: 100, decimals: 2}},
-            'RNG': {constructor: RandomNumberGeneratorGauge, defaults: {min: 0, max: 10, hz: 1, decimals: 2, tween: true}},
+            'Static': {constructor: StaticGauge, defaults: {value: 0, min: 0, max: 100, labeldecimals: 2, tickdecimals: 0}},
+            'RNG': {constructor: RandomNumberGeneratorGauge, defaults: {min: 0, max: 10, hz: 1, labeldecimals: 2, tickdecimals: 0, tween: true}},
             'epics2web': {constructor: epics2webGauge, defaults: {}}
         },
-        defaults: {value: 0, dataprovider: {name: 'Static'}, style: ''}
+        defaults: {dataprovider: {name: 'Static'}, style: ''}
     };
     components['Indicator'] = {
         constructor: Indicator,

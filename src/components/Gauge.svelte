@@ -59,7 +59,7 @@
     let rad = Math.PI / 180,
             W = 330,
             offset = 40,
-            cx = ~~(W / 2),
+            cx = ~~(W / 2), /* ~~ is roughly same as Math.floor() - used to obtain int from float for example */
             cy = 160,
             r1 = cx - offset,
             delta = ~~(r1 / 4),
@@ -72,16 +72,39 @@
             y3 = cy,
             outline = getOutline(cx, cy, r1, offset, delta);
 
-    $: value = data.value;
-    $: decimals = config.dataprovider.decimals;
+    /*$: value = data.value;*/
+    $: labeldecimals = config.dataprovider.labeldecimals;
+    $: tickdecimals = config.dataprovider.tickdecimals;
 
-    let ticks, a, meter, needle, min, max;
+    let ticks, a, meter, needle, min, max, value;
+
+    /*$: console.log('data.value', data.value);*/
 
     $: {
         /*console.log('dataprovider', config.dataprovider.name);*/
 
         min = config.dataprovider.min;
         max = config.dataprovider.max;
+
+        if(isNaN(min) || min === '') {
+            min = 0;
+        }
+
+        if(isNaN(max) || max === '') {
+            max = 100;
+        }
+
+        /* Convert from String to number (could use parseFloat instead) */
+        min = min * 1.0;
+        max = max * 1.0;
+
+        if(min > max) {
+            min = 0;
+            max = 100;
+        }
+
+        value = validateValue(data.value, min, max);
+
         ticks = getTicks(min, max);
         a = getAngle(value, min, max);
         /*console.log('value', value);
@@ -93,6 +116,23 @@
     }
 
     /*$: console.log(value);*/
+
+    function validateValue(value, min, max) {
+        let result = value;
+
+        if(isNaN(value) || value === '') {
+            result = min;
+        }
+
+        /* Convert from string to number */
+        result = result * 1.0;
+
+        if(value < min || value > max) {
+            result = min;
+        }
+
+        return result;
+    }
 
     function getTicks(min, max) {
         let sr1 = r1 + 5,
@@ -115,10 +155,11 @@
                         x2: sx2,
                         y2: sy2
                     },
+                    t = min + (n * amount),
                     label = {
                         x: sxT,
                         y: syT,
-                        text: min + (n * amount)
+                        text: tickdecimals ? t.toFixed(tickdecimals) : t
                     };
 
             ticks.push({line: line, label: label});
@@ -141,10 +182,10 @@
     }
 
     function getAngle(val, min, max) {
-        let newVal = (!isNaN(val) && val >= min && val <= max) ? val : min,
+        let /*newVal = (!isNaN(val) && val >= min && val <= max) ? val : min,*/
                 scale = 180 / Math.abs(max - min),
                 zeroAdj = Math.abs(0 - min),
-                pa = ((newVal + zeroAdj) * scale) - 180,
+                pa = ((val + zeroAdj) * scale) - 180,
                 p = {};
 
         p.x = cx + r1 * Math.cos(pa * rad);
@@ -193,6 +234,6 @@
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
     </svg>
-    <div class="output">{Number(value).toFixed(decimals)}</div>
+    <div class="output">{Number(value).toFixed(labeldecimals)}</div>
 </div>
 <svelte:options tag="puddy-gauge"/>

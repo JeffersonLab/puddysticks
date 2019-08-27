@@ -31,7 +31,6 @@
             },
             {
               "name":"Gauge",
-              "decimals": 2,
               "dataprovider": {
                 "name": "RNG",
                 "min": 0,

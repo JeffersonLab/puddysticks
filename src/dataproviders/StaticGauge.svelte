@@ -2,6 +2,9 @@
     import Gauge from "../components/Gauge.svelte";
 
     export let config = {};
+
+    $: data = {value: config.dataprovider.value};
+
 </script>
-<Gauge {config}/>
+<Gauge {config} {data}/>
 <svelte:options tag="puddy-static-gauge"/>
