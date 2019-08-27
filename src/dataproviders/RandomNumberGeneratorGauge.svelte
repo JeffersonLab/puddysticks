@@ -4,15 +4,14 @@
 
     export let config = {};
 
-    let dataproviderConfig = config.dataprovider;
+    let data = {value: 0};
 
     function update(e) {
-        config.value = e.detail.value;
+        if(e.detail.value !== undefined) {
+            data.value = e.detail.value;
+        }
     }
-
-    config.min = config.dataprovider.min || 0;
-    config.max = config.dataprovider.max || 100;
 </script>
-<RandomNumberGenerator config="{dataproviderConfig}" on:value="{update}"/>
-<Gauge {config}/>
+<RandomNumberGenerator config="{config.dataprovider}" on:value="{update}"/>
+<Gauge {config} {data}/>
 <svelte:options tag="puddy-rng-guage"/>

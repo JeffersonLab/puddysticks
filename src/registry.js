@@ -1,5 +1,4 @@
 import { writable } from 'svelte/store';
-import { prepareInstance} from "./manager/file";
 
 /* Map of component 'palette' - constructors and their dataproviders */
 export const components = {};
@@ -15,6 +14,29 @@ let nextId = 0;
 export function getUniqueId() {
     return 'puddy-' + nextId++;
 };
+
+export function prepareInstance(par, obj) {
+    obj.id = getUniqueId();
+    obj.par = par;
+
+    /* Display root component is excluded from components map, so we skip it */
+    if (components[obj.name]) {
+        let defaultConfig = components[obj.name].defaults;
+
+        obj = {...defaultConfig, ...obj};
+    }
+
+    if(obj.dataprovider) {
+        let dataproviderDefaults = components[obj.name].dataproviders[obj.dataprovider.name].defaults;
+
+        obj.dataprovider = {...dataproviderDefaults, ...obj.dataprovider};
+    }
+
+    instances[obj.id] = obj;
+    instanceStores[obj.id] = writable(obj);
+
+    return obj;
+}
 
 /* Store of component hierarchy - reactive */
 function createModel() {

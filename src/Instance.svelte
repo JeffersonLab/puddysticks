@@ -5,12 +5,12 @@
 
     $: properties = instanceStores[item.id];
 
-    /*$: console.log($properties);*/
+    $: console.log($properties);
 
 </script>
-        {#if item.dataprovider}
-            <svelte:component this="{components[item.name].dataproviders[item.dataprovider.name].constructor}" bind:config="{$properties}"/>
+        {#if $properties.dataprovider}
+            <svelte:component this="{components[$properties.name].dataproviders[$properties.dataprovider.name].constructor}" bind:config="{$properties}"/>
         {:else}
-            <svelte:component this="{components[item.name].constructor}" bind:config="{$properties}"/>
+            <svelte:component this="{components[$properties.name].constructor}" bind:config="{$properties}"/>
         {/if}
 <svelte:options tag="puddy-instance"/>

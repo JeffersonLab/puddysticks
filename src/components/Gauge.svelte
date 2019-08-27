@@ -53,6 +53,9 @@
     /* Note: Default values are managed externally in file.js */
     export let config;
 
+    /* data is separate from config because they update at different frequencies and also to avoid circular dependency since datasource config is nested inside config */
+    export let data = {value: 0};
+
     let rad = Math.PI / 180,
             W = 330,
             offset = 40,
@@ -69,16 +72,19 @@
             y3 = cy,
             outline = getOutline(cx, cy, r1, offset, delta);
 
+    $: value = data.value;
     $: decimals = config.dataprovider.decimals;
 
     let ticks, a, meter, needle, min, max;
 
     $: {
+        /*console.log('dataprovider', config.dataprovider.name);*/
+
         min = config.dataprovider.min;
         max = config.dataprovider.max;
         ticks = getTicks(min, max);
-        a = getAngle(config.value, min, max);
-        /*console.log('value', config.value);
+        a = getAngle(value, min, max);
+        /*console.log('value', value);
         console.log('min', min);
         console.log('max', max);
         console.log('a', a);*/
@@ -187,6 +193,6 @@
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
     </svg>
-    <div class="output">{Number(config.value).toFixed(decimals)}</div>
+    <div class="output">{Number(value).toFixed(decimals)}</div>
 </div>
 <svelte:options tag="puddy-gauge"/>

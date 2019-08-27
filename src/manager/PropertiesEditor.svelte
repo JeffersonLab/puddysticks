@@ -23,7 +23,7 @@
                     </select>
                 </td>
             </tr>
-            <!--<DataProviderPropertiesEditor component="{$properties.name}" provider="{$properties[key].name}" bind:properties="{$properties.dataprovider}"/>-->
+            <DataProviderPropertiesEditor component="{$properties.name}" provider="{$properties[key].name}" bind:properties="{$properties.dataprovider}"/>
         {:else if !noneditable.includes(key)}
             <tr>
                 <th>{key}</th>

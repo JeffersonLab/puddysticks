@@ -9,13 +9,24 @@
 
     $: {
         if(provider) {
-            defaultConfig = components[component].dataproviders[provider].config;
-            properties = {...defaultConfig, ...properties};
-            Object.keys(properties).forEach(key => {
-                if (key !== 'name' && !(key in defaultConfig)) {
-                    delete properties[key];
-                }
-            });
+            defaultConfig = components[component].dataproviders[provider].defaults;
+            if(defaultConfig) {
+
+                Object.keys(defaultConfig).forEach(key => {
+                    if(!(key in properties)) {
+                        console.log('adding key', key);
+                        properties[key] = defaultConfig[key];
+                    }
+                });
+
+                /*properties = {...defaultConfig, ...properties};*/
+                Object.keys(properties).forEach(key => {
+                    if (key !== 'name' && !(key in defaultConfig)) {
+                        console.log('removing key', key);
+                        delete properties[key];
+                    }
+                });
+            }
         }
     }
 
@@ -24,14 +35,6 @@
 <table>
     <tbody>
     {#each Object.keys(properties).sort() as key}
-        <!-- {#each Object.keys(components[properties.name].dataproviders[properties[key].name].config) as k}
-                <tr>
-                    <th>{k}</th>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-            {/each} -->
         {#if !nonEditable.includes(key)}
             <tr>
                 <th>{key}</th>
