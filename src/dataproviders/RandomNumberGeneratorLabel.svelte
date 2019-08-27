@@ -4,15 +4,12 @@
 
     export let config = {};
 
-    config.value = 'Loading...';
-
-    /*We have this indirection to avoid sending config updates to RNG component*/
-    let datasourceConfig = config.datasource;
+    let data = {value: 'Loading...'};
 
     function update(e) {
-        config.value = e.detail.value;
+        data.value = e.detail.value;
     }
 </script>
-<RandomNumberGenerator config="{datasourceConfig}" on:value="{update}"/>
-<Label bind:config/>
+<RandomNumberGenerator config="{config.datasource}" on:value="{update}"/>
+<Label {config} {data}/>
 <svelte:options tag="puddy-rng-label"/>

@@ -8,7 +8,9 @@
 
     export let config = defaultConfig;
 
-    config = {...defaultConfig, ...config};
+    $: {
+        config = {...defaultConfig, ...config};
+    }
 
     /*let min = config.min ? config.min : 0;
     let max = config.max ? config.max : 100;

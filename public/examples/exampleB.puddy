@@ -6,7 +6,7 @@
       "name":"Panel",
       "style": "display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); grid-template-rows: none;",
       "items":[
-        {"name":"Gauge", "dataprovider": {"name": "Static", "max": 10}}
+        {"name":"Label", "dataprovider": {"name": "Static"}}
       ]
     }
   ]

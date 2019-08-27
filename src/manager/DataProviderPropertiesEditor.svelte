@@ -14,7 +14,7 @@
 
                 Object.keys(defaultConfig).forEach(key => {
                     if(!(key in properties)) {
-                        console.log('adding key', key);
+                        /*console.log('adding key', key);*/
                         properties[key] = defaultConfig[key];
                     }
                 });
@@ -22,7 +22,7 @@
                 /*properties = {...defaultConfig, ...properties};*/
                 Object.keys(properties).forEach(key => {
                     if (key !== 'name' && !(key in defaultConfig)) {
-                        console.log('removing key', key);
+                        /*console.log('removing key', key);*/
                         delete properties[key];
                     }
                 });

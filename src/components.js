@@ -22,7 +22,7 @@ export function initComponents() {
     components['Label'] = {
         constructor: Label,
         dataproviders: {
-            'Static': {constructor: StaticLabel, defaults: {}},
+            'Static': {constructor: StaticLabel, defaults: {value: 'Unlabeled'}},
             'RNG': {constructor: RandomNumberGeneratorLabel, defaults: {min: 0, max: 10, hz: 1, decimals: 2}},
             'epics2web': {constructor: epics2webLabel, defaults: {}}
         },
