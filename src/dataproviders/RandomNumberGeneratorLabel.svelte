@@ -7,9 +7,11 @@
     let data = {value: 'Loading...'};
 
     function update(e) {
-        data.value = e.detail.value;
+        if(e.detail.value !== undefined) {
+            data.value = e.detail.value;
+        }
     }
 </script>
-<RandomNumberGenerator config="{config.datasource}" on:value="{update}"/>
+<RandomNumberGenerator config="{config.dataprovider}" on:value="{update}"/>
 <Label {config} {data}/>
 <svelte:options tag="puddy-rng-label"/>
