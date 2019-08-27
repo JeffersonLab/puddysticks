@@ -50,11 +50,8 @@
 <script>
     /*Gauge inspired by https://codepen.io/enxaneta/pen/EVYRJJ*/
 
-    let defaultConfig = {dataprovider: {name: 'Static'}, value: 50, min: 0, max: 100, decimals: 2, style: ''};
-
-    export let config = defaultConfig;
-
-    config = {...defaultConfig, ...config};
+    /* Note: Default values are managed externally in file.js */
+    export let config;
 
     let rad = Math.PI / 180,
             W = 330,
@@ -72,11 +69,19 @@
             y3 = cy,
             outline = getOutline(cx, cy, r1, offset, delta);
 
-    let ticks, a, meter, needle;
+    $: decimals = config.dataprovider.decimals;
+
+    let ticks, a, meter, needle, min, max;
 
     $: {
-        ticks = getTicks(config.min, config.max);
-        a = getAngle(config.value, config.min, config.max);
+        min = config.dataprovider.min;
+        max = config.dataprovider.max;
+        ticks = getTicks(min, max);
+        a = getAngle(config.value, min, max);
+        /*console.log('value', config.value);
+        console.log('min', min);
+        console.log('max', max);
+        console.log('a', a);*/
         meter = getMeter(cx, cy, r1, offset, delta, a);
         needle = getNeedle(cx, cy, r1, a);
     }
@@ -182,6 +187,6 @@
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
     </svg>
-    <div class="output">{Number(config.value).toFixed(config.decimals)}</div>
+    <div class="output">{Number(config.value).toFixed(decimals)}</div>
 </div>
 <svelte:options tag="puddy-gauge"/>

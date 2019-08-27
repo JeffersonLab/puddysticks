@@ -9,43 +9,43 @@
       "items": [
         {
           "name": "Label",
-          "text": "Label 1"
+          "value": "Label 1"
         },
         {
           "name": "Label",
-          "text": "Label 2"
+          "value": "Label 2"
         },
         {
           "name": "Label",
-          "text": "Label 3"
+          "value": "Label 3"
         },
         {
           "name": "Label",
-          "text": "Label 4"
+          "value": "Label 4"
         },
         {
           "name": "Label",
-          "text": "Label 5"
+          "value": "Label 5"
         },
         {
           "name": "Label",
-          "text": "Label 6"
+          "value": "Label 6"
         },
         {
           "name": "Label",
-          "text": "Label 7"
+          "value": "Label 7"
         },
         {
           "name": "Label",
-          "text": "Label 8"
+          "value": "Label 8"
         },
         {
           "name": "Label",
-          "text": "Label 9"
+          "value": "Label 9"
         },
         {
           "name": "Label",
-          "text": "Label 10"
+          "value": "Label 10"
         }
       ]
     }

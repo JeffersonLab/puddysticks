@@ -5,12 +5,12 @@
   "items": [
     {
       "name": "Label",
-      "text": "Hello",
+      "value": "Hello",
       "dataprovider": {"name": "Static"}
     },
     {
       "name": "Label",
-      "text": "World",
+      "value": "World",
       "dataprovider": {"name": "Static"}
     }
   ]

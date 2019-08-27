@@ -5,17 +5,14 @@
     }
 </style>
 <script>
-    const defaultConfig = {dataprovider: {name: 'Static'}, text: 'Label', decimals: 0, style: ''};
-
-    export let config = defaultConfig;
-
-    config = {...defaultConfig, ...config};
+    /* Note: Default values are managed externally in file.js */
+    export let config;
 
     let formattedValue = '';
 
     $: {
         /*Format Decimals*/
-        formattedValue = (config.text && config.text.toFixed ? config.text.toFixed(config.decimals) : config.text);
+        formattedValue = (config.value && config.value.toFixed ? config.value.toFixed(config.decimals) : config.value);
     }
 </script>
 <div class="label" style="{config.style}">{formattedValue}</div>

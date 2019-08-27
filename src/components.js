@@ -18,26 +18,32 @@ import RandomNumberGeneratorGauge from './dataproviders/RandomNumberGeneratorGau
 import epics2webGauge from './dataproviders/epics2webGauge.svelte';
 
 export function initComponents() {
-    components['Panel'] = {constructor: Panel};
+    components['Panel'] = {constructor: Panel, defaults: {style: '', items: []}};
     components['Label'] = {
-        constructor: Label, dataproviders: {
-            'Static': {constructor: StaticLabel, config: {}},
-            'RNG': {constructor: RandomNumberGeneratorLabel, config: {min: 0, max: 10, hz: 1}},
-            'epics2web': {constructor: epics2webLabel, config: {}}
-        }
+        constructor: Label,
+        dataproviders: {
+            'Static': {constructor: StaticLabel, defaults: {}},
+            'RNG': {constructor: RandomNumberGeneratorLabel, defaults: {min: 0, max: 10, hz: 1, decimals: 2}},
+            'epics2web': {constructor: epics2webLabel, defaults: {}}
+        },
+        defaults: {value: 'Unlabeled', dataprovider: {name: 'Static'}, style: ''}
     };
     components['Gauge'] = {
-        constructor: Gauge, dataproviders: {
-            'Static': {constructor: StaticGauge, config: {}},
-            'RNG': {constructor: RandomNumberGeneratorGauge, config: {tween: false}},
-            'epics2web': {constructor: epics2webGauge, config: {}}
-        }
+        constructor: Gauge,
+        dataproviders: {
+            'Static': {constructor: StaticGauge, defaults: {min: 0, max: 100, decimals: 2}},
+            'RNG': {constructor: RandomNumberGeneratorGauge, defaults: {min: 0, max: 10, hz: 1, decimals: 2, tween: true}},
+            'epics2web': {constructor: epics2webGauge, defaults: {}}
+        },
+        defaults: {value: 0, dataprovider: {name: 'Static'}, style: ''}
     };
     components['Indicator'] = {
-        constructor: Indicator, dataproviders: {
-            'Static': {constructor: StaticIndicator, config: {}},
-            'RNG': {constructor: RandomNumberGeneratorIndicator, config: {}},
-            'epics2web': {constructor: epics2webIndicator, config: {}}
-        }
+        constructor: Indicator,
+        dataproviders: {
+            'Static': {constructor: StaticIndicator, defaults: {}},
+            'RNG': {constructor: RandomNumberGeneratorIndicator, defaults: {min: 0, max: 1, hz: 1}},
+            'epics2web': {constructor: epics2webIndicator, defaults: {}}
+        },
+        defaults: {value: 0, dataprovider: {name: 'Static'}, style: '', onIf: function(data){return data.value > 0}, flash: true}
     };
 }

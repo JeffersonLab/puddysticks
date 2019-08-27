@@ -4,13 +4,13 @@
 
     export let config = {};
 
-    config.text = 'Loading...';
+    config.value = 'Loading...';
 
     /*We have this indirection to avoid sending config updates to RNG component*/
     let datasourceConfig = config.datasource;
 
     function update(e) {
-        config.text = e.detail.value;
+        config.value = e.detail.value;
     }
 </script>
 <RandomNumberGenerator config="{datasourceConfig}" on:value="{update}"/>

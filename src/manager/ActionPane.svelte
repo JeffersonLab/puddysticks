@@ -8,7 +8,9 @@
 
     function add() {
             if($properties) {
-                let obj = new components[addComponentSelect.value].constructor({target: document.createElement('div')}).config;
+                //let obj = new components[addComponentSelect.value].constructor({target: document.createElement('div')}).config;
+
+                let obj = {};
 
                 obj.name = addComponentSelect.value;
 

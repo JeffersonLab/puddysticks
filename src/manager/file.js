@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { instances, instanceStores, getUniqueId, model } from '../registry.js';
+import { components, instances, instanceStores, getUniqueId, model } from '../registry.js';
 
 export async function openRemoteFile(url) {
     const res = await fetch(url);
@@ -16,31 +16,44 @@ export async function openRemoteFile(url) {
 export function openFile(text) {
     let obj = JSON.parse(text);
 
-    assignUniqueIdAndParentThenStore(obj);
+    assignUniqueIdAndParentSetDefaultsThenStore(undefined, obj);
 
     model.set(obj);
 
     return obj;
 }
 
-function assignUniqueIdAndParentThenStore(obj, par) {
+export function prepareInstance(par, obj) {
     obj.id = getUniqueId();
     obj.par = par;
+
+    /* Display root component is excluded from components map, so we skip it */
+    if (components[obj.name]) {
+        let defaultConfig = components[obj.name].defaults;
+
+        obj = {...defaultConfig, ...obj};
+    }
+
+    if(obj.dataprovider) {
+        let dataproviderDefaults = components[obj.name].dataproviders[obj.dataprovider.name].defaults;
+
+        obj.dataprovider = {...dataproviderDefaults, ...obj.dataprovider};
+
+        console.log(obj);
+    }
+
     instances[obj.id] = obj;
     instanceStores[obj.id] = writable(obj);
 
-    /* TreeWidget is confused when adding components to Panel with undefined items property */
-    if(obj.name === 'Panel') {
-        obj.items = obj.items || [];
-    }
+    return obj;
+}
 
-    /*instances[obj.id] = obj;*/
-
-    /*console.log(obj);*/
+function assignUniqueIdAndParentSetDefaultsThenStore(par, obj) {
+    obj = prepareInstance(par, obj);
 
     if(obj.items) {
         for (const item of obj.items) {
-            assignUniqueIdAndParentThenStore(item, obj);
+            assignUniqueIdAndParentSetDefaultsThenStore(obj, item);
         }
     }
 }

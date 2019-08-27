@@ -1,11 +1,8 @@
 <script>
     import Container from '../Container.svelte';
 
-    const defaultConfig = {style: ''};
-
-    export let config = defaultConfig;
-
-    config = {...defaultConfig, ...config};
+    /* Note: Default values are managed externally in file.js */
+    export let config;
 </script>
 <div class="panel" style="{config.style}">
     <slot>

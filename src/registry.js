@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { prepareInstance} from "./manager/file";
 
 /* Map of component 'palette' - constructors and their dataproviders */
 export const components = {};
@@ -20,13 +21,11 @@ function createModel() {
     const { subscribe, set, update } = writable({});
 
     const addChild = (parent, child) => {
-        child.id = 'puddy-' + nextId++;
-        child.par = parent;
-        instances[child.id] = child;
-        instanceStores[child.id] = writable(child);
+        child = prepareInstance(parent, child);
 
         parent.items = parent.items || [];
         parent.items.push(child);
+
         update(_model => {
             return _model;
         });
