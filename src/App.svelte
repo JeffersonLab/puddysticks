@@ -1,3 +1,8 @@
+<style>
+    aside {
+        height: 100%;
+    }
+</style>
 <script>
     import {initComponents} from './components.js';
     import {openRemoteFile} from './manager/file.js';

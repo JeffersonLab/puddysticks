@@ -1,37 +1,71 @@
 <style>
-     .tree-pane {
-         padding: 8px;
-         height: 300px;
-         overflow: auto;
-     }
-     .properties-pane {
-         height: 300px;
-         overflow: auto;
-         padding: 8px;
-     }
-     .action-pane {
-         padding: 8px;
-     }
-     .add-options {
-         margin-bottom: 8px;
-     }
-     :global(.tree-pane .selected) {
+    .wrapper {
+        position: relative;
+        height: 100%;
+        width: 250px;
+    }
+
+    .pane-grid {
+        position: absolute;
+        top: 40px;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pane-grid > .flex-cell {
+        flex: 1;
+        width: 250px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .pane-grid > .flex-cell > .detail-pane {
+        position: absolute;
+        top: 40px;
+        bottom: 0;
+        overflow: auto;
+        margin: 8px 0 8px 8px;
+        width: 242px;
+    }
+
+    .detail-header {
+        margin-left: 8px;
+        font-weight: bold;
+    }
+
+    .properties-pane {
+        /*height: 300px;*/
+        overflow: auto;
+    }
+
+    .action-pane {
+    }
+
+    .add-options {
+        margin-bottom: 8px;
+    }
+
+    :global(.tree-pane .selected) {
         border-top: 1px solid red;
         border-bottom: 1px solid red;
         color: red;
     }
+
     :global(.tree-pane span) {
         border: 1px solid transparent;
     }
+
     .button-bar {
         padding: 8px;
     }
+
     .save-button {
         float: right;
     }
 </style>
 <script>
-    import {components, instances, getUniqueId, model} from '../registry.js';
+    import { model } from '../registry.js';
     import { onMount } from 'svelte';
     import Tree from '../Tree.svelte';
     import PropertiesEditor from './PropertiesEditor.svelte';
@@ -68,7 +102,7 @@
 
     /*When DOM elements mounted and data is available*/
     onMount(() => {
-        promise.then(function() {
+        promise.then(function () {
             selected = 'puddy-0';
         });
     });
@@ -79,27 +113,38 @@
     <p>...waiting</p>
 {:then config}
     {#if config}
-        <div class="button-bar">
-            <button on:click="{close}">Menu</button>
-            <button class="save-button" on:click="{()=>save(config)}">Save</button>
-        </div>
-        <hr/>
-        <div class="tree-pane">
-            <Tree config="{$model}" bind:selected/>
-        </div>
-        <hr/>
-        <div class="properties-pane">
-            <div>Properties</div>
-            {#if selected}
-                <PropertiesEditor selected="{selected}"/>
-            {/if}
-        </div>
-        <hr/>
-        <div class="action-pane">
-            <div>Actions</div>
-            {#if selected}
-                <ActionPane {selected}/>
-            {/if}
+        <div class="wrapper">
+            <div class="button-bar">
+                <button on:click="{close}">Menu</button>
+                <button class="save-button" on:click="{()=>save(config)}">Save</button>
+            </div>
+            <div class="pane-grid">
+                <div class="flex-cell">
+                    <hr/>
+                    <span class="detail-header">Model</span>
+                <div class="detail-pane tree-pane">
+                    <Tree config="{$model}" bind:selected/>
+                </div>
+                </div>
+                <div class="flex-cell">
+                    <hr/>
+                    <span class="detail-header">Properties</span>
+                <div class="detail-pane properties-pane">
+                    {#if selected}
+                        <PropertiesEditor selected="{selected}"/>
+                    {/if}
+                </div>
+                </div>
+                <div class="flex-cell">
+                    <hr/>
+                    <span class="detail-header">Actions</span>
+                <div class="detail-pane action-pane">
+                    {#if selected}
+                        <ActionPane {selected}/>
+                    {/if}
+                </div>
+                </div>
+            </div>
         </div>
     {/if}
 {:catch error}
