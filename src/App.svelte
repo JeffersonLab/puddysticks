@@ -52,8 +52,7 @@
     </main>
 </Drawer>
 <svelte:options tag="puddy-app"/>
-{#await promise}
-{:then config}
+{#await promise then config}
     {#if display}
         <DynamicPageTitle/>
     {/if}
