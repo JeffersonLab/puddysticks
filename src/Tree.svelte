@@ -1,5 +1,3 @@
-<style>
-</style>
 <script>
     import TreeNode from './TreeNode.svelte';
     export let config = {};

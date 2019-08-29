@@ -46,6 +46,11 @@
         margin-bottom: 8px;
     }
 
+    /*Selection top border is cut-off without this*/
+    :global(.tree-pane .tree) {
+        padding-top: 1px;
+    }
+
     :global(.tree-pane .selected) {
         border-top: 1px solid red;
         border-bottom: 1px solid red;
