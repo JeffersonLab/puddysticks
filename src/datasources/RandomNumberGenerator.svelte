@@ -21,7 +21,7 @@
         /*Again, if we used Svelte checkbox then conversion is automatic... */
         config.tween = (config.tween === true || config.tween === 'true') ? true : false;
 
-        console.log(config);
+        /*console.log(config);*/
     }
 
     /*let min = config.min ? config.min : 0;
