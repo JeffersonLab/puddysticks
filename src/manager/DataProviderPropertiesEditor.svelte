@@ -35,7 +35,7 @@
     {#each Object.keys(properties).sort() as key}
         {#if !nonEditable.includes(key)}
             <div>{key}</div>
-            <div><input type="text" bind:value="{properties[key]}"/></div>
+            <div class="editable-value"><input type="text" bind:value="{properties[key]}"/></div>
         {/if}
     {/each}
 <svelte:options tag="puddy-data-provider-properties-editor"/>

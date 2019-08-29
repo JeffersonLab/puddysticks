@@ -1,3 +1,8 @@
+<style>
+    :global(.properties-pane .editable-value) {
+        margin-bottom: 8px;
+    }
+</style>
 <script>
     import {components, instances, instanceStores} from '../registry.js';
     import DataProviderPropertiesEditor from './DataProviderPropertiesEditor.svelte';
@@ -10,7 +15,7 @@
     {#each Object.keys($properties).sort() as key}
         {#if key === 'dataprovider'}
             <div>dataprovider</div>
-                <div>
+                <div class="editable-value">
                     <select bind:value="{$properties[key].name}">
                         {#each Object.keys(components[$properties.name].dataproviders) as provider}
                             <option>{provider}</option>
@@ -20,7 +25,7 @@
             <DataProviderPropertiesEditor component="{$properties.name}" provider="{$properties[key].name}" bind:properties="{$properties.dataprovider}"/>
         {:else if !noneditable.includes(key)}
             <div>{key}</div>
-            <div><input type="text" bind:value="{$properties[key]}"/></div>
+            <div class="editable-value"><input type="text" bind:value="{$properties[key]}"/></div>
         {/if}
     {/each}
 <svelte:options tag="puddy-properties-editor"/>
