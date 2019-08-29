@@ -73,6 +73,30 @@
 
     export let promise;
 
+    function sortKeys(obj, newObj) {
+        let keys = Object.keys(obj);
+
+        keys.sort();
+
+        /* We force first key to always be name, all other keys are in alphabetical order */
+        newObj.name = obj.name;
+
+        keys.forEach(key => {
+            newObj[key] = obj[key];
+        });
+
+        /* TODO: should we sort dataprovider sub-object? */
+
+        if(obj.items) {
+            newObj.items = [];
+            obj.items.forEach(child => {
+                let newChild = {};
+                newObj.items.push(newChild);
+                sortKeys(child, newChild);
+            });
+        }
+    }
+
     function save(obj) {
 
         /*Filter out id*/
@@ -84,7 +108,11 @@
             }
         };
 
-        let json = JSON.stringify(obj, replacer, 2);
+        let newObj = {};
+
+        sortKeys(obj, newObj);
+
+        let json = JSON.stringify(newObj, replacer, 2);
 
         let link = document.createElement("a");
 
