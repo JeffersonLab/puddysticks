@@ -90,7 +90,10 @@
         newObj.name = obj.name;
 
         keys.forEach(key => {
-            newObj[key] = obj[key];
+            /* Might as well remove empty properties while we're here */
+            if(obj[key] !== '') {
+                newObj[key] = obj[key];
+            }
         });
 
         /* TODO: should we sort dataprovider sub-object? */
