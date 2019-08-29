@@ -7,7 +7,7 @@
         --off-rgba: rgba(150, 40, 27, 0.25);
     }
     div {
-        margin: 0 auto;
+        margin: 8px auto;
         width: 24px;
         height: 24px;
         background-color: var(--off-rgb);
@@ -37,13 +37,31 @@
     export let data = {value: 0};
 
     let flash = false;
+    let onIf = function(data) {
+        return false;
+    };
 
     $: {
         /* If we used Svelte checkbox then conversion is automatic... */
         flash = (config.flash === true || config.flash === 'true') ? true : false;
+
+        console.log(typeof config.onIf);
+
+        if (typeof config.onIf === 'function') {
+            onIf = config.onIf;
+        } else if (typeof config.onIf === 'string') {
+            try {
+                onIf = Function('"use strict";return (' + config.onIf + ')')();
+            } catch(e) {
+                /*console.log(e);*/
+            }
+        } else {
+            onIf = function(data) {return false;};
+        }
     }
 
-    $: console.log(data.value);
+    /*$: console.log(data.value);*/
+    /*$: console.log(onIf);*/
 </script>
-<div class="indicator" style="{config.style}" class:flash="{flash}" class:on="{config.onIf ? config.onIf(data) : {}}"></div>
+<div class="indicator" style="{config.style}" class:flash="{flash}" class:on="{onIf ? onIf(data) : {}}"></div>
 <svelte:options tag="puddy-indicator"/>
