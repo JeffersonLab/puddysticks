@@ -8,43 +8,73 @@
       "items": [
         {
           "name": "Label",
-          "value": "Label 1"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 1"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 2"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 2"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 3"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 3"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 4"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 4"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 5"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 5"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 6"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 6"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 7"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 7"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 8"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 8"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 9"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 9"
+          }
         },
         {
           "name": "Label",
-          "value": "Label 10"
+          "dataprovider": {
+            "name": "Static",
+            "value": "Label 10"
+          }
         }
       ]
     }
