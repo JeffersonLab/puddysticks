@@ -81,12 +81,48 @@ function createModel() {
         }
     };
 
+    const up = (node) => {
+        if(node.par) {
+            let index = node.par.items.findIndex(function (element) {
+                return element.id == node.id;
+            });
+
+            if(index > 0) {
+                node.par.items[index] = node.par.items[index - 1];
+                node.par.items[index - 1]  = node;
+            }
+            update(_model => {
+                return _model;
+            });
+        }
+    };
+
+    const down = (node) => {
+        if(node.par) {
+            let index = node.par.items.findIndex(function (element) {
+                return element.id == node.id;
+            });
+
+            let maxIndex = node.par.items.length - 1;
+
+            if(index < maxIndex) {
+                node.par.items[index] = node.par.items[index + 1];
+                node.par.items[index + 1]  = node;
+            }
+            update(_model => {
+                return _model;
+            });
+        }
+    };
+
     return {
         subscribe,
         set,
         update,
         addChild,
-        remove
+        remove,
+        up,
+        down
     };
 }
 
