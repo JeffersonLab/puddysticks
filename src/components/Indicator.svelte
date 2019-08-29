@@ -45,8 +45,6 @@
         /* If we used Svelte checkbox then conversion is automatic... */
         flash = (config.flash === true || config.flash === 'true') ? true : false;
 
-        console.log(typeof config.onIf);
-
         if (typeof config.onIf === 'function') {
             onIf = config.onIf;
         } else if (typeof config.onIf === 'string') {
