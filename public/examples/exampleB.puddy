@@ -6,7 +6,7 @@
       "name":"Panel",
       "style": "display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); grid-template-rows: none;",
       "items":[
-        {"name":"Label", "dataprovider": {"name": "Static"}}
+        {"name":"Indicator", "dataprovider": {"name": "Static"}}
       ]
     }
   ]

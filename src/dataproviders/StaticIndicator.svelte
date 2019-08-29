@@ -2,6 +2,8 @@
     import Indicator from "../components/Indicator.svelte";
 
     export let config = {};
+
+    $: data = {value: config.dataprovider.value};
 </script>
-<Indicator bind:config/>
+<Indicator bind:config {data}/>
 <svelte:options tag="puddy-static-indicator"/>

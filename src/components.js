@@ -42,11 +42,11 @@ export function initComponents() {
     components['Indicator'] = {
         constructor: Indicator,
         dataproviders: {
-            'Static': {constructor: StaticIndicator, defaults: {}},
-            'RNG': {constructor: RandomNumberGeneratorIndicator, defaults: {min: 0, max: 1, hz: 1}},
+            'Static': {constructor: StaticIndicator, defaults: {value: 0}},
+            'RNG': {constructor: RandomNumberGeneratorIndicator, defaults: {min: 0, max: 1, hz: 1, tween: false}},
             'epics2web': {constructor: epics2webIndicator, defaults: {}}
         },
-        defaults: {value: 0, dataprovider: {name: 'Static'}, style: '', onIf: function(data){return data.value > 0}, flash: true},
+        defaults: {dataprovider: {name: 'Static'}, style: '', onIf: function(data){return data.value > 0}, flash: true},
         icon: 'lightbulb.svg'
     };
 }

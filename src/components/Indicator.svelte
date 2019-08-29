@@ -30,14 +30,20 @@
     }
 </style>
 <script>
-    let defaultConfig = {dataprovider: {name: 'Static'}, onIf: function(data){return data.value > 0}, flash: false, style: ''};
+    /* Note: Default values are managed externally in file.js */
+    export let config;
 
-    export let config = defaultConfig;
+    /* data is separate from config because they update at different frequencies and also to avoid circular dependency since datasource config is nested inside config */
     export let data = {value: 0};
 
-    config = {...defaultConfig, ...config};
+    let flash = false;
 
-    /*$: console.log(data.value);*/
+    $: {
+        /* If we used Svelte checkbox then conversion is automatic... */
+        flash = (config.flash === true || config.flash === 'true') ? true : false;
+    }
+
+    $: console.log(data.value);
 </script>
-<div class="indicator" style="{config.style}" class:flash="{config.flash}" class:on="{config.onIf ? config.onIf(data) : {}}"></div>
+<div class="indicator" style="{config.style}" class:flash="{flash}" class:on="{config.onIf ? config.onIf(data) : {}}"></div>
 <svelte:options tag="puddy-indicator"/>
