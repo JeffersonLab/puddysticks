@@ -24,7 +24,7 @@ export function openFile(text) {
 }
 
 function assignUniqueIdAndParentSetDefaultsThenStore(par, obj) {
-    obj = prepareInstance(par, obj);
+    prepareInstance(par, obj);
 
     if(obj.items) {
         for (const item of obj.items) {

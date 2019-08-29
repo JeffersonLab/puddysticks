@@ -16,14 +16,25 @@ export function getUniqueId() {
 };
 
 export function prepareInstance(par, obj) {
-    obj.id = getUniqueId();
-    obj.par = par;
-
     /* Display root component is excluded from components map, so we skip it */
     if (components[obj.name]) {
         let defaultConfig = components[obj.name].defaults;
 
-        obj = {...defaultConfig, ...obj};
+        /*obj = {...defaultConfig, ...obj};*/
+        Object.keys(defaultConfig).forEach(key => {
+            if(!(key in obj)) {
+                /*console.log('adding key', key);*/
+                obj[key] = defaultConfig[key];
+            }
+        });
+
+        /*properties = {...defaultConfig, ...properties};*/
+        Object.keys(obj).forEach(key => {
+            if (key !== 'name' && !(key in defaultConfig)) {
+                /*console.log('removing key', key);*/
+                delete obj[key];
+            }
+        });
     }
 
     if(obj.dataprovider) {
@@ -32,10 +43,11 @@ export function prepareInstance(par, obj) {
         obj.dataprovider = {...dataproviderDefaults, ...obj.dataprovider};
     }
 
+    obj.id = getUniqueId();
+    obj.par = par;
+
     instances[obj.id] = obj;
     instanceStores[obj.id] = writable(obj);
-
-    return obj;
 }
 
 /* Store of component hierarchy - reactive */
@@ -43,7 +55,7 @@ function createModel() {
     const { subscribe, set, update } = writable({});
 
     const addChild = (parent, child) => {
-        child = prepareInstance(parent, child);
+        prepareInstance(parent, child);
 
         parent.items = parent.items || [];
         parent.items.push(child);
