@@ -48,17 +48,20 @@
 
     /*Selection top border is cut-off without this*/
     :global(.tree-pane .tree) {
-        padding-top: 1px;
+        margin-top: 4px;
+        margin-left: 1px;
+        margin-bottom: 1px;
     }
 
     :global(.tree-pane .selected) {
-        border-top: 1px solid red;
-        border-bottom: 1px solid red;
+        /*border-top: 1px solid red;
+        border-bottom: 1px solid red;*/
+        outline: 1px dashed red;
         color: red;
     }
 
     :global(.tree-pane span) {
-        border: 1px solid transparent;
+        border: 3px solid transparent;
     }
 
     .button-bar {
@@ -70,7 +73,7 @@
     }
 </style>
 <script>
-    import { model } from '../registry.js';
+    import { components, model } from '../registry.js';
     import { onMount } from 'svelte';
     import Tree from '../Tree.svelte';
     import PropertiesEditor from './PropertiesEditor.svelte';
@@ -141,6 +144,18 @@
     });
 
     let selected;
+
+    let iconizer = function(node) {
+        let icon = undefined;
+        let props = components[node.name];
+        if(props) {
+            icon = props.icon;
+        } else if(node.name === 'Display') { /* Display widget is purposely left out of registry at this time... */
+            icon = 'tv.svg';
+        }
+        return icon;
+    }
+
 </script>
 {#await promise}
     <p>...waiting</p>
@@ -156,7 +171,7 @@
                     <hr/>
                     <span class="detail-header">Model</span>
                 <div class="detail-pane tree-pane">
-                    <Tree config="{$model}" bind:selected/>
+                    <Tree config="{$model}" {iconizer} bind:selected/>
                 </div>
                 </div>
                 <div class="flex-cell">

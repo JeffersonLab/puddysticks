@@ -18,7 +18,7 @@ import RandomNumberGeneratorGauge from './dataproviders/RandomNumberGeneratorGau
 import epics2webGauge from './dataproviders/epics2webGauge.svelte';
 
 export function initComponents() {
-    components['Panel'] = {constructor: Panel, defaults: {style: '', items: []}};
+    components['Panel'] = {constructor: Panel, defaults: {style: '', items: []}, icon: 'window-restore.svg'};
     components['Label'] = {
         constructor: Label,
         dataproviders: {
@@ -26,7 +26,8 @@ export function initComponents() {
             'RNG': {constructor: RandomNumberGeneratorLabel, defaults: {min: 0, max: 10, hz: 1, decimals: 2, tween: false}},
             'epics2web': {constructor: epics2webLabel, defaults: {}}
         },
-        defaults: {dataprovider: {name: 'Static'}, style: ''}
+        defaults: {dataprovider: {name: 'Static'}, style: ''},
+        icon: 'sticky-note.svg'
     };
     components['Gauge'] = {
         constructor: Gauge,
@@ -35,7 +36,8 @@ export function initComponents() {
             'RNG': {constructor: RandomNumberGeneratorGauge, defaults: {min: 0, max: 10, hz: 1, labeldecimals: 2, tickdecimals: 0, tween: true}},
             'epics2web': {constructor: epics2webGauge, defaults: {}}
         },
-        defaults: {dataprovider: {name: 'Static'}, style: ''}
+        defaults: {dataprovider: {name: 'Static'}, style: ''},
+        icon: 'tachometer-alt.svg'
     };
     components['Indicator'] = {
         constructor: Indicator,
@@ -44,6 +46,7 @@ export function initComponents() {
             'RNG': {constructor: RandomNumberGeneratorIndicator, defaults: {min: 0, max: 1, hz: 1}},
             'epics2web': {constructor: epics2webIndicator, defaults: {}}
         },
-        defaults: {value: 0, dataprovider: {name: 'Static'}, style: '', onIf: function(data){return data.value > 0}, flash: true}
+        defaults: {value: 0, dataprovider: {name: 'Static'}, style: '', onIf: function(data){return data.value > 0}, flash: true},
+        icon: 'lightbulb.svg'
     };
 }
