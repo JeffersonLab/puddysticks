@@ -8,12 +8,6 @@ A pure web control system display manager with a What You See Is What You Get (W
 npm i puddysticks
 ```
 **Note**: This application runs on the Node.js JavaScript runtime, which can be downloaded [here](https://nodejs.org/en/download/).
-## Build
-```bash
-cd node_modules/puddysticks
-npm i
-npm run build
-```
 ## Run
 ```bash
 npm start
