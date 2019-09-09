@@ -1,3 +1,29 @@
+<style>
+    .order-pane {
+        float: right;
+        padding: 8px;
+    }
+    :global(.action-pane button) {
+        text-align: left;
+        width: 90px;
+        height: 32px;
+    }
+    .button-icon {
+        width: 16px;
+        height: 16px;
+        background-size: 1em 1em;
+        display: inline-block;
+    }
+    .arrow-up {
+        background: url(icons/arrow-up.svg) 0 0 no-repeat;
+    }
+    .arrow-down {
+        background: url(icons/arrow-down.svg) 0 0 no-repeat;
+    }
+    .trash {
+        background: url(icons/trash-alt.svg) 0 0 no-repeat;
+    }
+</style>
 <script>
     import {components, instanceStores, model} from '../registry.js';
 
@@ -24,7 +50,17 @@
 
     function remove() {
         if ($properties) {
-            model.remove($properties);
+            let parent = $properties.par;
+            let index = parent.items.findIndex(function(node){return node.id === selected});
+            let selectNext = index > 0 ? parent.items[index - 1] : parent;
+
+            let toBeDeleted = $properties;
+
+            /* TODO: Neither of these works... need to investigate fix */
+            selected = 'puddy-0';
+            //selected = selectNext;
+
+            model.remove(toBeDeleted);
         }
     }
 
@@ -70,19 +106,15 @@
         <button on:click="{add}">Add</button>
     </div>
 {/if}
-{#if $properties.name != 'Display'}
-    <div>
-        <button on:click="{remove}">Remove</button>
+    <div class="trash-pane">
+        <button on:click="{remove}" disabled="{$properties.name === 'Display'}"><i class="button-icon trash"></i> Remove</button>
     </div>
-{/if}
-{#if canMoveUp}
+<div class="order-pane">
     <div>
-        <button on:click="{up}">Up</button>
+        <button on:click="{up}" disabled="{!canMoveUp}"><i class="button-icon arrow-up"></i> Up</button>
     </div>
-{/if}
-{#if canMoveDown}
     <div>
-        <button on:click="{down}">Down</button>
+        <button on:click="{down}" disabled="{!canMoveDown}"><i class="button-icon arrow-down"></i> Down</button>
     </div>
-{/if}
+</div>
 <svelte:options tag="puddy-action-pane"/>
