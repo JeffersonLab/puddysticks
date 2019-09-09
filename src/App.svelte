@@ -2,6 +2,23 @@
     aside {
         height: 100%;
     }
+    .corner-ribbon {
+        top: 25px;
+        right: -50px;
+        left: auto;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        position: fixed;
+        border: 1px solid red;
+        background:  #e43;
+        box-shadow: 0 0 3px rgba(0,0,0,.3);
+        width: 200px;
+        background: #e43;
+        text-align: center;
+        line-height: 50px;
+        letter-spacing: 1px;
+        color: #f0f0f0;
+    }
 </style>
 <script>
     import {initComponents} from './components.js';
@@ -56,6 +73,7 @@
         {/if}
     </main>
 </Drawer>
+<div class="corner-ribbon">Pre-Release!</div>
 <svelte:options tag="puddy-app"/>
 {#await promise then config}
     {#if display}
