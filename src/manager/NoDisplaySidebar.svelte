@@ -14,6 +14,19 @@
     ul {
          margin-top: 0;
     }
+    h1 {
+        padding-left: 8px;
+        margin-top: 0;
+        display: block;
+        min-width: 242px;
+    }
+    .logo-icon {
+        width: 64px;
+        height: 64px;
+        background-size: cover;
+        display: inline-block;
+        background: url(icons/logo.svg) 0 0 no-repeat;
+    }
 </style>
 <script>
     import Selectable from "../Selectable.svelte";
@@ -28,6 +41,7 @@
     });
 </script>
 <div>
+    <h1><i class="logo-icon"></i> Puddysticks</h1>
 <Selectable bind:this="{selectable}" filter="li" bind:selected="{selected}">
     <ul>
         <li>Open</li>
