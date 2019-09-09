@@ -1,6 +1,6 @@
 <style>
+    .edit-pane,
     .order-pane {
-        float: right;
         padding: 8px;
     }
     :global(.action-pane button) {
@@ -20,8 +20,11 @@
     .arrow-down {
         background: url(icons/arrow-down.svg) 0 0 no-repeat;
     }
-    .trash {
-        background: url(icons/trash-alt.svg) 0 0 no-repeat;
+    .add {
+        background: url(icons/plus.svg) 0 0 no-repeat;
+    }
+    .remove {
+        background: url(icons/minus.svg) 0 0 no-repeat;
     }
 </style>
 <script>
@@ -96,18 +99,18 @@
         }
     }
 </script>
-{#if $properties.name === 'Panel' || $properties.name === 'Display'}
+    <div class="edit-pane">
     <div class="add-options">
+        <button on:click="{add}" disabled="{$properties.name !== 'Panel' && $properties.name !== 'Display'}"><i class="button-icon add"></i> Add</button>
         <select bind:this="{addComponentSelect}">
             {#each Object.keys(components) as component}
                 <option>{component}</option>
             {/each}
         </select>
-        <button on:click="{add}">Add</button>
     </div>
-{/if}
     <div class="trash-pane">
-        <button on:click="{remove}" disabled="{$properties.name === 'Display'}"><i class="button-icon trash"></i> Remove</button>
+        <button on:click="{remove}" disabled="{$properties.name === 'Display'}"><i class="button-icon remove"></i> Remove</button>
+    </div>
     </div>
 <div class="order-pane">
     <div>
