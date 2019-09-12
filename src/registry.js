@@ -16,8 +16,25 @@ export function getUniqueId() {
 };
 
 export function prepareInstance(par, obj) {
-    /* Display root component is excluded from components map, so we skip it */
-    if (components[obj.name]) {
+    /* Display root component is excluded from components map, so we handle special */
+    if(obj.name === 'Display') {
+        let defaultConfig = {title: '', style: '', theme: '', items: []};
+
+        Object.keys(defaultConfig).forEach(key => {
+            if(!(key in obj)) {
+                /*console.log('adding key', key);*/
+                obj[key] = defaultConfig[key];
+            }
+        });
+
+        /*properties = {...defaultConfig, ...properties};*/
+        Object.keys(obj).forEach(key => {
+            if (key !== 'name' && !(key in defaultConfig)) {
+                /*console.log('removing key', key);*/
+                delete obj[key];
+            }
+        });
+    } else if (components[obj.name]) {
         let defaultConfig = components[obj.name].defaults;
 
         /*obj = {...defaultConfig, ...obj};*/
