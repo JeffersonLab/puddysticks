@@ -1,11 +1,9 @@
 <style>
     .gauge {
         position: relative;
-        margin: 100px auto 50px auto;
         height: 165px;
-        width: 330px;
+        width: 300px;
 
-        background-color: black;
         font-family: Verdana, Geneva, sans-serif;
         font-size: 12px;
         -webkit-font-smoothing: antialiased;
@@ -21,7 +19,7 @@
         border-radius: 60px 60px 0 0;
         position: absolute;
         top: 135px;
-        left: 135px;
+        left: 120px; /* Dependent on gauge width */
         text-align: center;
         color: white;
     }
@@ -39,7 +37,7 @@
     }
 
     .scale {
-        stroke: white;
+        stroke: black;
     }
 
     text {
@@ -57,7 +55,7 @@
     export let data = {value: 0};
 
     let rad = Math.PI / 180,
-            W = 330,
+            W = 300,
             offset = 40,
             cx = ~~(W / 2), /* ~~ is roughly same as Math.floor() - used to obtain int from float for example */
             cy = 160,
@@ -223,7 +221,7 @@
     }
 </script>
 <div class="gauge" style="{config.style}">
-    <svg height="165" width="330" view-box="0 0 330 165">
+    <svg height="165" width="{W}" view-box="0 0 {W} 165">
         <g class="scale">
             {#each ticks as tick}
                 <line x1="{tick.line.x1}" y1="{tick.line.y1}" x2="{tick.line.x2}" y2="{tick.line.y2}"></line>
