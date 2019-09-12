@@ -1,9 +1,3 @@
-<style>
-    div {
-        border: 1px solid black;
-        text-align: center;
-    }
-</style>
 <script>
     /* Note: Default values are managed externally in file.js */
     export let config;
@@ -22,5 +16,5 @@
         }
     }
 </script>
-<div class="label" style="{config.style}">{formattedValue}</div>
+<span class="label" style="{config.style}">{formattedValue}</span>
 <svelte:options tag="puddy-label"/>
