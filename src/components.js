@@ -24,7 +24,7 @@ export function initComponents() {
         dataproviders: {
             'Static': {constructor: StaticLabel, defaults: {value: 'Unlabeled'}},
             'RNG': {constructor: RandomNumberGeneratorLabel, defaults: {min: 0, max: 10, hz: 1, decimals: 2, tween: false}},
-            'epics2web': {constructor: epics2webLabel, defaults: {}}
+            'epics2web': {constructor: epics2webLabel, defaults: {channel: '', decimals: 2}}
         },
         defaults: {dataprovider: {name: 'Static'}, style: ''},
         icon: 'sticky-note.svg'
