@@ -28,6 +28,8 @@
         50% { background-color: var(--on-rgb); box-shadow: 0 0 2px 2px var(--on-rgba), 0 0 2px 2px var(--off-rgba) inset;}
         to { background-color: var(--off-rgb); }
     }
+
+    /*Round Yellow Indicator: "--on-rgb: rgb(255, 255, 0); --on-rgba: rgba(255, 255, 0, 0.75); --off-rgb: rgb(255, 217, 0); --off-rgba: rgba(255, 217, 0, 0.25); border-radius: 16px; width: 16px; height: 16px;"*/
 </style>
 <script>
     /* Note: Default values are managed externally in file.js */
