@@ -1,45 +1,351 @@
 {
-  "title":"Example A",
-  "name":"Display",
+  "name": "Display",
   "items": [
-        {"name":"Panel",
-          "style": "grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); grid-template-rows: none;",
-          "items":[
-            {
-              "name":"Indicator",
-              "style": "--on-rgb: rgb(255, 255, 0); --on-rgba: rgba(255, 255, 0, 0.75); --off-rgb: rgb(255, 217, 0); --off-rgba: rgba(255, 217, 0, 0.25); border-radius: 16px; width: 16px; height: 16px;",
-              "dataprovider": {
-                "name": "RNG",
-                "min": 0,
-                "max": 1,
-                "intVal": true,
-                "intMaxInc": true,
-                "hz": 0.5
-              }
-            },
-            {
-              "name":"Indicator",
-              "flash": true,
-              "dataprovider": {
-                "name": "RNG",
-                "min": 0,
-                "max": 1,
-                "intVal": true,
-                "intMaxInc": true,
-                "hz": 5
-              }
-            },
-            {
-              "name":"Gauge",
-              "dataprovider": {
-                "name": "RNG",
-                "min": 0,
-                "max": 10,
-                "hz": 0.5,
-                "tween": true
-              }
-            }
-          ]
+    {
+      "name": "Panel",
+      "items": [
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Signal A",
+            "name": "Static"
+          },
+          "style": "display: block; text-align: center; font-size: 1.5em;"
+        },
+        {
+          "name": "Gauge",
+          "dataprovider": {
+            "min": 0,
+            "max": 10,
+            "hz": 0.5,
+            "labeldecimals": 2,
+            "tickdecimals": 0,
+            "tween": true,
+            "name": "RNG"
+          }
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Fault:",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Indicator",
+          "dataprovider": {
+            "min": 0,
+            "max": 1,
+            "hz": 0.5,
+            "tween": false,
+            "name": "RNG"
+          },
+          "flash": true,
+          "style": "display: inline-block; --on-rgb: rgb(255, 255, 0); --on-rgba: rgba(255, 255, 0, 0.75); --off-rgb: rgb(255, 217, 0); --off-rgba: rgba(255, 217, 0, 0.25); border-radius: 16px; width: 16px; height: 16px;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Trip:",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Indicator",
+          "dataprovider": {
+            "min": 0,
+            "max": 1,
+            "hz": 1,
+            "tween": false,
+            "name": "RNG"
+          },
+          "flash": true,
+          "style": "display: inline-block;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Aux: ",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "min": 0,
+            "max": 10,
+            "hz": 1,
+            "decimals": 2,
+            "tween": false,
+            "name": "RNG"
+          },
+          "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
         }
-      ]
+      ],
+      "style": "box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12); box-sizing: border-box; border-radius: 4px; padding: 0.5em;  width: 320px; margin: 8px auto; background-color: white;"
+    },
+    {
+      "name": "Panel",
+      "items": [
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Signal B",
+            "name": "Static"
+          },
+          "style": "display: block; text-align: center; font-size: 1.5em;"
+        },
+        {
+          "name": "Gauge",
+          "dataprovider": {
+            "min": 0,
+            "max": 10,
+            "hz": 0.5,
+            "labeldecimals": 2,
+            "tickdecimals": 0,
+            "tween": true,
+            "name": "RNG"
+          }
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Fault:",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Indicator",
+          "dataprovider": {
+            "min": 0,
+            "max": 1,
+            "hz": 0.5,
+            "tween": false,
+            "name": "RNG"
+          },
+          "flash": true,
+          "style": "display: inline-block; --on-rgb: rgb(255, 255, 0); --on-rgba: rgba(255, 255, 0, 0.75); --off-rgb: rgb(255, 217, 0); --off-rgba: rgba(255, 217, 0, 0.25); border-radius: 16px; width: 16px; height: 16px;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Trip:",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Indicator",
+          "dataprovider": {
+            "min": 0,
+            "max": 1,
+            "hz": 1,
+            "tween": false,
+            "name": "RNG"
+          },
+          "flash": true,
+          "style": "display: inline-block;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Aux: ",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "min": 0,
+            "max": 10,
+            "hz": 1,
+            "decimals": 2,
+            "tween": false,
+            "name": "RNG"
+          },
+          "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
+        }
+      ],
+      "style": "box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12); box-sizing: border-box; border-radius: 4px; padding: 0.5em;  width: 320px; margin: 8px auto; background-color: white;"
+    },
+    {
+      "name": "Panel",
+      "items": [
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Signal C",
+            "name": "Static"
+          },
+          "style": "display: block; text-align: center; font-size: 1.5em;"
+        },
+        {
+          "name": "Gauge",
+          "dataprovider": {
+            "min": 0,
+            "max": 10,
+            "hz": 0.5,
+            "labeldecimals": 2,
+            "tickdecimals": 0,
+            "tween": true,
+            "name": "RNG"
+          }
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Fault:",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Indicator",
+          "dataprovider": {
+            "min": 0,
+            "max": 1,
+            "hz": 0.5,
+            "tween": false,
+            "name": "RNG"
+          },
+          "flash": true,
+          "style": "display: inline-block; --on-rgb: rgb(255, 255, 0); --on-rgba: rgba(255, 255, 0, 0.75); --off-rgb: rgb(255, 217, 0); --off-rgba: rgba(255, 217, 0, 0.25); border-radius: 16px; width: 16px; height: 16px;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Trip:",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Indicator",
+          "dataprovider": {
+            "min": 0,
+            "max": 1,
+            "hz": 1,
+            "tween": false,
+            "name": "RNG"
+          },
+          "flash": true,
+          "style": "display: inline-block;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Aux: ",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "min": 0,
+            "max": 10,
+            "hz": 1,
+            "decimals": 2,
+            "tween": false,
+            "name": "RNG"
+          },
+          "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
+        }
+      ],
+      "style": "box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12); box-sizing: border-box; border-radius: 4px; padding: 0.5em;  width: 320px; margin: 8px auto; background-color: white;"
+    },
+    {
+      "name": "Panel",
+      "items": [
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Signal D",
+            "name": "Static"
+          },
+          "style": "display: block; text-align: center; font-size: 1.5em;"
+        },
+        {
+          "name": "Gauge",
+          "dataprovider": {
+            "min": 0,
+            "max": 10,
+            "hz": 0.5,
+            "labeldecimals": 2,
+            "tickdecimals": 0,
+            "tween": true,
+            "name": "RNG"
+          }
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Fault:",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Indicator",
+          "dataprovider": {
+            "min": 0,
+            "max": 1,
+            "hz": 0.5,
+            "tween": false,
+            "name": "RNG"
+          },
+          "flash": true,
+          "style": "display: inline-block; --on-rgb: rgb(255, 255, 0); --on-rgba: rgba(255, 255, 0, 0.75); --off-rgb: rgb(255, 217, 0); --off-rgba: rgba(255, 217, 0, 0.25); border-radius: 16px; width: 16px; height: 16px;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Trip:",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Indicator",
+          "dataprovider": {
+            "min": 0,
+            "max": 1,
+            "hz": 1,
+            "tween": false,
+            "name": "RNG"
+          },
+          "flash": true,
+          "style": "display: inline-block;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "value": "Aux: ",
+            "name": "Static"
+          },
+          "style": "margin: 0.5em;"
+        },
+        {
+          "name": "Label",
+          "dataprovider": {
+            "min": 0,
+            "max": 10,
+            "hz": 1,
+            "decimals": 2,
+            "tween": false,
+            "name": "RNG"
+          },
+          "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
+        }
+      ],
+      "style": "box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12); box-sizing: border-box; border-radius: 4px; padding: 0.5em;  width: 320px; margin: 8px auto; background-color: white;"
+    }
+  ],
+  "style": "display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); grid-template-rows: none; padding: 1em; background-color: #fafafa;",
+  "title": "Example A"
 }
