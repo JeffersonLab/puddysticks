@@ -1,5 +1,6 @@
 <script>
     import Label from "../components/Label.svelte";
+    import Epics2Web from "../datasources/Epics2Web.svelte";
 
     export let config = {};
 
@@ -11,5 +12,6 @@
         }
     }
 </script>
+<Epics2Web config="{config.dataprovider}" on:value="{update}"/>
 <Label {config} {data}/>
 <svelte:options tag="puddy-epics2web-label"/>
