@@ -1,0 +1,25 @@
+.card {
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 0.5em;
+    width: 320px;
+    margin: 8px auto;
+    background-color: white;
+}
+.heading {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+}
+div.indicator.round-indicator {
+    display: inline-block;
+    border-radius: 16px;
+    width: 16px; height: 16px;
+}
+.yellow-indicator {
+    --on-rgb: rgb(255, 255, 0);
+    --on-rgba: rgba(255, 255, 0, 0.75);
+    --off-rgb: rgb(255, 217, 0);
+    --off-rgba: rgba(255, 217, 0, 0.25);
+}

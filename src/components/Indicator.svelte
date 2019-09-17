@@ -63,5 +63,5 @@
     /*$: console.log(data.value);*/
     /*$: console.log(onIf);*/
 </script>
-<div class="indicator" style="{config.style}" class:flash="{flash}" class:on="{onIf ? onIf(data) : {}}"></div>
+<div class="indicator {config.class}" style="{config.style}" class:flash="{flash}" class:on="{onIf ? onIf(data) : {}}"></div>
 <svelte:options tag="puddy-indicator"/>

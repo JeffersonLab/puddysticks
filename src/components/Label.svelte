@@ -16,5 +16,5 @@
         }
     }
 </script>
-<span class="label" style="{config.style}">{formattedValue}</span>
+<span class="label {config.class}" style="{config.style}">{formattedValue}</span>
 <svelte:options tag="puddy-label"/>

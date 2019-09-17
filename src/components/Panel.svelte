@@ -4,7 +4,7 @@
     /* Note: Default values are managed externally in file.js */
     export let config;
 </script>
-<div class="panel" style="{config.style}">
+<div class="panel {config.class}" style="{config.style}">
     <slot>
         <Container items="{config.items}"/>
     </slot>

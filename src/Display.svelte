@@ -13,3 +13,6 @@
     <Container items="{config.items}"/>
 </div>
 <svelte:options tag="puddy-display"/>
+<svelte:head>
+    <link rel='stylesheet' href='themes/{$properties.theme}.css'>
+</svelte:head>
