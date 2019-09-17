@@ -16,6 +16,12 @@ cd node_modules/puddysticks
 npm i
 npm run build
 ```
+## Config
+Create _.env_ file in project directory with the following environment variable (substituting desired value):
+```bash
+EPICS2WEB_HOST=localhost 
+```
+**Note**: epics2web uses Web Sockets, which are not subject to the Same Origin Policy, and therefore can easily be hosted somewhere other than the host for Puddysticks.
 ## Run
 ```bash
 npm start
