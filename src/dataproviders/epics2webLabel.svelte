@@ -4,13 +4,15 @@
 
     export let config = {};
 
-    let data = {value: 'Loading...'};
+    let data = {value: 'No Channel'};
 
     function update(e) {
         if(e.detail.value !== undefined) {
             data.value = e.detail.value;
         } else if(e.detail.type === 'info') {
-            /*metadata is provided here*/
+            if(!e.detail.connected) {
+                data.value = 'Disconnected';
+            }
         }
     }
 </script>
