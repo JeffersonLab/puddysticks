@@ -1,8 +1,12 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
+import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -25,6 +29,10 @@ export default {
 			},
 			customElement: false,
 			accessors: true
+		}),
+
+		replace({
+			'EPICS2WEB_HOST': process.env.EPICS2WEB_HOST
 		}),
 
 		// If you have external dependencies installed from

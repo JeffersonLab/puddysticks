@@ -5,3 +5,4 @@ public/bundle.css.map
 public/bundle.js
 public/bundle.js.map
 *.iml
+*.env

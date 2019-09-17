@@ -297,13 +297,23 @@
     jlab.epics2web.puddy = jlab.epics2web.puddy || {};
 
 
-    let protocol = 'ws:';
+    let protocol = 'ws://';
     if (window.location.protocol === 'https:') {
-        protocol = 'wss:';
+        protocol = 'wss://';
     }
 
+    let host = 'EPICS2WEB_HOST';
+
+    if(host === 'undefined') {
+        host = window.location.hostname;
+    }
+
+    /*let host = 'epicswebtest.acc.jlab.org';*/
+
+    let url =  protocol + host + '/epics2web/monitor';
+
     jlab.epics2web.puddy.con = null;
-    jlab.epics2web.puddy.options = {url: protocol + '//epicswebtest.acc.jlab.org/epics2web/monitor'};
+    jlab.epics2web.puddy.options = {url: url};
     jlab.epics2web.puddy.pvToListenerMap = {};
     jlab.epics2web.puddy.MAX_MONITORS = 100;
     jlab.epics2web.puddy.enumLabelMap = {};
