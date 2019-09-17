@@ -34,7 +34,7 @@ export function initComponents() {
         dataproviders: {
             'Static': {constructor: StaticGauge, defaults: {value: 0, min: 0, max: 100, labeldecimals: 2, tickdecimals: 0}},
             'RNG': {constructor: RandomNumberGeneratorGauge, defaults: {min: 0, max: 10, hz: 1, labeldecimals: 2, tickdecimals: 0, tween: true}},
-            'epics2web': {constructor: epics2webGauge, defaults: {}}
+            'epics2web': {constructor: epics2webGauge, defaults: {channel: '', min: 0, max: 10, labeldecimals: 2, tickdecimals: 0}}
         },
         defaults: {dataprovider: {name: 'Static'}, style: ''},
         icon: 'tachometer-alt.svg'
@@ -44,7 +44,7 @@ export function initComponents() {
         dataproviders: {
             'Static': {constructor: StaticIndicator, defaults: {value: 0}},
             'RNG': {constructor: RandomNumberGeneratorIndicator, defaults: {min: 0, max: 1, hz: 1, tween: false}},
-            'epics2web': {constructor: epics2webIndicator, defaults: {}}
+            'epics2web': {constructor: epics2webIndicator, defaults: {channel: ''}}
         },
         defaults: {dataprovider: {name: 'Static'}, style: '', onIf: function(data){return data.value > 0}, flash: true},
         icon: 'lightbulb.svg'
