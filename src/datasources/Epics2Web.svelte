@@ -304,26 +304,53 @@
 
     jlab.epics2web.puddy.con = null;
     jlab.epics2web.puddy.options = {url: protocol + '//epicswebtest.acc.jlab.org/epics2web/monitor'};
-    jlab.epics2web.puddy.pvToWidgetMap = {};
+    jlab.epics2web.puddy.pvToListenerMap = {};
     jlab.epics2web.puddy.MAX_MONITORS = 100;
     jlab.epics2web.puddy.enumLabelMap = {};
     jlab.epics2web.puddy.monitoredPvs = [];
+    jlab.epics2web.puddy.listenerId = 0;
 
-    jlab.epics2web.puddy.addPv = function (pv, callback) {
+    jlab.epics2web.puddy.addListener = function (pv, callback) {
         if (jlab.epics2web.puddy.con === null) {
             alert('Not connected');
             return;
         }
 
-        jlab.epics2web.puddy.pvToWidgetMap[pv] = jlab.epics2web.puddy.pvToWidgetMap[pv] || [];
-        jlab.epics2web.puddy.pvToWidgetMap[pv].push(callback);
+        let id = jlab.epics2web.puddy.listenerId++;
+
+        jlab.epics2web.puddy.pvToListenerMap[pv] = jlab.epics2web.puddy.pvToListenerMap[pv] || [];
+        jlab.epics2web.puddy.pvToListenerMap[pv].push({id: id, callback: callback});
 
         if (jlab.epics2web.puddy.monitoredPvs.indexOf(pv) === -1) {
             jlab.epics2web.puddy.monitoredPvs.push(pv);
 
             jlab.epics2web.puddy.con.monitorPvs([pv]);
         }
+
+        return id;
     };
+
+    jlab.epics2web.puddy.removeListener = function(pv, id) {
+        let listeners = jlab.epics2web.puddy.pvToListenerMap[pv];
+
+        if(listeners !== undefined) {
+
+            let index = listeners.findIndex(x => x.id === id);
+
+            if(index > -1) {
+                listeners.splice(index, 1);
+
+                if(listeners.length === 0) {
+                    index = jlab.epics2web.puddy.monitoredPvs.indexOf(pv);
+
+                    if(index > -1) {
+                        jlab.epics2web.puddy.monitoredPvs.splice(index, 1);
+                        jlab.epics2web.puddy.con.clearPvs([pv]);
+                    }
+                }
+            }
+        }
+    }
 
     jlab.epics2web.puddy.con = new jlab.epics2web.ClientConnection(jlab.epics2web.puddy.options);
 
@@ -340,10 +367,10 @@
 
     jlab.epics2web.puddy.con.onupdate = function (e) {
         /*console.log(e.detail);*/
-        let callbackArray = jlab.epics2web.puddy.pvToWidgetMap[e.detail.pv];
-        if (typeof callbackArray !== 'undefined') {
-            callbackArray.forEach(function(callback){
-                callback(e.detail);
+        let listeners = jlab.epics2web.puddy.pvToListenerMap[e.detail.pv];
+        if (typeof listeners !== 'undefined') {
+            listeners.forEach(function(listener){
+                listener.callback(e.detail);
             });
         } else {
             console.log('Server is updating me on a PV I am unaware of: ' + e.detail.pv);
@@ -352,10 +379,10 @@
 
     jlab.epics2web.puddy.con.oninfo = function (e) {
         /*console.log(e.detail);*/
-        let callbackArray = jlab.epics2web.puddy.pvToWidgetMap[e.detail.pv];
-        if (typeof callbackArray !== 'undefined') {
-            callbackArray.forEach(function(callback){
-                callback(e.detail);
+        let listeners = jlab.epics2web.puddy.pvToListenerMap[e.detail.pv];
+        if (typeof listeners !== 'undefined') {
+            listeners.forEach(function(listener){
+                listener.callback(e.detail);
             });
         } else {
             console.log('Server is providing me with metadata on a PV I am unaware of: ' + e.detail.pv);
@@ -364,23 +391,29 @@
 </script>
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { onDestroy } from 'svelte';
+
     const dispatch = createEventDispatcher();
 
     export let config;
 
+    let channel = null;
+    let listenerId = null;
+
     let callback = function(detail){
-        console.log(detail);
         dispatch('value', detail);
     };
 
     $: {
         if(config.channel) {
-            /*jlab.epics2web.puddy.clearPvs(previousChannel, callback);*/
-            jlab.epics2web.puddy.addPv('iocin1:heartbeat', callback);
-        } else {
-            console.log('no channel');
+            jlab.epics2web.puddy.removeListener(channel, listenerId);
+            channel = config.channel;
+            listenerId = jlab.epics2web.puddy.addListener(channel, callback);
+            /*console.log('monitoring channel: ', channel);*/
         }
     }
 
-
+    onDestroy(() => {
+        jlab.epics2web.puddy.removeListener(channel, listenerId);
+    });
 </script>
