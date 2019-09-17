@@ -14,8 +14,6 @@
         <ul>
                 <li><a href="?display=examples/exampleA.puddy">Example A</a></li>
                 <li><a href="?display=examples/exampleB.puddy">Example B</a></li>
-                <li><a href="?display=examples/exampleC.puddy">Example C</a></li>
-                <li><a href="?display=examples/exampleD.puddy">Example D</a></li>
         </ul>
         <h2>Local</h2>
         <LocalFileReader on:localfile/>
