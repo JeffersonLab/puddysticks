@@ -370,9 +370,7 @@
 
     let callback = function(detail){
         console.log(detail);
-        dispatch('value', {
-            value: detail.value
-        });
+        dispatch('value', detail);
     };
 
     $: {

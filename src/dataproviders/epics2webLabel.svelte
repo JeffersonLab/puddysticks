@@ -9,6 +9,8 @@
     function update(e) {
         if(e.detail.value !== undefined) {
             data.value = e.detail.value;
+        } else if(e.detail.type === 'info') {
+            /*metadata is provided here*/
         }
     }
 </script>
