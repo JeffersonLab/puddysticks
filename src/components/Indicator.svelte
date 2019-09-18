@@ -8,16 +8,17 @@
     }
     div {
         display: inline-block;
-        margin: 8px auto;
         width: 24px;
         height: 24px;
         background-color: var(--off-rgb);
         border-radius: 4px;
+        transition: 0.5s;
     }
 
     .on {
         background-color: var(--on-rgb);
         box-shadow: 0 0 2px 4px var(--on-rgba), 0 0 2px 4px var(--off-rgba) inset;
+        transition: 0.5s;
     }
 
     .on.flash {

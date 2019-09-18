@@ -417,7 +417,7 @@
     $: {
         if(config.channel) {
             jlab.epics2web.puddy.removeListener(channel, listenerId);
-            callback({value: 'Loading...'});
+            callback({value: 'Load'});
             channel = config.channel;
             listenerId = jlab.epics2web.puddy.addListener(channel, callback);
             /*console.log('monitoring channel: ', channel);*/

@@ -4,7 +4,7 @@
 
     export let config = {};
 
-    let data = {value: 'Loading...'};
+    let data = {value: 'Load'};
 
     function update(e) {
         if(e.detail.value !== undefined) {

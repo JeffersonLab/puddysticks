@@ -4,14 +4,14 @@
 
     export let config = {};
 
-    let data = {value: 'No Channel'};
+    let data = {value: 'None'};
 
     function update(e) {
         if(e.detail.value !== undefined) {
             data.value = e.detail.value;
         } else if(e.detail.type === 'info') {
             if(!e.detail.connected) {
-                data.value = 'Disconnected';
+                data.value = 'Error';
             }
         }
     }
