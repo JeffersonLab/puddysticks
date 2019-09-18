@@ -11,7 +11,7 @@
             "value": "Signal A",
             "name": "Static"
           },
-          "style": "display: block; text-align: center; font-size: 1.5em;"
+          "class": "heading"
         },
         {
           "name": "Gauge",
@@ -97,7 +97,7 @@
             "value": "Signal B",
             "name": "Static"
           },
-          "style": "display: block; text-align: center; font-size: 1.5em;"
+          "class": "heading"
         },
         {
           "name": "Gauge",
@@ -183,7 +183,7 @@
             "value": "Signal C",
             "name": "Static"
           },
-          "style": "display: block; text-align: center; font-size: 1.5em;"
+          "class": "heading"
         },
         {
           "name": "Gauge",
@@ -269,7 +269,7 @@
             "value": "Signal D",
             "name": "Static"
           },
-          "style": "display: block; text-align: center; font-size: 1.5em;"
+          "class": "heading"
         },
         {
           "name": "Gauge",
