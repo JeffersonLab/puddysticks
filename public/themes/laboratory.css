@@ -13,7 +13,6 @@
     font-size: 1.5em;
 }
 div.indicator.round-indicator {
-    display: inline-block;
     border-radius: 16px;
     width: 16px; height: 16px;
 }

@@ -7,6 +7,7 @@
         --off-rgba: rgba(150, 40, 27, 0.25);
     }
     div {
+        display: inline-block;
         margin: 8px auto;
         width: 24px;
         height: 24px;
