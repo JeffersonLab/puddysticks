@@ -1,3 +1,7 @@
+@font-face {
+    font-family: DSEG7Classic;
+    src: url('../fonts/DSEG7Classic-Regular.woff2') format('woff2');
+}
 .card {
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
     box-sizing: border-box;
@@ -22,6 +26,25 @@ div.indicator.round-indicator {
     --on-rgba: rgba(255, 255, 0, 0.75);
     --off-rgb: rgb(255, 217, 0);
     --off-rgba: rgba(255, 217, 0, 0.25);
+}
+.readout {
+    font-family: 'DSEG7Classic';
+    padding: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2) inset, 0px 1px 1px 0px rgba(0, 0, 0, 0.14) inset, 0px 1px 3px 0px rgba(0,0,0,.12) inset;
+    font-size: 1.25em;
+    background-color: rgba(0,255,0, 0.12);
+    color: red;
+    display: inline-block;
+    text-align: right;
+    width: 75px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.readout:after {
+    content: '00.00';
+    position: absolute;
+    color: lightgray;
 }
 .auto-wrap-grid {
     display: grid;
