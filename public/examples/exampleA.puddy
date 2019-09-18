@@ -3,346 +3,351 @@
   "items": [
     {
       "name": "Panel",
-      "class": "card",
+      "class": "auto-wrap-grid",
       "items": [
         {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Signal A",
-            "name": "Static"
-          },
-          "class": "heading"
+          "name": "Panel",
+          "class": "card",
+          "items": [
+            {
+              "name": "Label",
+              "class": "heading",
+              "dataprovider": {
+                "value": "Signal A",
+                "name": "Static"
+              }
+            },
+            {
+              "name": "Gauge",
+              "dataprovider": {
+                "min": 0,
+                "max": 10,
+                "hz": 0.5,
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "tween": true,
+                "name": "RNG"
+              }
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Fault:",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Indicator",
+              "class": "round-indicator yellow-indicator",
+              "dataprovider": {
+                "min": 0,
+                "max": 1,
+                "hz": 0.5,
+                "tween": false,
+                "name": "RNG"
+              },
+              "flash": true
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Trip:",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Indicator",
+              "dataprovider": {
+                "min": 0,
+                "max": 1,
+                "hz": 1,
+                "tween": false,
+                "name": "RNG"
+              },
+              "flash": true
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Aux: ",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "min": 0,
+                "max": 10,
+                "hz": 1,
+                "decimals": 2,
+                "tween": false,
+                "name": "RNG"
+              },
+              "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
+            }
+          ]
         },
         {
-          "name": "Gauge",
-          "dataprovider": {
-            "min": 0,
-            "max": 10,
-            "hz": 0.5,
-            "labeldecimals": 2,
-            "tickdecimals": 0,
-            "tween": true,
-            "name": "RNG"
-          }
+          "name": "Panel",
+          "class": "card",
+          "items": [
+            {
+              "name": "Label",
+              "class": "heading",
+              "dataprovider": {
+                "value": "Signal B",
+                "name": "Static"
+              }
+            },
+            {
+              "name": "Gauge",
+              "dataprovider": {
+                "min": 0,
+                "max": 10,
+                "hz": 0.5,
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "tween": true,
+                "name": "RNG"
+              }
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Fault:",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Indicator",
+              "class": "round-indicator yellow-indicator",
+              "dataprovider": {
+                "min": 0,
+                "max": 1,
+                "hz": 0.5,
+                "tween": false,
+                "name": "RNG"
+              },
+              "flash": true
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Trip:",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Indicator",
+              "dataprovider": {
+                "min": 0,
+                "max": 1,
+                "hz": 1,
+                "tween": false,
+                "name": "RNG"
+              },
+              "flash": true
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Aux: ",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "min": 0,
+                "max": 10,
+                "hz": 1,
+                "decimals": 2,
+                "tween": false,
+                "name": "RNG"
+              },
+              "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
+            }
+          ]
         },
         {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Fault:",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
+          "name": "Panel",
+          "class": "card",
+          "items": [
+            {
+              "name": "Label",
+              "class": "heading",
+              "dataprovider": {
+                "value": "Signal C",
+                "name": "Static"
+              }
+            },
+            {
+              "name": "Gauge",
+              "dataprovider": {
+                "min": 0,
+                "max": 10,
+                "hz": 0.5,
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "tween": true,
+                "name": "RNG"
+              }
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Fault:",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Indicator",
+              "class": "round-indicator yellow-indicator",
+              "dataprovider": {
+                "min": 0,
+                "max": 1,
+                "hz": 0.5,
+                "tween": false,
+                "name": "RNG"
+              },
+              "flash": true
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Trip:",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Indicator",
+              "dataprovider": {
+                "min": 0,
+                "max": 1,
+                "hz": 1,
+                "tween": false,
+                "name": "RNG"
+              },
+              "flash": true
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Aux: ",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "min": 0,
+                "max": 10,
+                "hz": 1,
+                "decimals": 2,
+                "tween": false,
+                "name": "RNG"
+              },
+              "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
+            }
+          ]
         },
         {
-          "name": "Indicator",
-          "dataprovider": {
-            "min": 0,
-            "max": 1,
-            "hz": 0.5,
-            "tween": false,
-            "name": "RNG"
-          },
-          "flash": true,
-          "class": "round-indicator yellow-indicator"
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Trip:",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Indicator",
-          "dataprovider": {
-            "min": 0,
-            "max": 1,
-            "hz": 1,
-            "tween": false,
-            "name": "RNG"
-          },
-          "flash": true
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Aux: ",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "min": 0,
-            "max": 10,
-            "hz": 1,
-            "decimals": 2,
-            "tween": false,
-            "name": "RNG"
-          },
-          "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
-        }
-      ]
-    },
-    {
-      "name": "Panel",
-      "class": "card",
-      "items": [
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Signal B",
-            "name": "Static"
-          },
-          "class": "heading"
-        },
-        {
-          "name": "Gauge",
-          "dataprovider": {
-            "min": 0,
-            "max": 10,
-            "hz": 0.5,
-            "labeldecimals": 2,
-            "tickdecimals": 0,
-            "tween": true,
-            "name": "RNG"
-          }
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Fault:",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Indicator",
-          "dataprovider": {
-            "min": 0,
-            "max": 1,
-            "hz": 0.5,
-            "tween": false,
-            "name": "RNG"
-          },
-          "flash": true,
-          "class": "round-indicator yellow-indicator"
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Trip:",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Indicator",
-          "dataprovider": {
-            "min": 0,
-            "max": 1,
-            "hz": 1,
-            "tween": false,
-            "name": "RNG"
-          },
-          "flash": true
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Aux: ",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "min": 0,
-            "max": 10,
-            "hz": 1,
-            "decimals": 2,
-            "tween": false,
-            "name": "RNG"
-          },
-          "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
-        }
-      ]
-    },
-    {
-      "name": "Panel",
-      "class": "card",
-      "items": [
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Signal C",
-            "name": "Static"
-          },
-          "class": "heading"
-        },
-        {
-          "name": "Gauge",
-          "dataprovider": {
-            "min": 0,
-            "max": 10,
-            "hz": 0.5,
-            "labeldecimals": 2,
-            "tickdecimals": 0,
-            "tween": true,
-            "name": "RNG"
-          }
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Fault:",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Indicator",
-          "dataprovider": {
-            "min": 0,
-            "max": 1,
-            "hz": 0.5,
-            "tween": false,
-            "name": "RNG"
-          },
-          "flash": true,
-          "class": "round-indicator yellow-indicator"
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Trip:",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Indicator",
-          "dataprovider": {
-            "min": 0,
-            "max": 1,
-            "hz": 1,
-            "tween": false,
-            "name": "RNG"
-          },
-          "flash": true
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Aux: ",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "min": 0,
-            "max": 10,
-            "hz": 1,
-            "decimals": 2,
-            "tween": false,
-            "name": "RNG"
-          },
-          "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
-        }
-      ]
-    },
-    {
-      "name": "Panel",
-      "class": "card",
-      "items": [
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Signal D",
-            "name": "Static"
-          },
-          "class": "heading"
-        },
-        {
-          "name": "Gauge",
-          "dataprovider": {
-            "min": 0,
-            "max": 10,
-            "hz": 0.5,
-            "labeldecimals": 2,
-            "tickdecimals": 0,
-            "tween": true,
-            "name": "RNG"
-          }
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Fault:",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Indicator",
-          "dataprovider": {
-            "min": 0,
-            "max": 1,
-            "hz": 0.5,
-            "tween": false,
-            "name": "RNG"
-          },
-          "flash": true,
-          "class": "round-indicator yellow-indicator"
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Trip:",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Indicator",
-          "dataprovider": {
-            "min": 0,
-            "max": 1,
-            "hz": 1,
-            "tween": false,
-            "name": "RNG"
-          },
-          "flash": true
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "value": "Aux: ",
-            "name": "Static"
-          },
-          "style": "margin: 0.5em;"
-        },
-        {
-          "name": "Label",
-          "dataprovider": {
-            "min": 0,
-            "max": 10,
-            "hz": 1,
-            "decimals": 2,
-            "tween": false,
-            "name": "RNG"
-          },
-          "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
+          "name": "Panel",
+          "class": "card",
+          "items": [
+            {
+              "name": "Label",
+              "class": "heading",
+              "dataprovider": {
+                "value": "Signal D",
+                "name": "Static"
+              }
+            },
+            {
+              "name": "Gauge",
+              "dataprovider": {
+                "min": 0,
+                "max": 10,
+                "hz": 0.5,
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "tween": true,
+                "name": "RNG"
+              }
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Fault:",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Indicator",
+              "class": "round-indicator yellow-indicator",
+              "dataprovider": {
+                "min": 0,
+                "max": 1,
+                "hz": 0.5,
+                "tween": false,
+                "name": "RNG"
+              },
+              "flash": true
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Trip:",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Indicator",
+              "dataprovider": {
+                "min": 0,
+                "max": 1,
+                "hz": 1,
+                "tween": false,
+                "name": "RNG"
+              },
+              "flash": true
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "value": "Aux: ",
+                "name": "Static"
+              },
+              "style": "margin: 0.5em;"
+            },
+            {
+              "name": "Label",
+              "dataprovider": {
+                "min": 0,
+                "max": 10,
+                "hz": 1,
+                "decimals": 2,
+                "tween": false,
+                "name": "RNG"
+              },
+              "style": "font-family: monospace; background-color: lightblue;  padding: 4px;"
+            }
+          ]
         }
       ]
     }
   ],
-  "style": "display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); grid-template-rows: none; padding: 1em; background-color: #fafafa;",
   "theme": "laboratory",
   "title": "Example A"
 }

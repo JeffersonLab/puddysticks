@@ -1,7 +1,7 @@
 <style>
     .aside {
         position: fixed;
-        width: 250px;
+        width: 0;
         background-color: lightgray;
         height: 100%;
         z-index: 1;
@@ -9,9 +9,14 @@
         overflow-x: hidden;
         transition: 0.5s;
     }
+    .main {
+        margin-left: 0;
+        transition: margin-left 0.5s;
+        overflow: hidden;
+    }
     .button {
         position: fixed;
-        left: 255px;
+        left: 5px;
         bottom: 5px;
         transition: 0.5s;
         border: none;
@@ -20,14 +25,18 @@
         width: 28px;
         height: 28px;
         outline: none;
+        z-index: 1;
     }
-    .open {
-        background: url(icons/arrow-circle-left.svg) 0 0 no-repeat;
+    .open .aside {
+        width: 250px;
     }
-    .main {
+    .open .main {
         margin-left: 250px;
-        transition: margin-left .5s;
-        overflow: hidden;
+    }
+    .open .button {
+        background: url(icons/arrow-circle-left.svg) 0 0 no-repeat;
+
+        left: 255px;
     }
 </style>
 <script>
@@ -39,21 +48,11 @@
     let main;
 
     function toggle() {
-        if(open) { /* Do Close */
-            aside.style.width = "0";
-            main.style.marginLeft = "0";
-            button.style.left = "5px";
-        } else { /* Do Open */
-            aside.style.width = "250px";
-            main.style.marginLeft = "250px";
-            button.style.left = "255px";
-        }
-
         open = !open;
     }
 </script>
-<div>
-    <button bind:this="{button}" class="button" class:open="{open}" on:click="{toggle}"></button>
+<div class="drawer" class:open="{open}">
+    <button bind:this="{button}" class="button" on:click="{toggle}"></button>
     <div bind:this="{aside}" class="aside">
         <slot name="aside"></slot>
     </div>

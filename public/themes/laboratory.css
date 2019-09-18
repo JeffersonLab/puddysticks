@@ -23,3 +23,22 @@ div.indicator.round-indicator {
     --off-rgb: rgb(255, 217, 0);
     --off-rgba: rgba(255, 217, 0, 0.25);
 }
+.auto-wrap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    padding: 1em;
+}
+.display {
+    background-color: #fafafa;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    transition: 0.5s;
+}
+.drawer.open main > .display {
+    left: 250px;
+    transition: 0.5s;
+}
