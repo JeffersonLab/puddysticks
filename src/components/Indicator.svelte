@@ -10,9 +10,15 @@
         display: inline-block;
         width: 24px;
         height: 24px;
-        background-color: var(--off-rgb);
+        background-image:
+                radial-gradient(
+                        var(--on-rgb),
+                        var(--off-rgb)
+                );
+        /*background-color: var(--off-rgb);*/
         border-radius: 4px;
         transition: 0.5s;
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
     }
 
     .on {
