@@ -32,7 +32,7 @@
         border-radius: 50%;
         background: radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8) 14%, rgba(255, 255, 255, 0) 24%);
         /*transform: skewX(70deg) skewY(0deg);*/
-        filter: blur(3px);
+        filter: blur(4px);
         transition: 0.5s;
     }
 
@@ -50,7 +50,7 @@
 
     @keyframes blink {
         from { background-color: var(--off-rgb); }
-        50% { background-color: var(--on-rgb); box-shadow: 0 0 2px 2px var(--on-rgba), 0 0 2px 2px var(--off-rgba) inset;}
+        50% { background-color: var(--on-rgb); box-shadow: 0 0 1px 2px var(--on-rgba), 0 0 1px 2px var(--off-rgba) inset;}
         to { background-color: var(--off-rgb); }
     }
 
