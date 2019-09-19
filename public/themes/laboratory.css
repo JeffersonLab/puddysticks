@@ -8,7 +8,7 @@
     border: 1px solid rgba(0, 0, 0, 0.14);
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2) inset, 0px 1px 1px 0px rgba(0, 0, 0, 0.14) inset, 0px 1px 3px 0px rgba(0,0,0,.12) inset;
     font-size: 1.25em;
-    background-color: rgba(0,255,0, 0.12);
+    background-color: rgb(200, 255, 210);
     color: red;
     display: inline-block;
     text-align: right;
