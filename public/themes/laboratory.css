@@ -1,3 +1,7 @@
+@font-face {
+    font-family: DSEG7Classic;
+    src: url('../fonts/DSEG7Classic-Regular.woff2') format('woff2');
+}
 .readout {
     font-family: 'DSEG7Classic';
     padding: 3px;

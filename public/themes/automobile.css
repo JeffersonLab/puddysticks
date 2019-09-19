@@ -1,3 +1,25 @@
+.heading {
+    background-image: url("../img/KEWAZINGA.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+}
+.display {
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    transition: 0.5s;
+}
+.drawer.open main > .display {
+    left: 250px;
+    transition: 0.5s;
+}
+
+
 :root {
     /*Base Styles (Content)*/
     --font-family: Segoe UI, Helvetica, sans-serif;
