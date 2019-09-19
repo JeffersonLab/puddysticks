@@ -23,7 +23,7 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 2,
+                "labeldecimals": 1,
                 "tickdecimals": 0,
                 "tween": true,
                 "name": "RNG"
@@ -109,7 +109,7 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 2,
+                "labeldecimals": 1,
                 "tickdecimals": 0,
                 "tween": true,
                 "name": "RNG"
@@ -195,7 +195,7 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 2,
+                "labeldecimals": 1,
                 "tickdecimals": 0,
                 "tween": true,
                 "name": "RNG"
@@ -281,7 +281,7 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 2,
+                "labeldecimals": 1,
                 "tickdecimals": 0,
                 "tween": true,
                 "name": "RNG"
