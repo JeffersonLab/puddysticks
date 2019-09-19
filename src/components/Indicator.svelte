@@ -15,15 +15,32 @@
                         var(--on-rgb),
                         var(--off-rgb)
                 );
-        /*background-color: var(--off-rgb);*/
+        background-color: var(--off-rgb);
         border-radius: 4px;
         transition: 0.5s;
         box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
+        position: relative;
+    }
+
+    .on:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8) 14%, rgba(255, 255, 255, 0) 24%);
+        /*transform: skewX(70deg) skewY(0deg);*/
+        filter: blur(3px);
+        transition: 0.5s;
     }
 
     .on {
+        background-image: none;
         background-color: var(--on-rgb);
-        box-shadow: 0 0 2px 4px var(--on-rgba), 0 0 2px 4px var(--off-rgba) inset;
+        box-shadow: 0 0 1px 2px var(--on-rgba), 0 0 1px 2px var(--off-rgba) inset;
+        /*box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2) inset, 0px 1px 1px 0px rgba(0, 0, 0, 0.14) inset, 0px 1px 3px 0px rgba(0,0,0,.12) inset, 0 0 1px 2px var(--on-rgba);*/
         transition: 0.5s;
     }
 
