@@ -1,32 +1,3 @@
-@font-face {
-    font-family: DSEG7Classic;
-    src: url('../fonts/DSEG7Classic-Regular.woff2') format('woff2');
-}
-.card {
-    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
-    box-sizing: border-box;
-    border-radius: 4px;
-    padding: 0.5em;
-    width: 320px;
-    margin: 8px auto;
-    background-color: white;
-}
-.heading {
-    display: block;
-    text-align: center;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-div.indicator.round-indicator {
-    border-radius: 16px;
-    width: 16px; height: 16px;
-}
-.yellow-indicator {
-    --on-rgb: rgb(255, 255, 0);
-    --on-rgba: rgba(255, 255, 0, 0.75);
-    --off-rgb: rgb(255, 217, 0);
-    --off-rgba: rgba(255, 217, 0, 0.25);
-}
 .readout {
     font-family: 'DSEG7Classic';
     padding: 3px;
@@ -43,6 +14,7 @@ div.indicator.round-indicator {
     position: relative;
     z-index: 0;
     min-height: 1.1em;
+    text-shadow: none;
 }
 .readout:before {
     content: '8888888';
@@ -54,22 +26,68 @@ div.indicator.round-indicator {
     bottom: 0;
     right: 0;
 }
-.auto-wrap-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    padding: 1em;
+.card {
+    color: hsla(0,0%,20%,1);
+    text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
+
+    background-color: hsl(0,0%,90%);
+    box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 1px, /* border */
+    inset hsla(0,0%,15%, .8) 0 -1px 3px 2px, /* soft SD */
+    inset hsla(0,0%,0%, .25) 0 -1px 0px 2px, /* bottom SD */
+    inset hsla(0,0%,100%,.7) 0  2px 1px 2px, /* top HL */
+
+    hsla(0,0%, 0%,.15) 0 -2px 3px 1px, /* outer SD */
+    hsla(0,0%,100%,.5) 0  2px 3px 1px; /* outer HL */
+
+    background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   4%, hsla(0,0%,  0%,.03) 4.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
+
+linear-gradient(180deg, hsl(0,0%,78%)  0%,
+hsl(0,0%,90%) 47%,
+hsl(0,0%,78%) 53%,
+hsl(0,0%,70%)100%);
+}
+.indicator:before {
+    content: "";
+
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
+
+    color: hsla(0,0%,20%,1);
+    text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
+
+    background-color: hsl(0,0%,90%);
+    box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 1px, /* border */
+    inset hsla(0,0%,15%, .8) 0 -1px 3px 2px, /* soft SD */
+    inset hsla(0,0%,0%, .25) 0 -1px 0px 2px, /* bottom SD */
+    inset hsla(0,0%,100%,.7) 0  2px 1px 2px, /* top HL */
+
+    hsla(0,0%, 0%,.15) 0 -2px 3px 1px, /* outer SD */
+    hsla(0,0%,100%,.5) 0  2px 3px 1px; /* outer HL */
+
+    transition: color .2s;
+
+
+    border-radius: 25%;
+    background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   4%, hsla(0,0%,  0%,.03) 4.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
+
+    linear-gradient(180deg, hsl(0,0%,78%)  0%,
+            hsl(0,0%,90%) 47%,
+            hsl(0,0%,78%) 53%,
+            hsl(0,0%,70%)100%);
+}
+.gauge .output {
+    text-shadow: none;
 }
 .display {
-    background-color: #fafafa;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
-    transition: 0.5s;
-}
-.drawer.open main > .display {
-    left: 250px;
-    transition: 0.5s;
+    background-color: hsla(0,0%,90%,1);
+    background-image: linear-gradient(-45deg, hsla(0,0%,0%,0), hsla(0,0%,0%,.05) );
+    background-size: 5px;
 }
