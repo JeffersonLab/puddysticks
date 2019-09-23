@@ -13,6 +13,12 @@
     }
     ul {
          margin-top: 0;
+        list-style: none;
+    }
+    ul li {
+        margin: 1em 0;
+        padding: 1em;
+        border-radius: 8px 0 0 8px;
     }
     h1 {
         padding-left: 8px;

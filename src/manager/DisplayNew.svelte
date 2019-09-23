@@ -19,10 +19,5 @@
 <div class="new-container">
         <h1>New Display</h1>
         <button on:click="{newBlank}">Blank</button>
-        <h2>From Template</h2>
-        <ul>
-                <li><a href="?display=templates/responsive-grid.puddy">Responsive Grid</a></li>
-                <li><a href="?display=templates/with-navigation.puddy">With Navigation</a></li>
-        </ul>
 </div>
 <svelte:options tag="puddy-display-new"/>
