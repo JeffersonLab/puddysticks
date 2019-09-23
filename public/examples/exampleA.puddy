@@ -63,7 +63,7 @@
               "dataprovider": {
                 "min": -1,
                 "max": 1,
-                "hz": 1,
+                "hz": 2,
                 "tween": false,
                 "name": "RNG"
               },
@@ -149,7 +149,7 @@
               "dataprovider": {
                 "min": -1,
                 "max": 1,
-                "hz": 1,
+                "hz": 2,
                 "tween": false,
                 "name": "RNG"
               },
@@ -235,7 +235,7 @@
               "dataprovider": {
                 "min": -1,
                 "max": 1,
-                "hz": 1,
+                "hz": 2,
                 "tween": false,
                 "name": "RNG"
               },
@@ -321,7 +321,7 @@
               "dataprovider": {
                 "min": -1,
                 "max": 1,
-                "hz": 1,
+                "hz": 2,
                 "tween": false,
                 "name": "RNG"
               },
