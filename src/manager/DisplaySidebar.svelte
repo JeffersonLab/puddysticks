@@ -136,7 +136,8 @@
     }
 
     function close() {
-        window.location.href = '/';
+        var url = [location.protocol, '//', location.host, location.pathname].join('');
+        window.location.href = url;
     }
 
     /*When DOM elements mounted and data is available*/
