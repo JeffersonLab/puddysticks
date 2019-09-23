@@ -1,0 +1,60 @@
+.heading {
+    background-image: url("../img/KEWAZINGA.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+}
+.display {
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    transition: 0.5s;
+}
+.drawer.open main > .display {
+    left: 250px;
+    transition: 0.5s;
+}
+
+
+:root {
+    /*Base Styles (Content)*/
+    --font-family: Segoe UI, Helvetica, sans-serif;
+    --font-weight: bold;
+    --color: black;
+    --size: 1.1em;
+    --margin: 1em;
+    --padding: 1em;
+    --border: 1px solid black;
+    --border-radius: 6px;
+    --background-color: #9fda58;
+    /*Secondary Styles (Headers) */
+    --secondary-font-family: monspace;
+    --secondary-font-weight: normal;
+    --secondary-color: #222222;
+    --secondary-size: 1.5em;
+    --secondary-margin: 0.5em;
+    --secondary-padding: 0.5em;
+    --secondary-border: 1px solid black;
+    --secondary-border-radius: 8px;
+    --secondary-background-color: #9fda58;
+    /*Tertiary Styles (Footnotes) */
+    --tertiary-font-family: monspace;
+    --tertiary-font-weight: normal;
+    --tertiary-color: #222222;
+    --tertiary-size: 1.5em;
+    --tertiary-margin: 0.5em;
+    --tertiary-padding: 0.5em;
+    --tertiary-border: 1px solid black;
+    --tertiary-border-radius: 8px;
+    --tertiary-background-color: #9fda58;
+    /*Depth? - box-shadow / z-index */
+    /*Roundness (Shape)? - border-radius */
+    /*Texture / Surface / Material? - background-image*/
+    /*Decorations? - widget specific stylish embellishments on scale from high, medium, low? */
+    /*Sound?*/
+    /*Motion?*/
+}

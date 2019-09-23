@@ -1,0 +1,57 @@
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.card {
+	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+	0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+	0px 1px 3px 0px rgba(0,0,0,.12);
+	box-sizing: border-box;
+	border-radius: 4px;
+	padding: 0.5em;
+	width: 320px;
+	margin: 8px auto;
+	background-color: white;
+}
+.heading {
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+div.indicator.round-indicator {
+	border-radius: 16px;
+	width: 16px; height: 16px;
+}
+.yellow-indicator {
+	--on-rgb: rgb(255, 255, 0);
+	--on-rgba: rgba(255, 255, 0, 0.75);
+	--off-rgb: rgb(255, 217, 0);
+	--off-rgba: rgba(255, 217, 0, 0.25);
+}
+.auto-wrap-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	padding: 1em;
+}
+.display {
+	background-color: #fafafa;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	overflow: auto;
+	transition: 0.5s;
+}
+.drawer.open main > .display {
+	left: 250px;
+	transition: 0.5s;
+}
