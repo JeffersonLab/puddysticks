@@ -362,7 +362,11 @@
         }
     }
 
-    jlab.epics2web.puddy.con = new jlab.epics2web.ClientConnection(jlab.epics2web.puddy.options);
+    if('EPICS2WEB_ENABLED' === 'true') {
+        jlab.epics2web.puddy.con = new jlab.epics2web.ClientConnection(jlab.epics2web.puddy.options);
+    } else {
+        jlab.epics2web.puddy.con = {};
+    }
 
     jlab.epics2web.puddy.con.onopen = function (e) {
         /*This is for re-connect - on initial connect array will be empty*/
