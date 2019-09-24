@@ -1,5 +1,5 @@
 <script>
-    import {components} from '../registry.js';
+    import {components} from '../../../registry.js';
 
     export let component;
     export let provider;
@@ -38,4 +38,4 @@
             <div class="editable-value"><input type="text" bind:value="{properties[key]}"/></div>
         {/if}
     {/each}
-<svelte:options tag="puddy-data-provider-properties-editor"/>
+<svelte:options tag="puddy-data-provider-properties-pane"/>

@@ -4,7 +4,7 @@
         }
 </style>
 <script>
-        import LocalFileReader from './LocalFileReader.svelte';
+        import LocalFileReader from '../../LocalFileReader.svelte';
 </script>
 <div style="padding: 1em;">
         <h1>Open Display</h1>
@@ -15,4 +15,4 @@
         <h2>Local</h2>
         <LocalFileReader on:localfile/>
 </div>
-<svelte:options tag="puddy-display-open"/>
+<svelte:options tag="puddy-display-open-pane"/>

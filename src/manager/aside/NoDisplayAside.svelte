@@ -35,7 +35,7 @@
     }
 </style>
 <script>
-    import Selectable from "../Selectable.svelte";
+    import Selectable from "../../Selectable.svelte";
     import { onMount } from 'svelte';
 
     export let selected = {};
@@ -55,4 +55,4 @@
     </ul>
 </Selectable>
 </div>
-<svelte:options tag="puddy-no-display-sidebar"/>
+<svelte:options tag="puddy-no-display-aside"/>

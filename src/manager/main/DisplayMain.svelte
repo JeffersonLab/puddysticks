@@ -1,6 +1,6 @@
 <script>
-    import { model } from '../registry.js';
-    import Display from "../Display.svelte";
+    import { model } from '../../registry.js';
+    import Display from "../widgets/Display.svelte";
 
     export let promise;
 </script>

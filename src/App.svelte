@@ -6,11 +6,11 @@
 <script>
     import {initComponents} from './components.js';
     import {openRemoteFile} from './manager/file.js';
-    import Drawer from './Drawer.svelte';
-    import DisplaySidebar from "./manager/DisplaySidebar.svelte";
-    import NoDisplaySidebar from "./manager/NoDisplaySidebar.svelte";
-    import DisplayMain from "./manager/DisplayMain.svelte";
-    import NoDisplayMain from "./manager/NoDisplayMain.svelte";
+    import Drawer from './manager/widgets/Drawer.svelte';
+    import DisplaySidebar from "./manager/aside/DisplayAside.svelte";
+    import NoDisplaySidebar from "./manager/aside/NoDisplayAside.svelte";
+    import DisplayMain from "./manager/main/DisplayMain.svelte";
+    import NoDisplayMain from "./manager/main/NoDisplayMain.svelte";
     import DynamicPageTitle from './manager/DynamicPageTitle.svelte';
 
     initComponents();

@@ -73,11 +73,11 @@
     }
 </style>
 <script>
-    import { components, model } from '../registry.js';
+    import { components, model } from '../../registry.js';
     import { onMount } from 'svelte';
-    import Tree from '../Tree.svelte';
-    import PropertiesEditor from './PropertiesEditor.svelte';
-    import ActionPane from './ActionPane.svelte';
+    import Tree from '../widgets/Tree.svelte';
+    import PropertiesEditor from './pane/PropertiesPane.svelte';
+    import ActionPane from './pane/ActionPane.svelte';
 
     export let promise;
 
@@ -202,4 +202,4 @@
 {:catch error}
     <p style="color: red">{error.message}</p>
 {/await}
-<svelte:options tag="puddy-display-sidebar"/>
+<svelte:options tag="puddy-display-aside"/>

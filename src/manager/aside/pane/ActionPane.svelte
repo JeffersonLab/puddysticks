@@ -28,7 +28,7 @@
     }
 </style>
 <script>
-    import {components, instanceStores, model} from '../registry.js';
+    import {components, instanceStores, model} from '../../../registry.js';
 
     export let selected;
     $: properties = instanceStores[selected];

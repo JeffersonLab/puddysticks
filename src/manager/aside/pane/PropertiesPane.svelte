@@ -4,8 +4,8 @@
     }
 </style>
 <script>
-    import {components, instances, instanceStores} from '../registry.js';
-    import DataProviderPropertiesEditor from './DataProviderPropertiesEditor.svelte';
+    import {components, instances, instanceStores} from '../../../registry.js';
+    import DataProviderPropertiesEditor from './DataProviderPropertiesPane.svelte';
 
     export let selected;
     $: properties = instanceStores[selected];
@@ -28,4 +28,4 @@
             <div class="editable-value"><input type="text" bind:value="{$properties[key]}"/></div>
         {/if}
     {/each}
-<svelte:options tag="puddy-properties-editor"/>
+<svelte:options tag="puddy-properties-pane"/>

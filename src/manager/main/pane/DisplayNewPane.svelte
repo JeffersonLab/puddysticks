@@ -8,7 +8,7 @@
 </style>
 <script>
         import { createEventDispatcher } from 'svelte';
-        import { openFile } from './file.js';
+        import { openFile } from '../../file.js';
 
         const dispatch = createEventDispatcher();
 
@@ -20,4 +20,4 @@
         <h1>New Display</h1>
         <button on:click="{newBlank}">Blank</button>
 </div>
-<svelte:options tag="puddy-display-new"/>
+<svelte:options tag="puddy-display-new-pane"/>

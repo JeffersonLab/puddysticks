@@ -1,6 +1,6 @@
 <script>
-    import DisplayNew from "./DisplayNew.svelte";
-    import DisplayOpen from "./DisplayOpen.svelte";
+    import DisplayNew from "./pane/DisplayNewPane.svelte";
+    import DisplayOpen from "./pane/DisplayOpenPane.svelte";
 
     export let selected = {};
 </script>
