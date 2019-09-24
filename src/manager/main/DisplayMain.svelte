@@ -1,5 +1,5 @@
 <script>
-    import { model } from '../../registry.js';
+    import { model } from '../util/registry.js';
     import Display from "../widgets/Display.svelte";
 
     export let promise;

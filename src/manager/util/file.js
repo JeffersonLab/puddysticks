@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { components, instances, instanceStores, getUniqueId, model, prepareInstance } from '../registry.js';
+import { components, instances, instanceStores, getUniqueId, model, prepareInstance } from './registry.js';
 
 export async function openRemoteFile(url) {
     const res = await fetch(url);

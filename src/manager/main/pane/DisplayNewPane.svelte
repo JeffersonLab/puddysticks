@@ -8,7 +8,7 @@
 </style>
 <script>
         import { createEventDispatcher } from 'svelte';
-        import { openFile } from '../../file.js';
+        import { openFile } from '../../util/file.js';
 
         const dispatch = createEventDispatcher();
 

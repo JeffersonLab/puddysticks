@@ -1,5 +1,5 @@
 <script>
-    import Container from '../Container.svelte';
+    import Container from '../manager/util/Container.svelte';
 
     /* Note: Default values are managed externally in file.js */
     export let config;

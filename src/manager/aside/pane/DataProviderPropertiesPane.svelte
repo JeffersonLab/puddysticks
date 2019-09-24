@@ -1,5 +1,5 @@
 <script>
-    import {components} from '../../../registry.js';
+    import {components} from '../../util/registry.js';
 
     export let component;
     export let provider;

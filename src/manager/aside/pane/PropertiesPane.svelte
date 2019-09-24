@@ -4,7 +4,7 @@
     }
 </style>
 <script>
-    import {components, instances, instanceStores} from '../../../registry.js';
+    import {components, instances, instanceStores} from '../../util/registry.js';
     import DataProviderPropertiesEditor from './DataProviderPropertiesPane.svelte';
 
     export let selected;

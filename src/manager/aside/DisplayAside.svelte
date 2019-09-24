@@ -73,7 +73,7 @@
     }
 </style>
 <script>
-    import { components, model } from '../../registry.js';
+    import { components, model } from '../util/registry.js';
     import { onMount } from 'svelte';
     import Tree from '../widgets/Tree.svelte';
     import PropertiesEditor from './pane/PropertiesPane.svelte';

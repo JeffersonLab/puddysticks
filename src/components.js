@@ -1,4 +1,4 @@
-import {components} from './registry.js';
+import {components} from './manager/util/registry.js';
 
 import Panel from './components/Panel.svelte';
 

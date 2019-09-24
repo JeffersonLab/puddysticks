@@ -1,6 +1,6 @@
 <script>
-    import {instanceStores} from '../../registry.js';
-    import Container from '../../Container.svelte';
+    import {instanceStores} from '../util/registry.js';
+    import Container from '../util/Container.svelte';
 
     export let config = {};
 

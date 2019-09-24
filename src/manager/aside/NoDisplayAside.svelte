@@ -35,7 +35,7 @@
     }
 </style>
 <script>
-    import Selectable from "../../Selectable.svelte";
+    import Selectable from "../util/Selectable.svelte";
     import { onMount } from 'svelte';
 
     export let selected = {};
