@@ -4,7 +4,7 @@
     }
 </style>
 <script>
-    import {initComponents} from './widgets.js';
+    import {initWidgets} from './widgets.js';
     import {openRemoteFile} from './manager/util/file.js';
     import Drawer from './manager/widgets/Drawer.svelte';
     import DisplaySidebar from "./manager/aside/DisplayAside.svelte";
@@ -13,7 +13,7 @@
     import NoDisplayMain from "./manager/main/NoDisplayMain.svelte";
     import DynamicPageTitle from './manager/util/DynamicPageTitle.svelte';
 
-    initComponents();
+    initWidgets();
 
     let params = new URLSearchParams(location.search),
             display = params.get("display");

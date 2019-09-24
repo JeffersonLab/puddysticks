@@ -1,4 +1,4 @@
-import {components} from './manager/util/registry.js';
+import {widgets} from './manager/util/registry.js';
 
 import Panel from './widgets/Panel.svelte';
 
@@ -17,9 +17,9 @@ import StaticGauge from './dataproviders/StaticGauge.svelte';
 import RandomNumberGeneratorGauge from './dataproviders/RandomNumberGeneratorGauge.svelte';
 import epics2webGauge from './dataproviders/epics2webGauge.svelte';
 
-export function initComponents() {
-    components['Panel'] = {constructor: Panel, defaults: {style: '', class: '', items: []}, icon: 'window-restore.svg'};
-    components['Label'] = {
+export function initWidgets() {
+    widgets['Panel'] = {constructor: Panel, defaults: {style: '', class: '', items: []}, icon: 'window-restore.svg'};
+    widgets['Label'] = {
         constructor: Label,
         dataproviders: {
             'Static': {constructor: StaticLabel, defaults: {value: 'Unlabeled'}},
@@ -28,7 +28,7 @@ export function initComponents() {
         defaults: {dataprovider: {name: 'Static'}, style: '', class: ''},
         icon: 'sticky-note.svg'
     };
-    components['Gauge'] = {
+    widgets['Gauge'] = {
         constructor: Gauge,
         dataproviders: {
             'Static': {constructor: StaticGauge, defaults: {value: 0, min: 0, max: 100, labeldecimals: 2, tickdecimals: 0}},
@@ -37,7 +37,7 @@ export function initComponents() {
         defaults: {dataprovider: {name: 'Static'}, style: '', class: ''},
         icon: 'tachometer-alt.svg'
     };
-    components['Indicator'] = {
+    widgets['Indicator'] = {
         constructor: Indicator,
         dataproviders: {
             'Static': {constructor: StaticIndicator, defaults: {value: 0}},
@@ -48,8 +48,8 @@ export function initComponents() {
     };
 
     if('EPICS2WEB_ENABLED' === 'true') {
-        components['Label'].dataproviders['epics2web'] = {constructor: epics2webLabel, defaults: {channel: '', decimals: 2}};
-        components['Gauge'].dataproviders['epics2web'] = {constructor: epics2webGauge, defaults: {channel: '', min: 0, max: 10, labeldecimals: 2, tickdecimals: 0}};
-        components['Indicator'].dataproviders['epics2web'] = {constructor: epics2webIndicator, defaults: {channel: ''}};
+        widgets['Label'].dataproviders['epics2web'] = {constructor: epics2webLabel, defaults: {channel: '', decimals: 2}};
+        widgets['Gauge'].dataproviders['epics2web'] = {constructor: epics2webGauge, defaults: {channel: '', min: 0, max: 10, labeldecimals: 2, tickdecimals: 0}};
+        widgets['Indicator'].dataproviders['epics2web'] = {constructor: epics2webIndicator, defaults: {channel: ''}};
     }
 }

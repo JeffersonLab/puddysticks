@@ -73,7 +73,7 @@
     }
 </style>
 <script>
-    import { components, model } from '../util/registry.js';
+    import { widgets, model } from '../util/registry.js';
     import { onMount } from 'svelte';
     import Tree from '../widgets/Tree.svelte';
     import PropertiesEditor from './pane/PropertiesPane.svelte';
@@ -151,7 +151,7 @@
 
     let iconizer = function(node) {
         let icon = undefined;
-        let props = components[node.name];
+        let props = widgets[node.name];
         if(props) {
             icon = props.icon;
         } else if(node.name === 'Display') { /* Display widget is purposely left out of registry at this time... */

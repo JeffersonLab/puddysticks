@@ -1,5 +1,5 @@
 <script>
-    import {components} from '../../util/registry.js';
+    import {widgets} from '../../util/registry.js';
 
     export let component;
     export let provider;
@@ -9,7 +9,7 @@
 
     $: {
         if(provider) {
-            defaultConfig = components[component].dataproviders[provider].defaults;
+            defaultConfig = widgets[component].dataproviders[provider].defaults;
             if(defaultConfig) {
 
                 Object.keys(defaultConfig).forEach(key => {

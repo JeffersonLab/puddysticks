@@ -28,7 +28,7 @@
     }
 </style>
 <script>
-    import {components, instanceStores, model} from '../../util/registry.js';
+    import {widgets, instanceStores, model} from '../../util/registry.js';
 
     export let selected;
     $: properties = instanceStores[selected];
@@ -103,7 +103,7 @@
     <div class="add-options">
         <button on:click="{add}" disabled="{$properties.name !== 'Panel' && $properties.name !== 'Display'}"><i class="button-icon add"></i> Add</button>
         <select bind:this="{addComponentSelect}">
-            {#each Object.keys(components) as component}
+            {#each Object.keys(widgets) as component}
                 <option>{component}</option>
             {/each}
         </select>

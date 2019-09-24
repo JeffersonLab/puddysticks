@@ -4,7 +4,7 @@
     }
 </style>
 <script>
-    import {components, instances, instanceStores} from '../../util/registry.js';
+    import {widgets, instances, instanceStores} from '../../util/registry.js';
     import DataProviderPropertiesEditor from './DataProviderPropertiesPane.svelte';
 
     export let selected;
@@ -17,7 +17,7 @@
             <div>dataprovider</div>
                 <div class="editable-value">
                     <select bind:value="{$properties[key].name}">
-                        {#each Object.keys(components[$properties.name].dataproviders) as provider}
+                        {#each Object.keys(widgets[$properties.name].dataproviders) as provider}
                             <option>{provider}</option>
                         {/each}
                     </select>

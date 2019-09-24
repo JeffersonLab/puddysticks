@@ -1,9 +1,9 @@
 import { writable } from 'svelte/store';
 
-/* Map of component 'palette' - constructors and their dataproviders */
-export const components = {};
+/* Map of widget name to widget configuration - a 'palette' of widgets to choose - configuration consists of constructors, data providers, and default properties */
+export const widgets = {};
 
-/* Map of component instance config - for quick lookup of node in model */
+/* Map of widget instance configuration - for quick lookup instead of slowly traversing hierarchical model */
 export const instances = {};
 
 /* Reactive store of component instance config */
@@ -34,8 +34,8 @@ export function prepareInstance(par, obj) {
                 delete obj[key];
             }
         });
-    } else if (components[obj.name]) {
-        let defaultConfig = components[obj.name].defaults;
+    } else if (widgets[obj.name]) {
+        let defaultConfig = widgets[obj.name].defaults;
 
         /*obj = {...defaultConfig, ...obj};*/
         Object.keys(defaultConfig).forEach(key => {
@@ -55,7 +55,7 @@ export function prepareInstance(par, obj) {
     }
 
     if(obj.dataprovider) {
-        let dataproviderDefaults = components[obj.name].dataproviders[obj.dataprovider.name].defaults;
+        let dataproviderDefaults = widgets[obj.name].dataproviders[obj.dataprovider.name].defaults;
 
         obj.dataprovider = {...dataproviderDefaults, ...obj.dataprovider};
     }
