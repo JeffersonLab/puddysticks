@@ -1,6 +1,6 @@
 <script>
     import RandomNumberGenerator from "../datasources/RandomNumberGenerator.svelte";
-    import Indicator from "../components/Indicator.svelte";
+    import Indicator from "../widgets/Indicator.svelte";
 
     export let config;
 

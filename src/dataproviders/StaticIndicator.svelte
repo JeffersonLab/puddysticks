@@ -1,5 +1,5 @@
 <script>
-    import Indicator from "../components/Indicator.svelte";
+    import Indicator from "../widgets/Indicator.svelte";
 
     export let config = {};
 

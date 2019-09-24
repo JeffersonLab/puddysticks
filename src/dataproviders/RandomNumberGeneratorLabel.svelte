@@ -1,6 +1,6 @@
 <script>
     import RandomNumberGenerator from "../datasources/RandomNumberGenerator.svelte";
-    import Label from "../components/Label.svelte";
+    import Label from "../widgets/Label.svelte";
 
     export let config = {};
 

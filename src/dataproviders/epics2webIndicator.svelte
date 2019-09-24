@@ -1,5 +1,5 @@
 <script>
-    import Indicator from "../components/Indicator.svelte";
+    import Indicator from "../widgets/Indicator.svelte";
     import Epics2Web from "../datasources/Epics2Web.svelte";
 
     export let config = {};

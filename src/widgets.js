@@ -1,18 +1,18 @@
 import {components} from './manager/util/registry.js';
 
-import Panel from './components/Panel.svelte';
+import Panel from './widgets/Panel.svelte';
 
-import Indicator from './components/Indicator.svelte';
+import Indicator from './widgets/Indicator.svelte';
 import StaticIndicator from './dataproviders/StaticIndicator.svelte';
 import RandomNumberGeneratorIndicator from './dataproviders/RandomNumberGeneratorIndicator.svelte';
 import epics2webIndicator from './dataproviders/epics2webIndicator.svelte';
 
-import Label from './components/Label.svelte';
+import Label from './widgets/Label.svelte';
 import StaticLabel from './dataproviders/StaticLabel.svelte';
 import RandomNumberGeneratorLabel from './dataproviders/RandomNumberGeneratorLabel.svelte';
 import epics2webLabel from './dataproviders/epics2webLabel.svelte';
 
-import Gauge from './components/Gauge.svelte';
+import Gauge from './widgets/Gauge.svelte';
 import StaticGauge from './dataproviders/StaticGauge.svelte';
 import RandomNumberGeneratorGauge from './dataproviders/RandomNumberGeneratorGauge.svelte';
 import epics2webGauge from './dataproviders/epics2webGauge.svelte';

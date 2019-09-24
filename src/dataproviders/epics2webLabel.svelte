@@ -1,5 +1,5 @@
 <script>
-    import Label from "../components/Label.svelte";
+    import Label from "../widgets/Label.svelte";
     import Epics2Web from "../datasources/Epics2Web.svelte";
 
     export let config = {};

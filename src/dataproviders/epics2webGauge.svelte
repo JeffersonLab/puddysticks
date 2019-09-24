@@ -1,5 +1,5 @@
 <script>
-    import Gauge from "../components/Gauge.svelte";
+    import Gauge from "../widgets/Gauge.svelte";
     import Epics2Web from "../datasources/Epics2Web.svelte";
 
     export let config = {};

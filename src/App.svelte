@@ -4,7 +4,7 @@
     }
 </style>
 <script>
-    import {initComponents} from './components.js';
+    import {initComponents} from './widgets.js';
     import {openRemoteFile} from './manager/util/file.js';
     import Drawer from './manager/widgets/Drawer.svelte';
     import DisplaySidebar from "./manager/aside/DisplayAside.svelte";

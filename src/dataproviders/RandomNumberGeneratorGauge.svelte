@@ -1,6 +1,6 @@
 <script>
     import RandomNumberGenerator from "../datasources/RandomNumberGenerator.svelte";
-    import Gauge from "../components/Gauge.svelte";
+    import Gauge from "../widgets/Gauge.svelte";
 
     export let config = {};
 
