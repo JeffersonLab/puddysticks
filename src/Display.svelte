@@ -14,5 +14,7 @@
 </div>
 <svelte:options tag="puddy-display"/>
 <svelte:head>
-    <link rel='stylesheet' href='themes/{$properties.theme}.css'>
+    {#if $properties.theme}
+        <link rel='stylesheet' href='themes/{$properties.theme}.css'>
+    {/if}
 </svelte:head>
