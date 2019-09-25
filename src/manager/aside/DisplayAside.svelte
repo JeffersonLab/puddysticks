@@ -132,7 +132,13 @@
         link.href = "data:application/json," + encodeURIComponent(json);
         link.download = title + ".puddy";
 
+        let body = document.getElementsByTagName('body')[0];
+
+        body.appendChild(link);
+
         link.click();
+
+        body.removeChild(link);
     }
 
     function close() {
