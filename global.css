@@ -17,8 +17,17 @@ body {
 	border-radius: 4px;
 	padding: 0.5em;
 	width: 320px;
-	margin: 8px auto;
+	margin: 0 auto;
 	background-color: white;
+}
+.readout {
+	background-color: dimgray;
+	color: white;
+	padding: 4px 8px;
+	border-radius: 8px;
+	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+	0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+	0px 1px 3px 0px rgba(0,0,0,.12);
 }
 .heading {
 	display: block;
@@ -39,7 +48,17 @@ div.indicator.round-indicator {
 .auto-wrap-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-	padding: 1em;
+	gap: 1em;
+}
+.auto-center-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*gap: 0.8em;  isn't supported yet*/
+}
+/*work-around for missing gap support*/
+.auto-center-row > * + * {
+	margin-left: 0.8em;
 }
 .display {
 	background-color: #fafafa;
@@ -50,6 +69,22 @@ div.indicator.round-indicator {
 	bottom: 0;
 	overflow: auto;
 	transition: 0.5s;
+}
+@media (min-width: 340px) {
+	.display {
+		padding: 1em;
+	}
+}
+@media (max-width: 390px) {
+	div.drawer > button.button {
+		background-color: lightgray;
+		border-radius: 0 16px 16px 0;
+		left: 0;
+	}
+	div.drawer.open > button.button.extra {
+		background-color: lightgray;
+		left: 250px;
+	}
 }
 .drawer.open main > .display {
 	left: 250px;
