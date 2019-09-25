@@ -50,6 +50,16 @@ div.indicator.round-indicator {
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 	gap: 1em;
 }
+.auto-center-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*gap: 0.8em;  isn't supported yet*/
+}
+/*work-around for missing gap support*/
+.auto-center-row > * + * {
+	margin-left: 0.8em;
+}
 .display {
 	background-color: #fafafa;
 	position: fixed;

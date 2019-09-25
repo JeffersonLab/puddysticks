@@ -83,6 +83,9 @@ repeating-linear-gradient(90deg, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   2%, h
 repeating-linear-gradient(90deg, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 0.52%, hsla(0,0%,100%,.15) 1.1%),
 linear-gradient(180deg, hsl(0,0%,78%)  0%, hsl(0,0%,90%) 67%, hsl(0,0%,78%) 73%, hsl(0,0%,70%)100%);
 }
+.auto-center-row {
+    margin-bottom: 0.5em;
+}
 .gauge {
     margin-top: 0.75em;
     border: 2px solid gray;
