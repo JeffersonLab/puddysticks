@@ -35,7 +35,6 @@
     }
     .open .button {
         background: url(icons/arrow-circle-left.svg) 0 0 no-repeat;
-
         left: 255px;
     }
 </style>
@@ -52,7 +51,7 @@
     }
 </script>
 <div class="drawer" class:open="{open}">
-    <button bind:this="{button}" class="button" on:click="{toggle}"></button>
+    <button bind:this="{button}" class="button extra" on:click="{toggle}"></button>
     <div bind:this="{aside}" class="aside">
         <slot name="aside"></slot>
     </div>
