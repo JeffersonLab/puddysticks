@@ -1,10 +1,10 @@
 <script>
-    import DataSource from "../datasources/RandomNumberGenerator.svelte";
-    import Gauge from "../widgets/Gauge.svelte";
+    import DataSource from "../datasources/SharedRandomNumberGenerator.svelte";
+    import Label from "../widgets/Label.svelte";
 
     export let config = {};
 
-    let data = {value: 0};
+    let data = {value: 'Load'};
 
     function update(e) {
         if(e.detail.value !== undefined) {
@@ -13,5 +13,5 @@
     }
 </script>
 <DataSource config="{config.dataprovider}" on:value="{update}"/>
-<Gauge {config} {data}/>
-<svelte:options tag="puddy-rng-guage"/>
+<Label {config} {data}/>
+<svelte:options tag="puddy-shared-rng-label"/>

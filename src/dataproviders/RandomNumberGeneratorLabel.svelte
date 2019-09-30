@@ -1,5 +1,5 @@
 <script>
-    import RandomNumberGenerator from "../datasources/RandomNumberGenerator.svelte";
+    import DataSource from "../datasources/RandomNumberGenerator.svelte";
     import Label from "../widgets/Label.svelte";
 
     export let config = {};
@@ -12,6 +12,6 @@
         }
     }
 </script>
-<RandomNumberGenerator config="{config.dataprovider}" on:value="{update}"/>
+<DataSource config="{config.dataprovider}" on:value="{update}"/>
 <Label {config} {data}/>
 <svelte:options tag="puddy-rng-label"/>

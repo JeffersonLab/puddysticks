@@ -1,28 +1,34 @@
 import { readable } from 'svelte/store';
+import { tweened } from 'svelte/motion';
+import { cubicOut } from 'svelte/easing';
 
 const configA = {hz: 1, max: 10, min: 0};
 const configB = {hz: 2, max: 100, min: 0};
+const configC = {hz: 3, max: 1000, min: 0};
 
 function randomFloat(config) {
     return Math.random() * (config.max - config.min) + config.min;
 }
 
-export const a = readable(null, function start(set) {
-    const interval = setInterval(() => {
-            set(randomFloat(configA));
-    }, 1000 * configA.hz);
+function createRng(config) {
+    const tweener = tweened(0, {duration: 1000 * config.hz, easing: cubicOut});
+    const {subscribe, set, update} = readable(null, function start(set) {
 
-    return function stop() {
-        clearInterval(interval);
-    };
-});
+        tweener.subscribe(value => {set(value)});
 
-export const b = readable(null, function start(set) {
-    const interval = setInterval(() => {
-        set(randomFloat(configB));
-    }, 1000 * configB.hz);
+        const interval = setInterval(() => {
+            tweener.set(randomFloat(config));
 
-    return function stop() {
-        clearInterval(interval);
-    };
-});
+        }, 1000 * config.hz);
+
+        return function stop() {
+            clearInterval(interval);
+        }
+    });
+
+    return {subscribe};
+}
+
+export const a = createRng(configA);
+export const b = createRng(configB);
+export const c = createRng(configC);

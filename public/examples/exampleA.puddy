@@ -20,13 +20,12 @@
             {
               "name": "Gauge",
               "dataprovider": {
+                "channel": "a",
                 "min": 0,
                 "max": 10,
-                "hz": 0.5,
                 "labeldecimals": 1,
                 "tickdecimals": 0,
-                "tween": true,
-                "name": "RNG"
+                "name": "Shared RNG"
               },
               "style": "margin-bottom: 1em;"
             },
@@ -82,12 +81,9 @@
                   "name": "Label",
                   "class": "readout",
                   "dataprovider": {
-                    "min": 0,
-                    "max": 10,
-                    "hz": 1,
                     "decimals": 2,
-                    "tween": true,
-                    "name": "RNG"
+                    "channel": "a",
+                    "name": "Shared RNG"
                   }
                 }
               ]
@@ -110,12 +106,11 @@
               "name": "Gauge",
               "dataprovider": {
                 "min": 0,
-                "max": 10,
-                "hz": 0.5,
+                "max": 100,
+                "channel": "b",
                 "labeldecimals": 1,
                 "tickdecimals": 0,
-                "tween": true,
-                "name": "RNG"
+                "name": "Shared RNG"
               },
               "style": "margin-bottom: 1em;"
             },
@@ -171,12 +166,9 @@
                   "name": "Label",
                   "class": "readout",
                   "dataprovider": {
-                    "min": 0,
-                    "max": 10,
-                    "hz": 1,
+                    "channel": "b",
                     "decimals": 2,
-                    "tween": true,
-                    "name": "RNG"
+                    "name": "Shared RNG"
                   }
                 }
               ]

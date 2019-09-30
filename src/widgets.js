@@ -5,16 +5,19 @@ import Panel from './widgets/Panel.svelte';
 import Indicator from './widgets/Indicator.svelte';
 import StaticIndicator from './dataproviders/StaticIndicator.svelte';
 import RandomNumberGeneratorIndicator from './dataproviders/RandomNumberGeneratorIndicator.svelte';
+import SharedRandomNumberGeneratorIndicator from './dataproviders/SharedRandomNumberGeneratorIndicator.svelte';
 import epics2webIndicator from './dataproviders/epics2webIndicator.svelte';
 
 import Label from './widgets/Label.svelte';
 import StaticLabel from './dataproviders/StaticLabel.svelte';
 import RandomNumberGeneratorLabel from './dataproviders/RandomNumberGeneratorLabel.svelte';
+import SharedRandomNumberGeneratorLabel from './dataproviders/SharedRandomNumberGeneratorLabel.svelte';
 import epics2webLabel from './dataproviders/epics2webLabel.svelte';
 
 import Gauge from './widgets/Gauge.svelte';
 import StaticGauge from './dataproviders/StaticGauge.svelte';
 import RandomNumberGeneratorGauge from './dataproviders/RandomNumberGeneratorGauge.svelte';
+import SharedRandomNumberGeneratorGauge from './dataproviders/SharedRandomNumberGeneratorGauge.svelte';
 import epics2webGauge from './dataproviders/epics2webGauge.svelte';
 
 export function initWidgets() {
@@ -23,7 +26,8 @@ export function initWidgets() {
         constructor: Label,
         dataproviders: {
             'Static': {constructor: StaticLabel, defaults: {value: 'Unlabeled'}},
-            'RNG': {constructor: RandomNumberGeneratorLabel, defaults: {min: 0, max: 10, hz: 1, decimals: 2, tween: false}}
+            'RNG': {constructor: RandomNumberGeneratorLabel, defaults: {min: 0, max: 10, hz: 1, decimals: 2, tween: false}},
+            'Shared RNG': {constructor: SharedRandomNumberGeneratorLabel, defaults: {channel: 'a', decimals: 2}}
         },
         defaults: {dataprovider: {name: 'Static'}, style: '', class: ''},
         icon: 'sticky-note.svg'
@@ -32,7 +36,8 @@ export function initWidgets() {
         constructor: Gauge,
         dataproviders: {
             'Static': {constructor: StaticGauge, defaults: {value: 0, min: 0, max: 100, labeldecimals: 2, tickdecimals: 0}},
-            'RNG': {constructor: RandomNumberGeneratorGauge, defaults: {min: 0, max: 10, hz: 1, labeldecimals: 2, tickdecimals: 0, tween: true}}
+            'RNG': {constructor: RandomNumberGeneratorGauge, defaults: {min: 0, max: 10, hz: 1, labeldecimals: 2, tickdecimals: 0, tween: true}},
+            'Shared RNG': {constructor: SharedRandomNumberGeneratorGauge, defaults: {min: 0, max: 10, channel: 'a', labeldecimals: 2, tickdecimals: 0}}
         },
         defaults: {dataprovider: {name: 'Static'}, style: '', class: ''},
         icon: 'tachometer-alt.svg'
@@ -41,7 +46,8 @@ export function initWidgets() {
         constructor: Indicator,
         dataproviders: {
             'Static': {constructor: StaticIndicator, defaults: {value: 0}},
-            'RNG': {constructor: RandomNumberGeneratorIndicator, defaults: {min: 0, max: 1, hz: 1, tween: false}}
+            'RNG': {constructor: RandomNumberGeneratorIndicator, defaults: {min: 0, max: 1, hz: 1, tween: false}},
+            'Shared RNG': {constructor: SharedRandomNumberGeneratorIndicator, defaults: {channel: 'a', decimals: 2}}
         },
         defaults: {dataprovider: {name: 'Static'}, style: '', class: '', onIf: function(data){return data.value > 0}, flash: true},
         icon: 'lightbulb.svg'
