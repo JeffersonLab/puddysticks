@@ -109,14 +109,14 @@
 
         value = validateValue(data.value, min, max);
 
-        criticalMin = 75;
+        /*criticalMin = 75;
         criticalMax = 100;
 
         criticalMinAngle = getAngle(criticalMin, min, max);
         criticalMaxAngle = getAngle(criticalMax, min, max);
 
         console.log(criticalMinAngle);
-        console.log(criticalMaxAngle);
+        console.log(criticalMaxAngle);*/
 
         ticks = getTicks(min, max);
         a = getAngle(value, min, max);
@@ -126,7 +126,7 @@
         console.log('a', a);*/
         meter = getMeter(a);
         needle = getNeedle(a);
-        critical = getCritical(criticalMinAngle, criticalMaxAngle);
+        //critical = getCritical(criticalMinAngle, criticalMaxAngle);
     }
 
     /*$: console.log(value);*/
@@ -264,10 +264,8 @@
             {/each}
         </g>
         <path class="outline" d="{outline}"/>
-        <path class="critical" d="{critical}"/>
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
-        <rect x="{cx + r1 * Math.cos(a)}" y="{cy + r1 * Math.sin(a)}" width="10" height="10" fill="orange"/>
     </svg>
     <div class="output">{Number(value).toFixed(labeldecimals)}</div>
 </div>
