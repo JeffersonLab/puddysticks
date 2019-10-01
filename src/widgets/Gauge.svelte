@@ -28,6 +28,12 @@
         fill: dimgray;
     }
 
+    .critical {
+        fill: none;
+        stroke: rgb(150, 40, 27);
+        stroke-width: 10;
+    }
+
     .meter {
         fill: lightskyblue;
     }
@@ -55,26 +61,26 @@
     export let data = {value: 0};
 
     let rad = Math.PI / 180,
-            W = 300,
-            offset = 40,
-            cx = ~~(W / 2), /* ~~ is roughly same as Math.floor() - used to obtain int from float for example */
-            cy = 160,
-            r1 = cx - offset,
+            W = 300, /* widget bounding box width */
+            offset = 40, /* space between bounding box and arc */
+            cx = ~~(W / 2), /* ~~ is roughly same as Math.floor() - used to obtain int from float for example - cx is center point horizontally */
+            cy = 160, /* center point vertically */
+            r1 = cx - offset, /* radius */
             delta = ~~(r1 / 4),
-            x1 = cx + r1,
-            y1 = cy,
-            r2 = r1 - delta,
-            x2 = offset,
-            y2 = cy,
-            x3 = x1 - delta,
-            y3 = cy,
-            outline = getOutline(cx, cy, r1, offset, delta);
+            x1 = cx + r1, /* end of arc (outside edge) */
+            y1 = cy, /* end of arc (outside edge) */
+            r2 = r1 - delta, /* radius */
+            x2 = offset, /* start of arc */
+            y2 = cy, /* start of arc */
+            x3 = x1 - delta, /* end of arc (inside edge) */
+            y3 = cy, /* end of arc (inside edge) */
+            outline = getOutline(); /* SVG Path commands to draw outline */
 
     /*$: value = data.value;*/
     $: labeldecimals = config.dataprovider.labeldecimals;
     $: tickdecimals = config.dataprovider.tickdecimals;
 
-    let ticks, a, meter, needle, min, max, value;
+    let ticks, a, meter, needle, min, max, value, critical, criticalMin, criticalMax, criticalMinAngle, criticalMaxAngle;
 
     /*$: console.log('data.value', data.value);*/
 
@@ -103,14 +109,24 @@
 
         value = validateValue(data.value, min, max);
 
+        criticalMin = 75;
+        criticalMax = 100;
+
+        criticalMinAngle = getAngle(criticalMin, min, max);
+        criticalMaxAngle = getAngle(criticalMax, min, max);
+
+        console.log(criticalMinAngle);
+        console.log(criticalMaxAngle);
+
         ticks = getTicks(min, max);
         a = getAngle(value, min, max);
         /*console.log('value', value);
         console.log('min', min);
         console.log('max', max);
         console.log('a', a);*/
-        meter = getMeter(cx, cy, r1, offset, delta, a);
-        needle = getNeedle(cx, cy, r1, a);
+        meter = getMeter(a);
+        needle = getNeedle(a);
+        critical = getCritical(criticalMinAngle, criticalMaxAngle);
     }
 
     /*$: console.log(value);*/
@@ -130,6 +146,28 @@
         }
 
         return result;
+    }
+
+    function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+        var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+
+        return {
+            x: centerX + (radius * Math.cos(angleInRadians)),
+            y: centerY + (radius * Math.sin(angleInRadians))
+        };
+    }
+
+    function describeArc(x, y, radius, startAngle, endAngle){
+        let start = polarToCartesian(x, y, radius, endAngle),
+            end = polarToCartesian(x, y, radius, startAngle),
+            largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1",
+            sweepFlag = endAngle > startAngle ? 0 : 1,
+            d = [
+                "M", start.x, start.y,
+                "A", radius, radius, 0, largeArcFlag, sweepFlag, end.x, end.y
+            ].join(" ");
+
+        return d;
     }
 
     function getTicks(min, max) {
@@ -168,7 +206,7 @@
         return ticks;
     }
 
-    function getNeedle(cx, cy, r1, a) {
+    function getNeedle(a) {
         let nx1 = cx + 5 * Math.cos((a - 90) * rad),
                 ny1 = cy + 5 * Math.sin((a - 90) * rad),
                 nx2 = cx + (r1 + 15) * Math.cos(a * rad),
@@ -197,26 +235,23 @@
         return Math.atan2(ly, lx) / rad - 180;
     }
 
-    function getOutline(cx, cy, r1, offset, delta) {
-        let x1 = cx + r1,
-                y1 = cy,
-                x2 = offset,
-                y2 = cy,
-                r2 = r1 - delta,
-                x3 = x1 - delta,
-                y3 = cy;
-
+    function getOutline() {
         return "M " + x1 + ", " + y1 + " A" + r1 + "," + r1 + " 0 0 0 " + x2 + "," + y2 + " H" + (offset + delta) + " A" + r2 + "," + r2 + " 0 0 1 " + x3 + "," + y3 + " z";
     }
 
-    function getMeter(cx, cy, r1, offset, delta, a) {
+    function getCritical(minA, maxA) {
+        return describeArc(cx, cy, r1 - 5, 45, 90);
+    }
+
+    function getMeter(a) {
         a *= rad;
-        let r2 = r1 - delta,
-                x4 = cx + r1 * Math.cos(a),
+        let     x4 = cx + r1 * Math.cos(a),
                 y4 = cy + r1 * Math.sin(a),
                 x5 = cx + r2 * Math.cos(a),
                 y5 = cy + r2 * Math.sin(a);
 
+        // Move to x4,y4 then create arc with radius r1 with 0 deg rotation small arc flag and anticlockwise sweep flag ending at x2, y2
+        // then draw horizontal line to create bar thickness then arc again with inner radius with 0 deg rotation, small arc flag and clockwise sweep flag ending at x5,y5
         return "M " + x4 + ", " + y4 + " A" + r1 + "," + r1 + " 0 0 0 " + x2 + "," + y2 + " H" + (offset + delta) + " A" + r2 + "," + r2 + " 0 0 1 " + x5 + "," + y5 + " z";
     }
 </script>
@@ -229,8 +264,10 @@
             {/each}
         </g>
         <path class="outline" d="{outline}"/>
+        <path class="critical" d="{critical}"/>
         <path class="meter" d="{meter}"/>
         <polygon class="needle" points="{needle}"/>
+        <rect x="{cx + r1 * Math.cos(a)}" y="{cy + r1 * Math.sin(a)}" width="10" height="10" fill="orange"/>
     </svg>
     <div class="output">{Number(value).toFixed(labeldecimals)}</div>
 </div>

@@ -4,5 +4,6 @@ public/bundle.css
 public/bundle.css.map
 public/bundle.js
 public/bundle.js.map
+public/examples/test.puddy
 *.iml
 *.env
