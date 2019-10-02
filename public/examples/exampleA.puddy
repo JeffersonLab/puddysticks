@@ -45,9 +45,9 @@
                   "class": "round-indicator yellow-indicator",
                   "dataprovider": {
                     "channel": "a",
-                    "onIf": "function(data){return data.value < 2}",
                     "name": "Shared RNG"
                   },
+                  "onIf": "function(data){return data.value < 2}",
                   "flash": true
                 },
                 {
@@ -61,9 +61,9 @@
                   "name": "Indicator",
                   "dataprovider": {
                     "channel": "a",
-                    "onIf": "function(data){return data.value > 8}",
                     "name": "Shared RNG"
                   },
+                  "onIf": "function(data){return data.value > 8}",
                   "flash": false
                 },
                 {
