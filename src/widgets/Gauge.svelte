@@ -1,8 +1,7 @@
 <style>
     .gauge {
+        display: inline-block;
         position: relative;
-        height: 165px;
-        width: 300px;
 
         font-family: Verdana, Geneva, sans-serif;
         font-size: 12px;
@@ -62,6 +61,9 @@
 
     let rad = Math.PI / 180,
             W = 300, /* widget bounding box width */
+            H = 165, /* widget bounding box height */
+            A = 180, /* Angle of gauge*/
+            R = 180, /* Reference point / origin of angle w.r.t. standard cartesian reference */
             offset = 40, /* space between bounding box and arc */
             cx = ~~(W / 2), /* ~~ is roughly same as Math.floor() - used to obtain int from float for example - cx is center point horizontally */
             cy = 160, /* center point vertically */
@@ -109,8 +111,8 @@
 
         value = validateValue(data.value, min, max);
 
-        /*criticalMin = 75;
-        criticalMax = 100;
+        /*criticalMin = 50;
+        criticalMax = 75;
 
         criticalMinAngle = getAngle(criticalMin, min, max);
         criticalMaxAngle = getAngle(criticalMax, min, max);
@@ -157,6 +159,7 @@
         };
     }
 
+    /* angles are in reference to SVG cartesian coordinates which have 0,0 at upper left (not lower left like standard math).  Also grows down, not up */
     function describeArc(x, y, radius, startAngle, endAngle){
         let start = polarToCartesian(x, y, radius, endAngle),
             end = polarToCartesian(x, y, radius, startAngle),
@@ -178,7 +181,7 @@
 
         let n = 0,
                 amount = (Math.abs(max - min) / 10);
-        for (let sa = -180; sa <= 0; sa += 18) {
+        for (let sa = -A; sa <= 0; sa += 18) {
             let sx1 = cx + sr1 * Math.cos(sa * rad),
                     sy1 = cy + sr1 * Math.sin(sa * rad),
                     sx2 = cx + sr2 * Math.cos(sa * rad),
@@ -217,11 +220,26 @@
         return nx1 + "," + ny1 + " " + nx2 + "," + ny2 + " " + nx3 + "," + ny3;
     }
 
+    function normalizeAngle(a) {
+        if(a > 360) {
+            a = a % 360;
+        } else if(a < -360) {
+            a = a % -360;
+        }
+
+        if(a < 0) {
+            a = 360 + a;
+        }
+
+        return a;
+    }
+
+    /* this function returns a relative angle to outline arc, which is NOT what SVG uses. */
     function getAngle(val, min, max) {
         let /*newVal = (!isNaN(val) && val >= min && val <= max) ? val : min,*/
-                scale = 180 / Math.abs(max - min),
+                scale = A / Math.abs(max - min),
                 zeroAdj = Math.abs(0 - min),
-                pa = ((val + zeroAdj) * scale) - 180,
+                pa = ((val + zeroAdj) * scale) - A,
                 p = {};
 
         p.x = cx + r1 * Math.cos(pa * rad);
@@ -232,7 +250,7 @@
                 lx = cx - x,
                 ly = cy - y;
 
-        return Math.atan2(ly, lx) / rad - 180;
+        return Math.atan2(ly, lx) / rad - A;
     }
 
     function getOutline() {
@@ -240,7 +258,8 @@
     }
 
     function getCritical(minA, maxA) {
-        return describeArc(cx, cy, r1 - 5, 45, 90);
+        /* Expects SVG coordinates with 0,0 at top left  */
+        return describeArc(cx, cy, r1 - 5, 0, 45);
     }
 
     function getMeter(a) {
@@ -256,7 +275,7 @@
     }
 </script>
 <div class="gauge {config.class}" style="{config.style}">
-    <svg height="165" width="{W}" view-box="0 0 {W} 165">
+    <svg height="{H}" width="{W}" viewBox="0 0 {W} {H}">
         <g class="scale">
             {#each ticks as tick}
                 <line x1="{tick.line.x1}" y1="{tick.line.y1}" x2="{tick.line.x2}" y2="{tick.line.y2}"></line>
