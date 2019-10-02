@@ -12,19 +12,13 @@
 
     const dispatch = createEventDispatcher();
 
-    let value;
+    let channels = {a: a, b: b, c: c};
+
+    $: value = channels[config.channel] || a;
 
     $: {
-        if(config.channel === 'c') {
-            value = $c;
-        } else if(config.channel === 'b') {
-            value = $b;
-        } else {
-            value = $a;
-        }
-
         dispatch('value', {
-            value: value
+            value: $value
         });
     }
 </script>

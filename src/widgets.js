@@ -51,7 +51,7 @@ export function initWidgets() {
         dataproviders: {
             'Static': {constructor: StaticIndicator, defaults: {value: 0}},
             'RNG': {constructor: RandomNumberGeneratorIndicator, defaults: {min: 0, max: 1, hz: 1, tween: false}},
-            'Shared RNG': {constructor: SharedRandomNumberGeneratorIndicator, defaults: {channel: 'a', decimals: 2}}
+            'Shared RNG': {constructor: SharedRandomNumberGeneratorIndicator, defaults: {channel: 'a'}}
         },
         defaults: {dataprovider: {name: 'Static'}, style: '', class: '', onIf: function(data){return data.value > 0}, flash: true},
         icon: 'lightbulb.svg'
