@@ -1,6 +1,8 @@
 import {widgets} from './manager/util/registry.js';
 
 import Panel from './widgets/Panel.svelte';
+import Shape from './widgets/Shape.svelte';
+import Arc from './widgets/Arc.svelte';
 
 import Indicator from './widgets/Indicator.svelte';
 import StaticIndicator from './dataproviders/StaticIndicator.svelte';
@@ -22,6 +24,8 @@ import epics2webGauge from './dataproviders/epics2webGauge.svelte';
 
 export function initWidgets() {
     widgets['Panel'] = {constructor: Panel, defaults: {style: '', class: '', items: []}, icon: 'window-restore.svg'};
+    widgets['Shape'] = {constructor: Shape, defaults: {style: 'stroke: black; fill: none; width: 400px; height: 400px;', class: '', viewBox: '0 0 400 400', d: 'M 150,150 h 100 v 100 h -100 z'}, icon: 'shapes.svg'};
+    widgets['Arc'] = {constructor: Arc, defaults: {style: 'width: 400px; height: 400px;', class: '', viewBox: '0 0 400 400', cx: 200, cy: 200, rx: 100, ry: 100, sweepStart: 0, sweepDelta: 180, rot: 0}, icon: 'circle-notch.svg'};
     widgets['Label'] = {
         constructor: Label,
         dataproviders: {
