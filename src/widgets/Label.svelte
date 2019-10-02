@@ -9,8 +9,8 @@
 
     $: {
         /*Format Decimals*/
-        if(config.dataprovider && config.dataprovider.decimals && data.value && data.value.toFixed) {
-            formattedValue = data.value.toFixed(config.dataprovider.decimals);
+        if(config.decimals !== '' && data.value && data.value.toFixed) {
+            formattedValue = data.value.toFixed(config.decimals);
         } else {
             formattedValue = data.value;
         }

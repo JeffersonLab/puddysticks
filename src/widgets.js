@@ -30,10 +30,10 @@ export function initWidgets() {
         constructor: Label,
         dataproviders: {
             'Static': {constructor: StaticLabel, defaults: {value: 'Unlabeled'}},
-            'RNG': {constructor: RandomNumberGeneratorLabel, defaults: {min: 0, max: 10, hz: 1, decimals: 2, tween: false}},
-            'Shared RNG': {constructor: SharedRandomNumberGeneratorLabel, defaults: {channel: 'a', decimals: 2}}
+            'RNG': {constructor: RandomNumberGeneratorLabel, defaults: {min: 0, max: 10, hz: 1, tween: false}},
+            'Shared RNG': {constructor: SharedRandomNumberGeneratorLabel, defaults: {channel: 'a'}}
         },
-        defaults: {dataprovider: {name: 'Static'}, style: '', class: ''},
+        defaults: {dataprovider: {name: 'Static'}, style: '', class: '', decimals: 2},
         icon: 'sticky-note.svg'
     };
     widgets['Gauge'] = {
@@ -58,7 +58,7 @@ export function initWidgets() {
     };
 
     if('EPICS2WEB_ENABLED' === 'true') {
-        widgets['Label'].dataproviders['epics2web'] = {constructor: epics2webLabel, defaults: {channel: '', decimals: 2}};
+        widgets['Label'].dataproviders['epics2web'] = {constructor: epics2webLabel, defaults: {channel: ''}};
         widgets['Gauge'].dataproviders['epics2web'] = {constructor: epics2webGauge, defaults: {channel: '', min: 0, max: 10, labeldecimals: 2, tickdecimals: 0}};
         widgets['Indicator'].dataproviders['epics2web'] = {constructor: epics2webIndicator, defaults: {channel: ''}};
     }
