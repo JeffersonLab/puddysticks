@@ -44,11 +44,9 @@
                   "name": "Indicator",
                   "class": "round-indicator yellow-indicator",
                   "dataprovider": {
-                    "min": -1,
-                    "max": 1,
-                    "hz": 0.5,
-                    "tween": false,
-                    "name": "RNG"
+                    "channel": "a",
+                    "onIf": "function(data){return data.value < 2}",
+                    "name": "Shared RNG"
                   },
                   "flash": true
                 },
@@ -62,11 +60,9 @@
                 {
                   "name": "Indicator",
                   "dataprovider": {
-                    "min": -1,
-                    "max": 1,
-                    "hz": 2,
-                    "tween": false,
-                    "name": "RNG"
+                    "channel": "a",
+                    "onIf": "function(data){return data.value > 8}",
+                    "name": "Shared RNG"
                   },
                   "flash": false
                 },

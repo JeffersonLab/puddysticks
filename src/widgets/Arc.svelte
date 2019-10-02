@@ -1,15 +1,8 @@
 <style>
-    path {
-        stroke: black;
-        fill: none;
-    }
 </style>
 <script>
 
     export let config;
-
-    const H = 400;
-    const W = 400;
 
     const cos = Math.cos;
     const sin = Math.sin;
@@ -50,10 +43,8 @@
     ], [
         parseFloat(config.sweepStart) / 180 * π,
         parseFloat(config.sweepDelta) / 180 * π
-    ], parseFloat(config.rot) / 180 * π);
+    ], parseFloat(config.rotation) / 180 * π);
 
-    $: console.log(config);
-    $: console.log(arc);
 </script>
 <div class="arc {config.class}" style="{config.style}">
     <svg viewBox="{config.viewBox}">
