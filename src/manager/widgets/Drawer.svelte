@@ -8,6 +8,7 @@
         padding: 0;
         overflow-x: hidden;
         transition: 0.5s;
+        display: flex;
     }
     .main {
         margin-left: 0;
