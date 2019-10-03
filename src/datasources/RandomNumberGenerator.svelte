@@ -15,11 +15,12 @@
             }
         });
 
-        Object.keys(config).forEach(key => {
+        /* Data Source should not remove keys used by other data sources*/
+        /*Object.keys(config).forEach(key => {
             if (key !== 'name' && !(key in defaultConfig)) {
                 delete config[key];
             }
-        });
+        });*/
 
         /* Convert string to number (could use parseFloat instead) */
         /* Note: We could actually use type="number" on inputs and Svelte will do conversion for us, but that would mean we would need to track which inputs are numbers*/
