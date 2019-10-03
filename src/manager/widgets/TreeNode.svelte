@@ -1,15 +1,10 @@
 <style>
     span {
         padding: 0 0 0 1.75em;
-        background-image: url(icons/container-closed.svg);
         background-repeat: no-repeat;
         background-size: 24px 24px;
         font-weight: bold;
         cursor: pointer;
-    }
-
-    .expanded {
-        background-image: url(icons/container-open.svg);
     }
 
     ul {
