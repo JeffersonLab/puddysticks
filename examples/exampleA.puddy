@@ -15,18 +15,18 @@
               "dataprovider": {
                 "value": "Signal A",
                 "name": "Static"
-              }
+              },
+              "decimals": 2
             },
             {
               "name": "Gauge",
               "dataprovider": {
                 "min": 0,
                 "max": 10,
-                "hz": 0.5,
-                "labeldecimals": 1,
-                "tickdecimals": 0,
-                "tween": true,
-                "name": "RNG"
+                "channel": "a",
+                "name": "Shared RNG",
+                "labeldecimals": 2,
+                "tickdecimals": 0
               },
               "style": "margin-bottom: 1em;"
             },
@@ -39,56 +39,52 @@
                   "dataprovider": {
                     "value": "Fault:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
                   "class": "round-indicator yellow-indicator",
                   "dataprovider": {
-                    "min": -1,
-                    "max": 1,
-                    "hz": 0.5,
-                    "tween": false,
-                    "name": "RNG"
+                    "channel": "a",
+                    "name": "Shared RNG"
                   },
-                  "flash": true
+                  "flash": true,
+                  "onIf": "function(data){return data.value < 2}"
                 },
                 {
                   "name": "Label",
                   "dataprovider": {
                     "value": "Trip:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
                   "dataprovider": {
-                    "min": -1,
-                    "max": 1,
-                    "hz": 2,
-                    "tween": false,
-                    "name": "RNG"
+                    "channel": "a",
+                    "name": "Shared RNG"
                   },
-                  "flash": false
+                  "flash": false,
+                  "onIf": "function(data){return data.value > 8}"
                 },
                 {
                   "name": "Label",
                   "dataprovider": {
                     "value": "Aux: ",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Label",
                   "class": "readout",
                   "dataprovider": {
-                    "min": 0,
-                    "max": 10,
-                    "hz": 1,
-                    "decimals": 2,
-                    "tween": true,
-                    "name": "RNG"
-                  }
+                    "channel": "a",
+                    "name": "Shared RNG"
+                  },
+                  "decimals": 2
                 }
               ]
             }
@@ -104,18 +100,18 @@
               "dataprovider": {
                 "value": "Signal B",
                 "name": "Static"
-              }
+              },
+              "decimals": 2
             },
             {
               "name": "Gauge",
               "dataprovider": {
                 "min": 0,
-                "max": 10,
-                "hz": 0.5,
-                "labeldecimals": 1,
-                "tickdecimals": 0,
-                "tween": true,
-                "name": "RNG"
+                "max": 100,
+                "channel": "b",
+                "name": "Shared RNG",
+                "labeldecimals": 2,
+                "tickdecimals": 0
               },
               "style": "margin-bottom: 1em;"
             },
@@ -128,7 +124,8 @@
                   "dataprovider": {
                     "value": "Fault:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -138,7 +135,9 @@
                     "max": 1,
                     "hz": 0.5,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": true
                 },
@@ -147,7 +146,8 @@
                   "dataprovider": {
                     "value": "Trip:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -156,7 +156,9 @@
                     "max": 1,
                     "hz": 2,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": false
                 },
@@ -165,19 +167,17 @@
                   "dataprovider": {
                     "value": "Aux: ",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Label",
                   "class": "readout",
                   "dataprovider": {
-                    "min": 0,
-                    "max": 10,
-                    "hz": 1,
-                    "decimals": 2,
-                    "tween": true,
-                    "name": "RNG"
-                  }
+                    "channel": "b",
+                    "name": "Shared RNG"
+                  },
+                  "decimals": 1
                 }
               ]
             }
@@ -193,18 +193,18 @@
               "dataprovider": {
                 "value": "Signal C",
                 "name": "Static"
-              }
+              },
+              "decimals": 2
             },
             {
               "name": "Gauge",
               "dataprovider": {
                 "min": 0,
-                "max": 10,
-                "hz": 0.5,
-                "labeldecimals": 1,
-                "tickdecimals": 0,
-                "tween": true,
-                "name": "RNG"
+                "max": 1000,
+                "channel": "c",
+                "name": "Shared RNG",
+                "labeldecimals": 2,
+                "tickdecimals": 0
               },
               "style": "margin-bottom: 1em;"
             },
@@ -217,7 +217,8 @@
                   "dataprovider": {
                     "value": "Fault:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -227,7 +228,9 @@
                     "max": 1,
                     "hz": 0.5,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": true
                 },
@@ -236,7 +239,8 @@
                   "dataprovider": {
                     "value": "Trip:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -245,7 +249,9 @@
                     "max": 1,
                     "hz": 2,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": false
                 },
@@ -254,19 +260,17 @@
                   "dataprovider": {
                     "value": "Aux: ",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Label",
                   "class": "readout",
                   "dataprovider": {
-                    "min": 0,
-                    "max": 10,
-                    "hz": 1,
-                    "decimals": 2,
-                    "tween": true,
-                    "name": "RNG"
-                  }
+                    "channel": "c",
+                    "name": "Shared RNG"
+                  },
+                  "decimals": 0
                 }
               ]
             }
@@ -282,7 +286,8 @@
               "dataprovider": {
                 "value": "Signal D",
                 "name": "Static"
-              }
+              },
+              "decimals": 2
             },
             {
               "name": "Gauge",
@@ -290,10 +295,12 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 1,
-                "tickdecimals": 0,
                 "tween": true,
-                "name": "RNG"
+                "name": "RNG",
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "intVal": false,
+                "intMaxInc": false
               },
               "style": "margin-bottom: 1em;"
             },
@@ -306,7 +313,8 @@
                   "dataprovider": {
                     "value": "Fault:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -316,7 +324,9 @@
                     "max": 1,
                     "hz": 0.5,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": true
                 },
@@ -325,7 +335,8 @@
                   "dataprovider": {
                     "value": "Trip:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -334,7 +345,9 @@
                     "max": 1,
                     "hz": 2,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": false
                 },
@@ -343,7 +356,8 @@
                   "dataprovider": {
                     "value": "Aux: ",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Label",
@@ -352,10 +366,12 @@
                     "min": 0,
                     "max": 10,
                     "hz": 1,
-                    "decimals": 2,
                     "tween": true,
-                    "name": "RNG"
-                  }
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
+                  },
+                  "decimals": 2
                 }
               ]
             }
@@ -371,7 +387,8 @@
               "dataprovider": {
                 "value": "Signal E",
                 "name": "Static"
-              }
+              },
+              "decimals": 2
             },
             {
               "name": "Gauge",
@@ -379,10 +396,12 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 1,
-                "tickdecimals": 0,
                 "tween": true,
-                "name": "RNG"
+                "name": "RNG",
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "intVal": false,
+                "intMaxInc": false
               },
               "style": "margin-bottom: 1em;"
             },
@@ -395,7 +414,8 @@
                   "dataprovider": {
                     "value": "Fault:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -405,7 +425,9 @@
                     "max": 1,
                     "hz": 0.5,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": true
                 },
@@ -414,7 +436,8 @@
                   "dataprovider": {
                     "value": "Trip:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -423,7 +446,9 @@
                     "max": 1,
                     "hz": 2,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": false
                 },
@@ -432,7 +457,8 @@
                   "dataprovider": {
                     "value": "Aux: ",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Label",
@@ -441,10 +467,12 @@
                     "min": 0,
                     "max": 10,
                     "hz": 1,
-                    "decimals": 2,
                     "tween": true,
-                    "name": "RNG"
-                  }
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
+                  },
+                  "decimals": 2
                 }
               ]
             }
@@ -460,7 +488,8 @@
               "dataprovider": {
                 "value": "Signal F",
                 "name": "Static"
-              }
+              },
+              "decimals": 2
             },
             {
               "name": "Gauge",
@@ -468,10 +497,12 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 1,
-                "tickdecimals": 0,
                 "tween": true,
-                "name": "RNG"
+                "name": "RNG",
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "intVal": false,
+                "intMaxInc": false
               },
               "style": "margin-bottom: 1em;"
             },
@@ -484,7 +515,8 @@
                   "dataprovider": {
                     "value": "Fault:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -494,7 +526,9 @@
                     "max": 1,
                     "hz": 0.5,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": true
                 },
@@ -503,7 +537,8 @@
                   "dataprovider": {
                     "value": "Trip:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -512,7 +547,9 @@
                     "max": 1,
                     "hz": 2,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": false
                 },
@@ -521,7 +558,8 @@
                   "dataprovider": {
                     "value": "Aux: ",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Label",
@@ -530,10 +568,12 @@
                     "min": 0,
                     "max": 10,
                     "hz": 1,
-                    "decimals": 2,
                     "tween": true,
-                    "name": "RNG"
-                  }
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
+                  },
+                  "decimals": 2
                 }
               ]
             }
@@ -549,7 +589,8 @@
               "dataprovider": {
                 "value": "Signal G",
                 "name": "Static"
-              }
+              },
+              "decimals": 2
             },
             {
               "name": "Gauge",
@@ -557,10 +598,12 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 1,
-                "tickdecimals": 0,
                 "tween": true,
-                "name": "RNG"
+                "name": "RNG",
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "intVal": false,
+                "intMaxInc": false
               },
               "style": "margin-bottom: 1em;"
             },
@@ -573,7 +616,8 @@
                   "dataprovider": {
                     "value": "Fault:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -583,7 +627,9 @@
                     "max": 1,
                     "hz": 0.5,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": true
                 },
@@ -592,7 +638,8 @@
                   "dataprovider": {
                     "value": "Trip:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -601,7 +648,9 @@
                     "max": 1,
                     "hz": 2,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": false
                 },
@@ -610,7 +659,8 @@
                   "dataprovider": {
                     "value": "Aux: ",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Label",
@@ -619,10 +669,12 @@
                     "min": 0,
                     "max": 10,
                     "hz": 1,
-                    "decimals": 2,
                     "tween": true,
-                    "name": "RNG"
-                  }
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
+                  },
+                  "decimals": 2
                 }
               ]
             }
@@ -638,7 +690,8 @@
               "dataprovider": {
                 "value": "Signal H",
                 "name": "Static"
-              }
+              },
+              "decimals": 2
             },
             {
               "name": "Gauge",
@@ -646,10 +699,12 @@
                 "min": 0,
                 "max": 10,
                 "hz": 0.5,
-                "labeldecimals": 1,
-                "tickdecimals": 0,
                 "tween": true,
-                "name": "RNG"
+                "name": "RNG",
+                "labeldecimals": 2,
+                "tickdecimals": 0,
+                "intVal": false,
+                "intMaxInc": false
               },
               "style": "margin-bottom: 1em;"
             },
@@ -662,7 +717,8 @@
                   "dataprovider": {
                     "value": "Fault:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -672,7 +728,9 @@
                     "max": 1,
                     "hz": 0.5,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": true
                 },
@@ -681,7 +739,8 @@
                   "dataprovider": {
                     "value": "Trip:",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Indicator",
@@ -690,7 +749,9 @@
                     "max": 1,
                     "hz": 2,
                     "tween": false,
-                    "name": "RNG"
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
                   },
                   "flash": false
                 },
@@ -699,7 +760,8 @@
                   "dataprovider": {
                     "value": "Aux: ",
                     "name": "Static"
-                  }
+                  },
+                  "decimals": 2
                 },
                 {
                   "name": "Label",
@@ -708,10 +770,12 @@
                     "min": 0,
                     "max": 10,
                     "hz": 1,
-                    "decimals": 2,
                     "tween": true,
-                    "name": "RNG"
-                  }
+                    "name": "RNG",
+                    "intVal": false,
+                    "intMaxInc": false
+                  },
+                  "decimals": 2
                 }
               ]
             }

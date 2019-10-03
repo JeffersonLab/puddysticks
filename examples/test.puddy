@@ -1,0 +1,17 @@
+{
+  "name": "Display",
+  "items": [
+    {
+      "name": "Arc",
+      "dataprovider": {
+        "value": 0,
+        "min": 0,
+        "max": 100,
+        "labeldecimals": 2,
+        "tickdecimals": 0,
+        "name": "Static"
+      }
+    }
+  ],
+  "title": "Test"
+}
