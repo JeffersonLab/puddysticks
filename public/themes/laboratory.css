@@ -127,5 +127,5 @@ linear-gradient(180deg, hsl(0,0%,78%)  0%, hsl(0,0%,90%) 67%, hsl(0,0%,78%) 73%,
 .display {
     background-color: hsla(0,0%,90%,1);
     background-image: linear-gradient(-45deg, hsla(0,0%,0%,0), hsla(0,0%,0%,.05) );
-    background-size: 5px;
+    background-size: 5px 5px;
 }
