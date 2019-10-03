@@ -1,8 +1,9 @@
 <style>
     span {
         padding: 0 0 0 1.75em;
-        background: url(icons/container-closed.svg) 0 0.1em no-repeat;
-        background-size: 1em 1em;
+        background-image: url(icons/container-closed.svg);
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
         font-weight: bold;
         cursor: pointer;
     }
@@ -31,7 +32,7 @@
     let icon = iconizer ? iconizer(config) : undefined;
 
     if(icon) {
-        style = 'background: url(icons/' + icon + ') 0 0 no-repeat;';
+        style = 'background-image: url(icons/' + icon + ');';
     }
 
 </script>

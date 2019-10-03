@@ -11,20 +11,21 @@
     .button-icon {
         width: 16px;
         height: 16px;
-        background-size: 1em 1em;
+        background-size: 16px 16px;
+        background-repeat: no-repeat;
         display: inline-block;
     }
     .arrow-up {
-        background: url(icons/arrow-up.svg) 0 0 no-repeat;
+        background-image: url(icons/arrow-up.svg);
     }
     .arrow-down {
-        background: url(icons/arrow-down.svg) 0 0 no-repeat;
+        background-image: url(icons/arrow-down.svg);
     }
     .add {
-        background: url(icons/plus.svg) 0 0 no-repeat;
+        background-image: url(icons/plus.svg);
     }
     .remove {
-        background: url(icons/minus.svg) 0 0 no-repeat;
+        background-image: url(icons/minus.svg);
     }
 </style>
 <script>
