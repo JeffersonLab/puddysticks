@@ -2,7 +2,8 @@
     import { a, b, c } from './rng/channels.js';
     import { createEventDispatcher } from 'svelte';
 
-    let defaultConfig = {channel: 'a'};
+    /* TODO: min and max are included here because guage requires them even though shared RNG doesn't use them.  Need to re-think this */
+    let defaultConfig = {min: 0, max: 100, channel: 'a'};
 
     export let config = defaultConfig;
 
