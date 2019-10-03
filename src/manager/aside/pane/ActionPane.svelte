@@ -3,10 +3,11 @@
     .order-pane {
         padding: 8px;
     }
-    :global(.action-pane button) {
+    button {
         text-align: left;
         width: 90px;
         height: 32px;
+        line-height: 26px;
     }
     .button-icon {
         width: 16px;
@@ -14,6 +15,7 @@
         background-size: 16px 16px;
         background-repeat: no-repeat;
         display: inline-block;
+        vertical-align: text-bottom;
     }
     .arrow-up {
         background-image: url(icons/arrow-up.svg);
