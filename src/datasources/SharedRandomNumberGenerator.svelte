@@ -7,7 +7,17 @@
     export let config = defaultConfig;
 
     $: {
-        config = {...defaultConfig, ...config};
+        Object.keys(defaultConfig).forEach(key => {
+            if(!(key in config)) {
+                config[key] = defaultConfig[key];
+            }
+        });
+
+        Object.keys(config).forEach(key => {
+            if (key !== 'name' && !(key in defaultConfig)) {
+                delete config[key];
+            }
+        });
     }
 
     const dispatch = createEventDispatcher();

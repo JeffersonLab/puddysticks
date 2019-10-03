@@ -9,7 +9,17 @@
     export let config = defaultConfig;
 
     $: {
-        config = {...defaultConfig, ...config};
+        Object.keys(defaultConfig).forEach(key => {
+            if(!(key in config)) {
+                config[key] = defaultConfig[key];
+            }
+        });
+
+        Object.keys(config).forEach(key => {
+            if (key !== 'name' && !(key in defaultConfig)) {
+                delete config[key];
+            }
+        });
 
         /* Convert string to number (could use parseFloat instead) */
         /* Note: We could actually use type="number" on inputs and Svelte will do conversion for us, but that would mean we would need to track which inputs are numbers*/

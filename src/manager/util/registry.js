@@ -58,7 +58,17 @@ export function prepareInstance(par, obj) {
     if(obj.dataprovider) {
         let dataproviderDefaults = widgets[obj.name].dataproviders[obj.dataprovider.name].defaults;
 
-        obj.dataprovider = {...dataproviderDefaults, ...obj.dataprovider};
+        Object.keys(dataproviderDefaults).forEach(key => {
+            if(!(key in obj.dataprovider)) {
+                obj.dataprovider[key] = dataproviderDefaults[key];
+            }
+        });
+
+        Object.keys(obj.dataprovider).forEach(key => {
+            if (key !== 'name' && !(key in dataproviderDefaults)) {
+                delete obj.dataprovider[key];
+            }
+        });
     }
 
     obj.id = getUniqueId();
