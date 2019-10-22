@@ -12,7 +12,7 @@ A pure web control system display manager with a What You See Is What You Get (W
 npm i puddysticks
 ```
 **Note**: This application runs on the Node.js JavaScript runtime, which can be downloaded [here](https://nodejs.org/en/download/).
-## Config (Optional)
+## Config (optional)
 Create _.env_ file in project directory with the following environment variables (substituting desired values):
 ```bash
 EPICS2WEB_ENABLED=true
