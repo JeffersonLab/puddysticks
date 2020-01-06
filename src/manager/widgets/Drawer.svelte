@@ -40,7 +40,7 @@
     }
 </style>
 <script>
-    export let config = {};
+    /*export let config = {};*/
 
     let open = true;
     let button;
