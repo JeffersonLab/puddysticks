@@ -32,6 +32,7 @@ export default {
 		}),
 
 		replace({
+			'EPICS2WEB_ENABLED': process.env.EPICS2WEB_ENABLED,
 			'EPICS2WEB_HOST': process.env.EPICS2WEB_HOST
 		}),
 
