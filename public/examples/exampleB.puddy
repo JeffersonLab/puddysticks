@@ -1,0 +1,90 @@
+{
+  "name": "Display",
+  "items": [
+    {
+      "name": "Panel",
+      "class": "auto-wrap-grid",
+      "items": [
+        {
+          "name": "Panel",
+          "class": "card",
+          "items": [
+            {
+              "name": "Label",
+              "class": "heading",
+              "dataprovider": {
+                "value": "Gun Current",
+                "name": "Static"
+              },
+              "decimals": 2
+            },
+            {
+              "name": "Gauge",
+              "dataprovider": {
+                "min": 0,
+                "max": 200,
+                "channel": "IGL1I00POTcurrent",
+                "name": "epics2web",
+                "labeldecimals": 2,
+                "tickdecimals": 0
+              },
+              "style": "margin-bottom: 1em;"
+            },
+            {
+              "name": "Panel",
+              "class": "auto-center-row",
+              "items": [
+                {
+                  "name": "Label",
+                  "dataprovider": {
+                    "value": "Trip:",
+                    "name": "Static"
+                  },
+                  "decimals": 2
+                },
+                {
+                  "name": "Indicator",
+                  "class": "round-indicator red-indicator",
+                  "dataprovider": {
+                    "channel": "ISD0I011G",
+                    "name": "epics2web"
+                  },
+                    "flash": true,
+                    "onIf": "function(data){return data.value > 0}"
+                 },
+                 {
+                    "name": "Label",
+                    "class": "readout",
+                    "dataprovider": {
+                      "channel": "ISD0I011G",
+                      "name": "epics2web"
+                    },
+                    "decimals": 2
+                 },
+                {
+                  "name": "Label",
+                  "dataprovider": {
+                    "value": "Current: ",
+                    "name": "Static"
+                  },
+                  "decimals": 2
+                },
+                {
+                  "name": "Label",
+                  "class": "readout",
+                  "dataprovider": {
+                    "channel": "IGL1I00POTcurrent",
+                    "name": "epics2web"
+                  },
+                  "decimals": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "theme": "laboratory",
+  "title": "Example B"
+}
