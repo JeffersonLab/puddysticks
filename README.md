@@ -32,4 +32,4 @@ npm start
 
 ## See Also
    - [Puddysticks Wiki](https://github.com/JeffersonLab/puddysticks/wiki)
-   - [ICALEPCS 2019 Paper](https://accelconf.web.cern.ch/icalepcs2019/)
+   - [ICALEPCS 2019 Paper](https://accelconf.web.cern.ch/icalepcs2019/doi/JACoW-ICALEPCS2019-WEMPR008.html)
